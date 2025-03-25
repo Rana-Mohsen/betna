@@ -40,7 +40,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               ),
               AuthTextField(
                 hintText: "Email or Phone",
-                validator: Validators.emailValidator,
+                validator: Validators.emailOrPhoneValidator,
                 onChange: (value) {},
               ),
               AuthTextField(

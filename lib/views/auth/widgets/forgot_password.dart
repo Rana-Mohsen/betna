@@ -41,7 +41,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               AuthTextField(
                 hintText: "Email or Phone",
-                validator: Validators.emailValidator,
+                validator: Validators.emailOrPhoneValidator,
                 onChange: (value) {},
               ),
 

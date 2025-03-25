@@ -15,6 +15,7 @@ class AuthTextField extends StatefulWidget {
 
   String? hintText;
   Function(String) onChange;
+
   String? Function(String?)? validator;
   bool obscure;
   Widget? icon;

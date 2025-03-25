@@ -40,7 +40,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               AuthTextField(
                 hintText: "Email or Phone",
-                validator: Validators.emailValidator,
+                validator: Validators.emailOrPhoneValidator,
                 onChange: (value) {},
               ),
               AuthTextField(
