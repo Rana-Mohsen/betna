@@ -1,6 +1,8 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CartInfo extends StatefulWidget {
@@ -13,6 +15,7 @@ class CartInfo extends StatefulWidget {
 class _CartInfoState extends State<CartInfo> {
   @override
   Widget build(BuildContext context) {
+    var bloc = BlocProvider.of<CartListCubit>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       height: 17.h,
@@ -31,18 +34,24 @@ class _CartInfoState extends State<CartInfo> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Total price", style: TextStyle(fontSize: 20)),
-              Text(
-                "\$100",
-                style: FontStyles.textStyle22.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: kPrimaryColor,
-                ),
+              BlocBuilder<CartListCubit, CartListState>(
+                builder: (context, state) {
+                  
+                    return Text(
+                      "\$${bloc.totalPrice}",
+                      style: FontStyles.textStyle22.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: kPrimaryColor,
+                      ),
+                    );
+                 
+                },
               ),
             ],
           ),
 
           Text(
-            "2 Items",
+            "${cartList.length} Items",
             style: FontStyles.textStyle18.copyWith(color: kGrayColor),
           ),
         ],

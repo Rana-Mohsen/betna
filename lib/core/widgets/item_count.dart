@@ -1,7 +1,9 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/models/Item_model.dart';
+import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCount extends StatefulWidget {
   final ItemModel item;
@@ -26,6 +28,7 @@ class ItemCount extends StatefulWidget {
 class _ItemCountState extends State<ItemCount> {
   @override
   Widget build(BuildContext context) {
+    var bloc = BlocProvider.of<CartListCubit>(context);
     return Padding(
       padding: widget.iconPadding,
       child: Row(
@@ -38,6 +41,7 @@ class _ItemCountState extends State<ItemCount> {
             onTap: () {
               setState(() {
                 widget.item.count++;
+                bloc.cartTotalPrice();
               });
             },
           ),
@@ -46,7 +50,7 @@ class _ItemCountState extends State<ItemCount> {
             child: Text(
               widget.item.count.toString(),
               style: FontStyles.textStyle24.copyWith(
-                fontSize: widget.fontSize, // Use customizable font size
+                fontSize: widget.fontSize,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
               ),
@@ -59,6 +63,10 @@ class _ItemCountState extends State<ItemCount> {
               if (widget.item.count > 0) {
                 setState(() {
                   widget.item.count--;
+                  if (widget.item.count == 0) {
+                    bloc.removeItem(widget.item);
+                  }
+                  bloc.cartTotalPrice();
                 });
               }
             },

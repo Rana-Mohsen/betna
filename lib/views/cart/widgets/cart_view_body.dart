@@ -1,6 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_button.dart';
-import 'package:betna/view_models/cart/cart_list_cubit.dart';
+import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/views/cart/my_order_view.dart';
 import 'package:betna/views/cart/widgets/cart_info.dart';
 import 'package:betna/views/cart/widgets/cart_list_item.dart';

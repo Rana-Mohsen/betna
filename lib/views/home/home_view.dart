@@ -10,8 +10,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: BlocProvider(
-          create: (context) => CategoriesCubit(),
+        child: MultiBlocProvider(
+          providers: [
+          BlocProvider( create: (context) => CategoriesCubit(),),
+             //BlocProvider( create: (context) => CartListCubit(),)
+          ],
           child: HomeViewBody(),
         ),
       ),
