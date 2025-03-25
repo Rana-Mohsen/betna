@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/custom_item_card.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
@@ -23,8 +24,8 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
           SizedBox(
             height: 43.h,
             child: ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index) => CustomItemCard(),
+              itemCount: itemList.length,
+              itemBuilder: (context, index) => CustomItemCard(item: itemList[index],),
             ),
           ),
           CustomButton(onTap: () {}, text: "Add all item to cart"),

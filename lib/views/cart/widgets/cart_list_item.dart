@@ -47,7 +47,7 @@ class _CartListItemState extends State<CartListItem> {
                       children: [
                         Align(
                           alignment: Alignment.topLeft,
-                          child: FavoriteIcon(),
+                          child: FavoriteIcon(item: widget.item,),
                         ),
                         Flexible(
                           child: Image.asset(

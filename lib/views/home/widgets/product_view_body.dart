@@ -32,7 +32,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
               ),
             ),
           ),
-          Positioned(top: 5.h, child: HomeAppBar()),
+          Positioned(top: 5.h, child: HomeAppBar(item: widget.item,)),
           Align(
             alignment: Alignment.bottomCenter,
              child: ItemDetails(

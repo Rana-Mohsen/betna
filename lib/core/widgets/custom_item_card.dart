@@ -3,12 +3,13 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/add_icon.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
+import 'package:betna/models/Item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomItemCard extends StatelessWidget {
-  const CustomItemCard({super.key});
-
+  const CustomItemCard({super.key, required this.item});
+  final ItemModel item;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +27,7 @@ class CustomItemCard extends StatelessWidget {
                     children: [
                       Align(
                         alignment: Alignment.topLeft,
-                        child: FavoriteIcon(),
+                        child: FavoriteIcon(item: item),
                       ),
                       Flexible(
                         child: Image.asset(

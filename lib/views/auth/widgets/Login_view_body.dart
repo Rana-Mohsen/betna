@@ -1,6 +1,7 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/validators.dart';
+import 'package:betna/core/widgets/bottom_navigation_bar.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/views/auth/signup_view.dart';
 import 'package:betna/views/auth/widgets/auth_textfield.dart';
@@ -83,7 +84,17 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   ),
                 ),
               ),
-              CustomButton(onTap: () {}, text: "Log in"),
+              CustomButton(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavigation(),
+                    ),
+                  );
+                },
+                text: "Log in",
+              ),
               Row(
                 children: [
                   Expanded(child: Divider(color: Colors.black)),

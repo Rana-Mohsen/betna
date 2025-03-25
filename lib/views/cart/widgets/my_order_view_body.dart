@@ -1,12 +1,13 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/custom_item_card.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
+import 'package:betna/models/Item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class MyOrderViewBody extends StatefulWidget {
-  const MyOrderViewBody({super.key});
-
+  const MyOrderViewBody({super.key,});
   @override
   State<MyOrderViewBody> createState() => _MyOrderViewBodyState();
 }
@@ -24,13 +25,11 @@ class _MyOrderViewBodyState extends State<MyOrderViewBody> {
             SizedBox(
               height: 43.h,
               child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) => CustomItemCard(),
+                itemCount: itemList.length,
+                itemBuilder: (context, index) => CustomItemCard(item: itemList[index],),
               ),
             ),
-            CustomButton(onTap: () {
-              
-            }, text: "You have 3 item in cart "),
+            CustomButton(onTap: () {}, text: "You have 3 item in cart "),
           ],
         ),
       ),
