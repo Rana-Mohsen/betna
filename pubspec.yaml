@@ -39,6 +39,8 @@ dependencies:
   pinput: ^5.0.1
   carousel_slider: ^5.0.0
   icons_plus: ^5.0.0
+  flutter_bloc: ^9.1.0
+  bloc: ^9.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +69,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/icons/profile/
-    - assets/icons/auth
+    - assets/icons/auth/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

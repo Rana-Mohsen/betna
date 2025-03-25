@@ -1,5 +1,7 @@
 import 'package:betna/constants.dart';
+import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -70,6 +72,9 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                 setState(() {
                   isSel.fillRange(0, 6, false);
                   isSel[index] = selected;
+                  BlocProvider.of<CategoriesCubit>(
+                    context,
+                  ).chooseCategory(lable: lables[index]["lable"]);
                 });
               },
             ),

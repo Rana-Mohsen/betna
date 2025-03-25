@@ -1,9 +1,13 @@
 import 'package:betna/core/widgets/bottom_navigation_bar.dart';
+import 'package:betna/simple_bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
+  Bloc.observer = SimpleBlocObserver();
+
   runApp(const MyApp());
 }
 

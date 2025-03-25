@@ -1,24 +1,22 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/models/Item_model.dart';
 import 'package:flutter/material.dart';
 
 class ItemCount extends StatefulWidget {
-  //  final int count; // Current count value
-  final double iconSize; // Size of the icons
-  final double fontSize; // Font size of the count text
-  final VoidCallback onAdd; // Callback for the add button
-  final VoidCallback onRemove; // Callback for the remove button
+  final ItemModel item;
+  final double iconSize;
+  final double fontSize;
   final EdgeInsetsGeometry iconPadding;
-    final EdgeInsetsGeometry countPadding;
+  final EdgeInsetsGeometry countPadding;
 
   const ItemCount({
     super.key,
-    this.iconSize = 24.0, // Default icon size
-    this.fontSize = 16.0, // Default font size
-    //required this.count, // Current count value is required
-    required this.onAdd, // Callback for add button
-    required this.onRemove,
-    required this.iconPadding, required this.countPadding, // Callback for remove button
+    this.iconSize = 24.0,
+    this.fontSize = 16.0,
+    required this.iconPadding,
+    required this.countPadding,
+    required this.item,
   });
 
   @override
@@ -37,12 +35,16 @@ class _ItemCountState extends State<ItemCount> {
           customCountIcon(
             icon: Icons.add,
             iconSize: widget.iconSize,
-            onTap: widget.onAdd,
+            onTap: () {
+              setState(() {
+                widget.item.count++;
+              });
+            },
           ),
           Padding(
-            padding:  widget.countPadding,
+            padding: widget.countPadding,
             child: Text(
-              "2",
+              widget.item.count.toString(),
               style: FontStyles.textStyle24.copyWith(
                 fontSize: widget.fontSize, // Use customizable font size
                 fontWeight: FontWeight.w700,
@@ -53,7 +55,13 @@ class _ItemCountState extends State<ItemCount> {
           customCountIcon(
             icon: Icons.remove,
             iconSize: widget.iconSize,
-            onTap: widget.onRemove,
+            onTap: () {
+              if (widget.item.count > 0) {
+                setState(() {
+                  widget.item.count--;
+                });
+              }
+            },
           ),
         ],
       ),

@@ -2,11 +2,13 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/item_rating.dart';
+import 'package:betna/models/Item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemDetails extends StatelessWidget {
-  const ItemDetails({super.key});
+  const ItemDetails({super.key, required this.item});
+  final ItemModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class ItemDetails extends StatelessWidget {
               spacing: 5,
               children: [
                 Text(
-                  "Modern chair",
+                  item.name,
                   style: FontStyles.textStyle24.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
@@ -30,7 +32,7 @@ class ItemDetails extends StatelessWidget {
                 const ItemRating(iconSize: 15, fontSize: 14),
                 const Spacer(flex: 1),
                 Text(
-                  "\$100",
+                  "\$${item.price}",
                   style: FontStyles.textStyle24.copyWith(
                     color: kPrimaryColor,
                     fontWeight: FontWeight.w600,
@@ -64,10 +66,33 @@ class ItemDetails extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            CustomButton(text: "Add to cart", onTap: () {}),
+            CustomButton(
+              text: "Add to cart",
+              onTap: () {
+                checkCart(context);
+              },
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void checkCart(BuildContext context) {
+    if (cartList.contains(item)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Item already to cart')),
+      );
+    } else {
+      if (item.count == 0) {
+        item.count++;
+        cartList.add(item);
+      } else {
+        cartList.add(item);
+      }
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Item added to cart')));
+    }
   }
 }

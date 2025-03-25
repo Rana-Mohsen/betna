@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/views/home/product_view.dart';
 import 'package:betna/views/home/widgets/listview_item.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,12 @@ class CustomListView extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProductView()),
+                  MaterialPageRoute(
+                    builder: (context) => ProductView(item: itemList[index]),
+                  ),
                 );
               },
-              child: ListViewItem(),
+              child: ListViewItem(item: itemList[index]),
             ),
           );
         },

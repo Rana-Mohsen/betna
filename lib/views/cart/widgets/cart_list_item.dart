@@ -3,19 +3,21 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/core/widgets/item_count.dart';
+import 'package:betna/models/Item_model.dart';
+import 'package:betna/view_models/cart/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CartListItem extends StatefulWidget {
-  const CartListItem({super.key});
-
+  const CartListItem({super.key, required this.item});
+  final ItemModel item;
   @override
   State<CartListItem> createState() => _CartListItemState();
 }
 
 class _CartListItemState extends State<CartListItem> {
   bool showOption = false;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -67,7 +69,10 @@ class _CartListItemState extends State<CartListItem> {
                       children: [
                         Row(
                           children: [
-                            Text("Modern chair", style: FontStyles.textStyle16),
+                            Text(
+                              widget.item.name,
+                              style: FontStyles.textStyle16,
+                            ),
                             ItemRating(),
                           ],
                         ),
@@ -75,7 +80,7 @@ class _CartListItemState extends State<CartListItem> {
                           spacing: 30,
                           children: [
                             Text(
-                              "\$100",
+                              "\$${widget.item.price}",
                               style: FontStyles.textStyle18.copyWith(
                                 fontWeight: FontWeight.w600,
                               ),
@@ -87,6 +92,7 @@ class _CartListItemState extends State<CartListItem> {
                                 color: const Color(0xff73888A),
                               ),
                               child: ItemCount(
+                                item: widget.item,
                                 countPadding: EdgeInsets.symmetric(
                                   horizontal: 3,
                                 ),
@@ -97,8 +103,6 @@ class _CartListItemState extends State<CartListItem> {
                                 ),
                                 iconSize: 10,
                                 fontSize: 14,
-                                onAdd: () {},
-                                onRemove: () {},
                               ),
                             ),
                           ],
@@ -108,7 +112,15 @@ class _CartListItemState extends State<CartListItem> {
                   ),
                 ),
                 GestureDetector(
-                  onDoubleTap: () {},
+                  onTap: () {
+                    BlocProvider.of<CartListCubit>(
+                      context,
+                    ).removeItem(widget.item);
+
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('Item removed')));
+                  },
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
                     width: showOption ? 10.w : 0.0,

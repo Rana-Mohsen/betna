@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/models/Item_model.dart';
 import 'package:betna/views/home/widgets/home_app_bar.dart';
 import 'package:betna/core/widgets/item_count.dart';
 import 'package:betna/views/home/widgets/item_details.dart';
@@ -6,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ProductViewBody extends StatefulWidget {
-  const ProductViewBody({super.key});
-
+  const ProductViewBody({super.key, required this.item});
+  final ItemModel item;
   @override
   State<ProductViewBody> createState() => _ProductViewBodyState();
 }
@@ -15,7 +16,6 @@ class ProductViewBody extends StatefulWidget {
 class _ProductViewBodyState extends State<ProductViewBody> {
   @override
   Widget build(BuildContext context) {
-    // bool isFav = widget.article.isFav;
     return Container(
       color: kBackgroundColor,
       child: Stack(
@@ -33,7 +33,12 @@ class _ProductViewBodyState extends State<ProductViewBody> {
             ),
           ),
           Positioned(top: 5.h, child: HomeAppBar()),
-          Align(alignment: Alignment.bottomCenter, child: ItemDetails()),
+          Align(
+            alignment: Alignment.bottomCenter,
+             child: ItemDetails(
+              item: widget.item,
+             ),
+             ),
           Positioned(
             bottom: 40.h,
             child: Container(
@@ -44,10 +49,10 @@ class _ProductViewBodyState extends State<ProductViewBody> {
                 border: Border.all(color: Colors.white, width: 6),
               ),
               child: ItemCount(
+                item: widget.item,
                 iconPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 countPadding: EdgeInsets.symmetric(horizontal: 16),
-                onAdd: () {},
-                onRemove: () {},
+
               ),
             ),
           ),
