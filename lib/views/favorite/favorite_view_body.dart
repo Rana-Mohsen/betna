@@ -15,22 +15,22 @@ class FavoriteViewBody extends StatefulWidget {
 class _FavoriteViewBodyState extends State<FavoriteViewBody> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        spacing: 25,
-        children: [
-          SearchTextfield(cameraIcon: false),
-          SizedBox(
-            height: 43.h,
-            child: ListView.builder(
-              itemCount: favList.length,
-              itemBuilder: (context, index) => CustomItemCard(item: favList[index],),
-            ),
+    return Column(
+      // spacing: 5,
+      children: [
+        const SearchTextfield(cameraIcon: false),
+        const SizedBox(height: 20),
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            //physics: const NeverScrollableScrollPhysics(),
+            itemCount: favList.length,
+            itemBuilder:
+                (context, index) => CustomItemCard(item: favList[index]),
           ),
-          CustomButton(onTap: () {}, text: "Add all item to cart"),
-        ],
-      ),
+        ),
+        CustomButton(onTap: () {}, text: "Add all items to cart"),
+      ],
     );
   }
 }

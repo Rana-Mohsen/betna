@@ -83,10 +83,10 @@ class ItemDetails extends StatelessWidget {
 
   void checkCart(BuildContext context) {
     if (cartList.contains(item)) {
-      snackBarMessage(context,'Item already to cart');
+      snackBarMessage(context, 'Item already to cart');
     } else {
       BlocProvider.of<CartListCubit>(context).addItem(item);
-      snackBarMessage(context,'Item added to cart',);
+      snackBarMessage(context, 'Item added to cart');
     }
   }
 }
