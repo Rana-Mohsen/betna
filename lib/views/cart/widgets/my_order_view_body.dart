@@ -2,7 +2,6 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/custom_item_card.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
-import 'package:betna/models/Item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 

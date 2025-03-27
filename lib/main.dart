@@ -1,4 +1,3 @@
-import 'package:betna/core/widgets/bottom_navigation_bar.dart';
 import 'package:betna/simple_bloc_observer.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/views/auth/login_view.dart';
