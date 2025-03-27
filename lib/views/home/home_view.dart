@@ -1,3 +1,4 @@
+import 'package:betna/view_models/favorite/favorite_cubit.dart';
 import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:betna/views/home/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class HomeView extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
           BlocProvider( create: (context) => CategoriesCubit(),),
-             //BlocProvider( create: (context) => CartListCubit(),)
+          //BlocProvider( create: (context) => FavoriteCubit(),)
           ],
           child: HomeViewBody(),
         ),

@@ -49,7 +49,7 @@ class CustomItemCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text("Modern chair", style: FontStyles.textStyle16),
+                          Text(item.name, style: FontStyles.textStyle16),
                           ItemRating(),
                         ],
                       ),
@@ -57,7 +57,7 @@ class CustomItemCard extends StatelessWidget {
                         spacing: 60,
                         children: [
                           Text(
-                            "\$100",
+                            "\$${item.price}",
                             style: FontStyles.textStyle18.copyWith(
                               fontWeight: FontWeight.w600,
                             ),

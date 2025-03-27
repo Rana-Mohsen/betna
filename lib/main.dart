@@ -1,5 +1,6 @@
 import 'package:betna/simple_bloc_observer.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
+import 'package:betna/view_models/favorite/favorite_cubit.dart';
 import 'package:betna/views/auth/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,8 +20,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, screenType) {
-        return BlocProvider(
-          create: (context) => CartListCubit(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => CartListCubit()),
+            BlocProvider(create: (context) => FavoriteCubit()),
+          ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(

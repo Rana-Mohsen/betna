@@ -16,3 +16,4 @@ final List<ItemModel> itemList = [
   ItemModel(name: "chair3", price: "70"),
 ];
 List<ItemModel> cartList = [];
+List<ItemModel> favList = [];

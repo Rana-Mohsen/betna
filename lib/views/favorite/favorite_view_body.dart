@@ -24,8 +24,8 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
           SizedBox(
             height: 43.h,
             child: ListView.builder(
-              itemCount: itemList.length,
-              itemBuilder: (context, index) => CustomItemCard(item: itemList[index],),
+              itemCount: favList.length,
+              itemBuilder: (context, index) => CustomItemCard(item: favList[index],),
             ),
           ),
           CustomButton(onTap: () {}, text: "Add all item to cart"),
