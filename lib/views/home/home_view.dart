@@ -1,4 +1,3 @@
-import 'package:betna/view_models/favorite/favorite_cubit.dart';
 import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:betna/views/home/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';

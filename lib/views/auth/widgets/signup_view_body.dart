@@ -1,5 +1,4 @@
 import 'package:betna/constants.dart';
-import 'package:betna/core/errors/auth_check_error.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/snack_bar.dart';
 import 'package:betna/core/utils/validators.dart';

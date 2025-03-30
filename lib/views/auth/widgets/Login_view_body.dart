@@ -41,7 +41,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             MaterialPageRoute(builder: (context) => const BottomNavigation()),
           );
         }
-        ;
       },
       builder: (context, state) {
         return ModalProgressHUD(

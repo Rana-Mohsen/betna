@@ -7,29 +7,40 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
-
     on<AuthLoginEvent>((event, emit) async {
       emit(AuthLoginLoading());
-      var respBody = await AuthApi().loginUser(body: event.body);
+      var result = await AuthApi().loginUser(body: event.body);
 
-      if (respBody.containsKey("errors") && respBody["status"] == "error") {
-        print(respBody);
-        emit(AuthLoginFailure("name or email already exists"));
-      }
-      emit(AuthLoginSuccess("signed up successfully"));
+      result.fold(
+        (failure) {
+          emit(AuthLoginFailure(failure.errMessage));
+        },
+        (login) {
+          if (login.containsKey("errors") && login["status"] == "error") {
+            print(login);
+            emit(AuthLoginFailure("name or email already exists"));
+          }
+          emit(AuthLoginSuccess("signed up successfully"));
+        },
+      );
     });
 
-     on<AuthRegisterEvent>((event, emit) async{
+    on<AuthRegisterEvent>((event, emit) async {
       emit(AuthRegisterLoading());
-      var respBody = await AuthApi().signupUser(body: event.body);
+      var result = await AuthApi().signupUser(body: event.body);
 
-      if (respBody.containsKey("errors") && respBody["status"] == "error") {
-        print(respBody);
-        emit(AuthRegisterFailure("name or email already exists"));
-      }
-      emit(AuthRegisterSuccess("signed up successfully"));
+      result.fold(
+        (failure) {
+          emit(AuthLoginFailure(failure.errMessage));
+        },
+        (signup) {
+          if (signup.containsKey("errors") && signup["status"] == "error") {
+            print(signup);
+            emit(AuthLoginFailure("name or email already exists"));
+          }
+          emit(AuthLoginSuccess("signed up successfully"));
+        },
+      );
     });
   }
-
-
 }
