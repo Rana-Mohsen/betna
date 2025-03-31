@@ -20,7 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             print(login);
             emit(AuthLoginFailure("name or email already exists"));
           }
-          emit(AuthLoginSuccess("signed up successfully"));
+          emit(AuthLoginSuccess("logged in successfully"));
         },
       );
     });
