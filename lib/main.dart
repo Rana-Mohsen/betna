@@ -1,7 +1,7 @@
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/simple_bloc_observer.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/view_models/favorite/favorite_cubit.dart';
-import 'package:betna/views/auth/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => CartListCubit()),
             BlocProvider(create: (context) => FavoriteCubit()),
           ],
-          child: MaterialApp(
+          child: MaterialApp.router(
+            routerConfig: AppRoutes.routes,
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               fontFamily: "Roboto",
@@ -36,8 +37,6 @@ class MyApp extends StatelessWidget {
                 systemOverlayStyle: SystemUiOverlayStyle.dark,
               ),
             ),
-            home: LoginView(),
-            //const BottomNavigation(),
           ),
         );
       },

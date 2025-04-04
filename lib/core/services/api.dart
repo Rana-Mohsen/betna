@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 
 class Api {
-  final Dio _dio = Dio();
+  final Dio _dio;
+
+ Api(this._dio);
 
   Future<dynamic> get({required String url, String? token}) async {
    

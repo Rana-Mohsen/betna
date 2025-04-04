@@ -7,12 +7,16 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class AuthApi {
+  final Api _api;
   final String baseUrl = "https://zbooma.com/furniture_api/auth/";
-  Future<Either<Failures,dynamic>> loginUser({
+
+  AuthApi(this._api);
+
+  Future<Either<Failures, dynamic>> loginUser({
     required Map<String, dynamic> body,
   }) async {
     try {
-      var data = await Api().post(
+      var data = await _api.post(
         url: "${baseUrl}login.php",
         body: jsonEncode(body),
       );
@@ -25,15 +29,16 @@ class AuthApi {
     }
   }
 
-  Future<Either<Failures,dynamic>> signupUser({required Map<String, dynamic> body}) async {
+  Future<Either<Failures, dynamic>> signupUser({
+    required Map<String, dynamic> body,
+  }) async {
     try {
-  Map<String, dynamic> data = await Api().post(
-    url: "${baseUrl}login.php",
-    body: jsonEncode(body),
-  );
-  return right(data);
-
-} catch (e) {
+      Map<String, dynamic> data = await _api.post(
+        url: "${baseUrl}login.php",
+        body: jsonEncode(body),
+      );
+      return right(data);
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }

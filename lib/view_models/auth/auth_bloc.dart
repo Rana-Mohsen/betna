@@ -6,10 +6,12 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial()) {
+      final AuthApi _auth;
+
+  AuthBloc(this._auth) : super(AuthInitial()) {
     on<AuthLoginEvent>((event, emit) async {
       emit(AuthLoginLoading());
-      var result = await AuthApi().loginUser(body: event.body);
+      var result = await _auth.loginUser(body: event.body);
 
       result.fold(
         (failure) {
@@ -27,7 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<AuthRegisterEvent>((event, emit) async {
       emit(AuthRegisterLoading());
-      var result = await AuthApi().signupUser(body: event.body);
+      var result = await _auth.signupUser(body: event.body);
 
       result.fold(
         (failure) {
