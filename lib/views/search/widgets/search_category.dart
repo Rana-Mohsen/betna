@@ -3,14 +3,14 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 
-class SearchViewBody extends StatefulWidget {
-  const SearchViewBody({super.key});
+class SearchCategory extends StatefulWidget {
+  const SearchCategory({super.key});
 
   @override
-  State<SearchViewBody> createState() => _SearchViewBodyState();
+  State<SearchCategory> createState() => _SearchCategoryState();
 }
 
-class _SearchViewBodyState extends State<SearchViewBody> {
+class _SearchCategoryState extends State<SearchCategory> {
   @override
   Widget build(BuildContext context) {
     return Column(
