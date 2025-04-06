@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/add_icon.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
@@ -6,6 +7,7 @@ import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/models/Item_model.dart';
 import 'package:betna/views/home/product_view.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomItemCard extends StatelessWidget {
@@ -17,10 +19,9 @@ class CustomItemCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 16),
       child: GestureDetector(
         onTap:
-            () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProductView(item: item)),
-            ),
+            () =>
+                GoRouter.of(context).push(AppRoutes.kProductView, extra: item),
+
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: SizedBox(

@@ -1,5 +1,6 @@
 import 'package:betna/core/services/auth_api.dart';
 import 'package:betna/core/utils/service_locator.dart';
+import 'package:betna/core/widgets/bottom_navigation_bar.dart';
 import 'package:betna/models/Item_model.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
 import 'package:betna/view_models/home/categories_cubit.dart';
@@ -17,6 +18,7 @@ import 'package:go_router/go_router.dart';
 abstract class AppRoutes {
   static const kLoginView = '/loginView';
   static const kSignupView = '/signupView';
+  static const kBottomNavigationView = '/bottomVavigationView';
   static const kHomeView = '/homeView';
   static const kProductView = '/productView';
   static const kFavoriteView = '/favoriteView';
@@ -39,13 +41,14 @@ abstract class AppRoutes {
         builder: (context, state) => const SignupView(),
       ),
       GoRoute(
-        path: kHomeView,
+        path: kBottomNavigationView,
         builder:
-            (context, state) => BlocProvider(
-              create: (context) => CategoriesCubit(),
-              child: const HomeView(),
+            (context, state) => MultiBlocProvider(
+              providers: [BlocProvider(create: (context) => CategoriesCubit())],
+              child: BottomNavigation(),
             ),
       ),
+      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
         path: kProductView,
         builder:

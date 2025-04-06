@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/utils/validators.dart';
@@ -12,6 +13,7 @@ import 'package:betna/views/auth/widgets/image_with_text.dart';
 import 'package:betna/views/auth/widgets/other_login_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sizer/sizer.dart';
 
@@ -36,10 +38,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         if (state is AuthLoginFailure) {
           snackBarMessage(context, state.msg);
         } else if (state is AuthLoginSuccess) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const BottomNavigation()),
-          );
+          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigationView);
         }
       },
       builder: (context, state) {
@@ -61,7 +60,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     ),
                     AuthTextField(
                       hintText: "Email or Phone",
-                      validator: (_)=> null, //Validators.emailOrPhoneValidator,
+                      validator:
+                          (_) => null, //Validators.emailOrPhoneValidator,
                       onChange: (value) {
                         emailOrPhone = value;
                       },
@@ -145,12 +145,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         ),
                         GestureDetector(
                           onTap:
-                              () => Navigator.push(
+                              () => GoRouter.of(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignupView(),
-                                ),
-                              ),
+                              ).pushReplacement(AppRoutes.kSignupView),
                           child: Text(
                             "Sign up",
                             style: FontStyles.textStyle18.copyWith(

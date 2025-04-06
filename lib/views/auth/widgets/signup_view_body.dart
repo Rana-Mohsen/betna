@@ -1,16 +1,16 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/utils/validators.dart';
-import 'package:betna/core/widgets/bottom_navigation_bar.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
-import 'package:betna/views/auth/login_view.dart';
 import 'package:betna/views/auth/widgets/auth_textfield.dart';
 import 'package:betna/views/auth/widgets/image_with_text.dart';
 import 'package:betna/views/auth/widgets/other_login_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sizer/sizer.dart';
 
@@ -36,10 +36,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         if (state is AuthRegisterFailure) {
           snackBarMessage(context, state.msg);
         } else if (state is AuthRegisterSuccess) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const BottomNavigation()),
-          );
+          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigationView);
         }
       },
       builder: (context, state) {
@@ -133,12 +130,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                         ),
                         GestureDetector(
                           onTap:
-                              () => Navigator.pushReplacement(
+                              () => GoRouter.of(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginView(),
-                                ),
-                              ),
+                              ).pushReplacement(AppRoutes.kLoginView),
                           child: Text(
                             "Log in",
                             style: FontStyles.textStyle18.copyWith(

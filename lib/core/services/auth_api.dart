@@ -20,6 +20,7 @@ class AuthApi {
         url: "${baseUrl}login.php",
         body: jsonEncode(body),
       );
+          print("Response data: $data");
       return right(data);
     } catch (e) {
       if (e is DioException) {

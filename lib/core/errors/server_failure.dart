@@ -16,9 +16,11 @@ class ServerFailure extends Failures {
         return ServerFailure('Receive timeout with ApiServer');
 
       case DioExceptionType.badResponse:
-       // print("1");
+        // print("1");
         return ServerFailure.fromResponse(
-            dioExp.response!.statusCode, dioExp.response!.data);
+          dioExp.response!.statusCode,
+          dioExp.response!.data,
+        );
       case DioExceptionType.cancel:
         return ServerFailure('Request to ApiServer was canceld');
 
@@ -31,10 +33,15 @@ class ServerFailure extends Failures {
     }
   }
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+    if (statusCode == 400) {
+      return ServerFailure(response['message']);
+    } else if (statusCode == 401 || statusCode == 403) {
+      return ServerFailure(response['message']);
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later!');
+    } 
+    else if (statusCode == 409) {
+      return ServerFailure(response['errors']['email']);
     } else if (statusCode == 500) {
       return ServerFailure('Internal Server error, Please try later');
     } else {
