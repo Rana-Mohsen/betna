@@ -2,6 +2,7 @@ import 'package:betna/constants.dart';
 import 'package:betna/models/Item_model.dart';
 import 'package:betna/views/home/widgets/home_app_bar.dart';
 import 'package:betna/core/widgets/item_count.dart';
+import 'package:betna/views/home/widgets/image_view.dart';
 import 'package:betna/views/home/widgets/item_details.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -24,21 +25,16 @@ class _ProductViewBodyState extends State<ProductViewBody> {
           Positioned(
             top: 10.h,
             child: SizedBox(
-              height: 40.h,
-              child: Image.asset(
-                "assets/images/chair.png",
-
-                fit: BoxFit.contain,
-              ),
+              width: 90.w,
+              height: 42.h,
+              child: FittedBox(child: ImageView()),
             ),
           ),
-          Positioned(top: 5.h, child: HomeAppBar(item: widget.item,)),
+          Positioned(top: 5.h, child: HomeAppBar(item: widget.item)),
           Align(
             alignment: Alignment.bottomCenter,
-             child: ItemDetails(
-              item: widget.item,
-             ),
-             ),
+            child: ItemDetails(item: widget.item),
+          ),
           Positioned(
             bottom: 40.h,
             child: Container(
@@ -52,7 +48,6 @@ class _ProductViewBodyState extends State<ProductViewBody> {
                 item: widget.item,
                 iconPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 countPadding: EdgeInsets.symmetric(horizontal: 16),
-
               ),
             ),
           ),

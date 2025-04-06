@@ -46,6 +46,7 @@ dependencies:
   dartz: ^0.10.1
   go_router: ^14.8.1
   get_it: ^8.0.3
+  imageview360: ^1.3.0
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +93,8 @@ flutter:
     - assets/icons/
     - assets/icons/profile/
     - assets/icons/auth/
+    - assets/sample/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
