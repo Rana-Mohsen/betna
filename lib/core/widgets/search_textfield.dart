@@ -1,18 +1,25 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchTextfield extends StatelessWidget {
-  const SearchTextfield({super.key, this.cameraIcon = true});
+  const SearchTextfield({super.key, this.cameraIcon = true, this.nav = true});
   final bool cameraIcon;
+  final bool nav;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: () {
+        if (nav) {
+          GoRouter.of(context).push(AppRoutes.kSearchView);
+        }
+      },
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        labelText: "Search",
-        labelStyle: FontStyles.textStyle16.copyWith(color: kGrayColor),
         filled: true,
         fillColor: kBackgroundColor,
         enabledBorder: OutlineInputBorder(
