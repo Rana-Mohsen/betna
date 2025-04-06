@@ -22,6 +22,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
+
           Positioned(
             top: 10.h,
             child: SizedBox(

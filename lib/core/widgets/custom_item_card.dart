@@ -5,7 +5,6 @@ import 'package:betna/core/widgets/add_icon.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/models/Item_model.dart';
-import 'package:betna/views/home/product_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';

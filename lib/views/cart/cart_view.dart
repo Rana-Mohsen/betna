@@ -1,6 +1,5 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
-import 'package:betna/core/widgets/bottom_navigation_bar.dart';
 import 'package:betna/core/widgets/custom_appbar.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/views/cart/widgets/cart_view_body.dart';
