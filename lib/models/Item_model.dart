@@ -1,0 +1,11 @@
+class ItemModel {
+  final String name;
+  final String price;
+  bool isFav = false;
+  int count = 0;
+
+  ItemModel({required this.name, required this.price});
+  double totalPrice() {
+    return double.parse(price) * count;
+  }
+}
