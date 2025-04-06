@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/widgets/profile_image.dart';
 import 'package:betna/models/Item_model.dart';
 import 'package:betna/views/home/widgets/home_app_bar.dart';
 import 'package:betna/core/widgets/item_count.dart';
@@ -15,6 +16,8 @@ class ProductViewBody extends StatefulWidget {
 }
 
 class _ProductViewBodyState extends State<ProductViewBody> {
+  final List<int> _colorList = const [0xff9D9484, 0xffFFB573, 0xff355B5E];
+  int idx = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,13 +25,51 @@ class _ProductViewBodyState extends State<ProductViewBody> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-
           Positioned(
             top: 10.h,
             child: SizedBox(
-              width: 90.w,
-              height: 42.h,
-              child: FittedBox(child: ImageView()),
+              width: 100.w,
+              height: 45.h,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: SizedBox(
+                      width: 15.w,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(3, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  idx = index;
+                                });
+                              },
+                              child: CircleAvatar(
+                                radius: index == idx ? 23 : null,
+                                backgroundColor: kPrimaryColor,
+                                child: CircleAvatar(
+                                  radius: 22,
+                                  backgroundColor: kBackgroundColor,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: Color(_colorList[index]),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ),
+                  Flexible(child: FittedBox(child: ImageView())),
+                ],
+              ),
             ),
           ),
           Positioned(top: 5.h, child: HomeAppBar(item: widget.item)),
