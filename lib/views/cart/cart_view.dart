@@ -28,7 +28,6 @@ class _CartViewState extends State<CartView> {
           if (state is CartListEmpty || cartList.isEmpty) {
             return Center(child: Text("Empty cart! \n Add items"));
           }
-
           return CartViewBody();
         },
       ),
