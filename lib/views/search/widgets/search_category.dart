@@ -1,6 +1,7 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class SearchCategory extends StatefulWidget {
   const SearchCategory({super.key, required this.image, required this.name});
@@ -16,14 +17,14 @@ class _SearchCategoryState extends State<SearchCategory> {
     return Column(
       spacing: 5,
       children: [
-        CircleAvatar(
-          radius: 33,
-          backgroundColor: kBackgroundColor,
-          child: CircleAvatar(
-            backgroundColor: kBackgroundColor,
-
-            backgroundImage: AssetImage(widget.image),
+        Container(
+          height: 10.h,
+          width: 18.w,
+          decoration: BoxDecoration(
+            color: kBackgroundColor,
+            shape: BoxShape.circle,
           ),
+          child: Image.asset(widget.image),
         ),
         Text(
           widget.name,

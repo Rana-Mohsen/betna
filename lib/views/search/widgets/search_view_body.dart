@@ -1,5 +1,8 @@
+import 'package:betna/constants.dart';
+import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/views/search/widgets/search_category.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
@@ -10,29 +13,47 @@ class SearchViewBody extends StatefulWidget {
 
 class _SearchViewBodyState extends State<SearchViewBody> {
   List<Map<String, dynamic>> categories = [
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
-    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/categories/sofa.png", "name": "Sofa"},
+    {"image": "assets/images/categories/chair.png", "name": "Chair"},
+    {"image": "assets/images/categories/bed.png", "name": "Bed"},
+    {"image": "assets/images/categories/antiques.png", "name": "Antiques"},
+    {"image": "assets/images/categories/cupboard.png", "name": "Cupboard"},
+    {"image": "assets/images/categories/carpet.png", "name": "Carpet"},
+    {"image": "assets/images/categories/lamp.png", "name": "Lamp"},
+    {"image": "assets/images/categories/chair.png", "name": "Chair"},
   ];
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      padding: const EdgeInsets.only(right: 16.0),
-      crossAxisCount: 4,
-      childAspectRatio: 4 / 5,
-      // crossAxisSpacing: 4,
-      // mainAxisSpacing: 4,
-      children: List.generate(7, (index) {
-        return SearchCategory(
-          image: categories[index]["image"],
-          name: categories[index]["name"],
-        );
-      }),
+    return Column(
+      spacing: 20,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Popular search",
+          style: FontStyles.textStyle20.copyWith(color: kBrownBlackColor),
+        ),
+        SizedBox(
+          height: 30.h,
+          child: GridView.count(
+            physics: NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(right: 24.0),
+            crossAxisCount: 4,
+            childAspectRatio: 100.w / (100.h / 1.3),
+            crossAxisSpacing: 14,
+            mainAxisSpacing: 10,
+            children: List.generate(7, (index) {
+              return SearchCategory(
+                image: categories[index]["image"],
+                name: categories[index]["name"],
+              );
+            }),
+          ),
+        ),
+        Text(
+          "Recently search",
+          style: FontStyles.textStyle20.copyWith(color: kBrownBlackColor),
+        ),
+      ],
     );
   }
 }
