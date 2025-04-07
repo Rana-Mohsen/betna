@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_lable.dart';
 import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:betna/views/home/widgets/custom_choice_chip.dart';
@@ -15,7 +16,7 @@ class HomeViewBody extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: kMainPadding,
           child: SizedBox(height: 50.h, child: HomeBodyTop()),
         ),
         Padding(

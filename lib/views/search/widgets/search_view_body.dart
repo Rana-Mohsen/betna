@@ -1,6 +1,4 @@
-import 'package:betna/constants.dart';
-import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/core/widgets/profile_image.dart';
+import 'package:betna/views/search/widgets/search_category.dart';
 import 'package:flutter/material.dart';
 
 class SearchViewBody extends StatefulWidget {
@@ -11,25 +9,30 @@ class SearchViewBody extends StatefulWidget {
 }
 
 class _SearchViewBodyState extends State<SearchViewBody> {
+  List<Map<String, dynamic>> categories = [
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+    {"image": "assets/images/chair.png", "name": "Chair"},
+  ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 5,
-      children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: kBackgroundColor,
-          child: const CircleAvatar(
-            backgroundColor: kBackgroundColor,
-
-            backgroundImage: AssetImage("assets/images/chair.png"),
-          ),
-        ),
-        Text(
-          "Sofa",
-          style: FontStyles.textStyle16.copyWith(color: Color(0xff3F3F3F)),
-        ),
-      ],
+    return GridView.count(
+      padding: const EdgeInsets.only(right: 16.0),
+      crossAxisCount: 4,
+      childAspectRatio: 4 / 5,
+      // crossAxisSpacing: 4,
+      // mainAxisSpacing: 4,
+      children: List.generate(7, (index) {
+        return SearchCategory(
+          image: categories[index]["image"],
+          name: categories[index]["name"],
+        );
+      }),
     );
   }
 }

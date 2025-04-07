@@ -1,6 +1,5 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
-import 'package:betna/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';

@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/utils/validators.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/views/auth/widgets/auth_textfield.dart';
@@ -28,7 +29,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: kMainPadding,
         child: Form(
           key: _formKey,
           child: Column(

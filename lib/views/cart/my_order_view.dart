@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_appbar.dart';
 import 'package:betna/views/cart/widgets/my_order_view_body.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,10 @@ class _MyOrderViewState extends State<MyOrderView> {
         title: "My Cart",
         onTapBackIcon: () => Navigator.pop(context),
       ),
-      body: MyOrderViewBody(),
+      body: Padding(
+        padding: kMainPadding,
+        child: MyOrderViewBody(),
+      ),
     );
   }
 }

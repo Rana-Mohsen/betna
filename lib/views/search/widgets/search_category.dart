@@ -1,11 +1,11 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/core/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 
 class SearchCategory extends StatefulWidget {
-  const SearchCategory({super.key});
-
+  const SearchCategory({super.key, required this.image, required this.name});
+  final String image;
+  final String name;
   @override
   State<SearchCategory> createState() => _SearchCategoryState();
 }
@@ -17,16 +17,16 @@ class _SearchCategoryState extends State<SearchCategory> {
       spacing: 5,
       children: [
         CircleAvatar(
-          radius: 30,
+          radius: 33,
           backgroundColor: kBackgroundColor,
-          child: const CircleAvatar(
+          child: CircleAvatar(
             backgroundColor: kBackgroundColor,
 
-            backgroundImage: AssetImage("assets/images/chair.png"),
+            backgroundImage: AssetImage(widget.image),
           ),
         ),
         Text(
-          "Sofa",
+          widget.name,
           style: FontStyles.textStyle16.copyWith(color: Color(0xff3F3F3F)),
         ),
       ],

@@ -10,7 +10,7 @@ class SliderItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 25.h,
+       // height: 25.h,
         //width: 90.w,
         decoration: BoxDecoration(
           color: kBackgroundColor,

@@ -43,7 +43,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         return ModalProgressHUD(
           inAsyncCall: state is AuthRegisterLoading,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
+            padding: kMainPadding,
             child: SizedBox(
               height: 100.h,
               child: Form(

@@ -26,13 +26,12 @@ abstract class AppRoutes {
   static const kCartView = '/cartView';
   static const kMyOrderView = '/myOrderView';
   static const kProfileView = '/profileView';
-    static const kSearchView = '/searchView';
-
+  static const kSearchView = '/searchView';
 
   static final routes = GoRouter(
     routes: [
       GoRoute(
-        path: '/',
+        path: kLoginView,
         builder:
             (context, state) => BlocProvider(
               create: (context) => AuthBloc(getIt.get<AuthApi>()),
@@ -44,14 +43,17 @@ abstract class AppRoutes {
         builder: (context, state) => const SignupView(),
       ),
       GoRoute(
-        path: kBottomNavigationView,
+        path: '/',//kBottomNavigationView,
         builder:
             (context, state) => MultiBlocProvider(
               providers: [BlocProvider(create: (context) => CategoriesCubit())],
               child: BottomNavigation(),
             ),
       ),
-      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
+      GoRoute(
+        path: kHomeView,
+        builder: (context, state) => const HomeView(),
+      ),
       GoRoute(
         path: kProductView,
         builder:

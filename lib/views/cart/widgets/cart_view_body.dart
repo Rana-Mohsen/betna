@@ -18,32 +18,29 @@ class CartViewBody extends StatefulWidget {
 class _CartViewBodyState extends State<CartViewBody> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        spacing: 20,
-        children: [
-          SizedBox(
-            height: 45.h,
-            child: BlocBuilder<CartListCubit, CartListState>(
-              builder: (context, state) {
-                return ListView.builder(
-                  itemCount: cartList.length,
-                  itemBuilder:
-                      (context, index) => CartListItem(item: cartList[index]),
-                );
-              },
-            ),
-          ),
-          CartInfo(),
-          CustomButton(
-            onTap: () {
-              GoRouter.of(context).push(AppRoutes.kMyOrderView);
+    return Column(
+      spacing: 20,
+      children: [
+        SizedBox(
+          height: 45.h,
+          child: BlocBuilder<CartListCubit, CartListState>(
+            builder: (context, state) {
+              return ListView.builder(
+                itemCount: cartList.length,
+                itemBuilder:
+                    (context, index) => CartListItem(item: cartList[index]),
+              );
             },
-            text: "Check out",
           ),
-        ],
-      ),
+        ),
+        CartInfo(),
+        CustomButton(
+          onTap: () {
+            GoRouter.of(context).push(AppRoutes.kMyOrderView);
+          },
+          text: "Check out",
+        ),
+      ],
     );
   }
 }

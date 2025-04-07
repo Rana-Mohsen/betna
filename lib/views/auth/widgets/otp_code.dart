@@ -29,7 +29,7 @@ class _OtpCodeState extends State<OtpCode> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: kMainPadding,
         child: Form(
           key: _formKey,
           child: Column(

@@ -43,7 +43,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         return ModalProgressHUD(
           inAsyncCall: state is AuthLoginLoading,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
+            padding: kMainPadding,
             child: SizedBox(
               height: 100.h,
               child: Form(

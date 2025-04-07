@@ -8,6 +8,8 @@ const kBrownBlackColor = Color(0xff313131);
 const kGrayColor = Color(0xff787676);
 const kBackgroundColor = Color(0xffF1F4F4);
 
+const kMainPadding = EdgeInsets.all(16.0);
+
 final List<ItemModel> itemList = [
   ItemModel(name: "chair", price: "50"),
   ItemModel(name: "sofa", price: "100"),
