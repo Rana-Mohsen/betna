@@ -12,11 +12,41 @@ const kGrayTextColor = Color(0xff323232);
 const kMainPadding = EdgeInsets.all(16.0);
 
 final List<ItemModel> itemList = [
-  ItemModel(name: "chair", price: "50"),
-  ItemModel(name: "sofa", price: "100"),
-  ItemModel(name: "bed", price: "200"),
-  ItemModel(name: "chair2", price: "80"),
-  ItemModel(name: "chair3", price: "70"),
+  ItemModel(
+    name: "chair",
+    price: "50",
+    image: 'assets/images/categories/chair.png',
+  ),
+  ItemModel(
+    name: "sofa",
+    price: "100",
+    image: 'assets/images/categories/sofa.png',
+  ),
+  ItemModel(
+    name: "bed",
+    price: "200",
+    image: 'assets/images/categories/bed.png',
+  ),
+  ItemModel(
+    name: "antique",
+    price: "80",
+    image: 'assets/images/categories/antiques.png',
+  ),
+  ItemModel(
+    name: "carpet",
+    price: "70",
+    image: 'assets/images/categories/carpet.png',
+  ),
+  ItemModel(
+    name: "cupboard",
+    price: "70",
+    image: 'assets/images/categories/cupboard.png',
+  ),
+  ItemModel(
+    name: "lamp",
+    price: "70",
+    image: 'assets/images/categories/lamp.png',
+  ),
 ];
 List<ItemModel> cartList = [];
 List<ItemModel> favList = [];

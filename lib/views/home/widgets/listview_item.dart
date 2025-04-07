@@ -23,11 +23,11 @@ class ListViewItem extends StatelessWidget {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            Align(alignment: Alignment.topRight, child: FavoriteIcon(item: item,)),
-            Positioned(
-              top: 4.h,
-              child: Image.asset("assets/images/chair.png", width: 22.w),
+            Align(
+              alignment: Alignment.topRight,
+              child: FavoriteIcon(item: item),
             ),
+            Positioned(top: 4.h, child: Image.asset(item.image, width: 22.w)),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(

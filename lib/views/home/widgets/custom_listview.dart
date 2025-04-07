@@ -12,7 +12,7 @@ class CustomListView extends StatelessWidget {
     return SizedBox(
       height: 23.h,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: itemList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
