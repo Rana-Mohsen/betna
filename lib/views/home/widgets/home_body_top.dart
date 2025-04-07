@@ -33,7 +33,7 @@ class HomeBodyTop extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Icon(Icons.notifications_none, color: kPrimaryColor),
             ),
-            Flexible(child: SearchTextfield()),
+            Flexible(child: SearchTextfield(nav: true,)),
           ],
         ),
         CustomSlider(),

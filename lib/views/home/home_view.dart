@@ -7,8 +7,8 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: HomeViewBody(),
+      body: SafeArea(
+        child: SingleChildScrollView(child: SafeArea(child: HomeViewBody())),
       ),
     );
   }

@@ -41,7 +41,13 @@ class _SearchViewBodyState extends State<SearchViewBody> {
             childAspectRatio: 100.w / (100.h / 1.3),
             crossAxisSpacing: 14,
             mainAxisSpacing: 10,
-            children: List.generate(7, (index) {
+            children: List.generate(8, (index) {
+              if (index == 7) {
+                return SearchCategory(
+                  image: "assets/icons/more.png",
+                  name: "More",
+                );
+              }
               return SearchCategory(
                 image: categories[index]["image"],
                 name: categories[index]["name"],

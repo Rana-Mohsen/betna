@@ -16,11 +16,11 @@ class _SearchViewState extends State<SearchView> {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.arrow_back_ios_new_outlined),
-        title: SearchTextfield(cameraIcon: false, nav: false),
+        title: SearchTextfield(cameraIcon: false,),
       ),
       body: Padding(
         padding: kMainPadding,
-        child: SearchViewBody(),
+        child: SafeArea(child: SearchViewBody()),
       ),
     );
   }

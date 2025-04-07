@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchTextfield extends StatelessWidget {
-  const SearchTextfield({super.key, this.cameraIcon = true, this.nav = true});
+  const SearchTextfield({super.key, this.cameraIcon = true, this.nav = false});
   final bool cameraIcon;
   final bool nav;
 
