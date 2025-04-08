@@ -36,12 +36,7 @@ class CustomItemCard extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: FavoriteIcon(item: item),
                         ),
-                        Flexible(
-                          child: Image.asset(
-                            "assets/images/chair.png",
-                            width: 30.w,
-                          ),
-                        ),
+                        Flexible(child: Image.asset(item.image, width: 30.w)),
                       ],
                     ),
                   ),
@@ -70,7 +65,7 @@ class CustomItemCard extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                             AddIcon(size: 25,item: item,),
+                            AddIcon(size: 25, item: item),
                           ],
                         ),
                       ],

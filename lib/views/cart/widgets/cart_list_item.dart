@@ -47,13 +47,10 @@ class _CartListItemState extends State<CartListItem> {
                       children: [
                         Align(
                           alignment: Alignment.topLeft,
-                          child: FavoriteIcon(item: widget.item,),
+                          child: FavoriteIcon(item: widget.item),
                         ),
                         Flexible(
-                          child: Image.asset(
-                            "assets/images/chair.png",
-                            width: 30.w,
-                          ),
+                          child: Image.asset(widget.item.image, width: 30.w),
                         ),
                       ],
                     ),
