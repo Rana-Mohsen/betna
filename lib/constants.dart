@@ -11,30 +11,61 @@ const kGrayTextColor = Color(0xff323232);
 
 const kMainPadding = EdgeInsets.all(16.0);
 
-final List<ItemModel> itemList = [
-  ItemModel(
-    name: "chair",
-    price: "50",
-    image: 'assets/images/items/chair1.png',
-  ),
-  ItemModel(name: "sofa", price: "100", image: 'assets/images/items/sofa1.png'),
-  ItemModel(name: "bed", price: "200", image: 'assets/images/items/sofa2.png'),
-  ItemModel(
-    name: "antique",
-    price: "80",
-    image: 'assets/images/items/antique.png',
-  ),
-  ItemModel(
-    name: "carpet",
-    price: "70",
-    image: 'assets/images/items/chair1.png',
-  ),
-  ItemModel(
-    name: "cupboard",
-    price: "70",
-    image: 'assets/images/items/chair2.png',
-  ),
-  ItemModel(name: "lamp", price: "70", image: 'assets/images/items/lamp.png'),
-];
+final List<String> categoriesList = ["chair","sofa","antique"];
+
+final Map<String, List<ItemModel>> itemList = {
+  "chair": [
+    ItemModel(
+      name: "chair",
+      price: "50",
+      image: 'assets/images/items/chair1.png',
+    ),
+    ItemModel(
+      name: "chair",
+      price: "50",
+      image: 'assets/images/items/chair2.png',
+    ),
+    ItemModel(
+      name: "chair",
+      price: "50",
+      image: 'assets/images/items/chair1.png',
+    ),
+  ],
+  "sofa": [
+    ItemModel(
+      name: "sofa",
+      price: "100",
+      image: 'assets/images/items/sofa1.png',
+    ),
+    ItemModel(
+      name: "bed",
+      price: "200",
+      image: 'assets/images/items/sofa2.png',
+    ),
+    ItemModel(
+      name: "sofa",
+      price: "100",
+      image: 'assets/images/items/sofa1.png',
+    ),
+  ],
+  "antique":[
+    ItemModel(
+      name: "antique",
+      price: "80",
+      image: 'assets/images/items/antique.png',
+    ),
+    ItemModel(
+      name: "antique",
+      price: "80",
+      image: 'assets/images/items/antique.png',
+    ),
+    ItemModel(
+      name: "antique",
+      price: "80",
+      image: 'assets/images/items/antique.png',
+    ),
+    ]
+};
+
 List<ItemModel> cartList = [];
 List<ItemModel> favList = [];

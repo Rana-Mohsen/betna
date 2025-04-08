@@ -21,8 +21,8 @@ class _CustomButtonState extends State<CustomChoiceChip> {
     {"lable": "All", "icon": null},
     {"lable": "Chair", "icon": Icons.chair_alt_outlined},
     {"lable": "Sofa", "icon": Icons.chair},
-    {"lable": "Desk", "icon": Icons.desk_outlined},
-    {"lable": "Bed", "icon": Icons.bed_outlined},
+    {"lable": "antique", "icon": Icons.desk_outlined},
+    {"lable": "Chair", "icon": Icons.chair_alt_outlined},
   ];
   @override
   Widget build(BuildContext context) {
@@ -72,9 +72,9 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                 setState(() {
                   isSel.fillRange(0, 6, false);
                   isSel[index] = selected;
-                  BlocProvider.of<CategoriesCubit>(
-                    context,
-                  ).chooseCategory(lable: lables[index]["lable"]);
+                  BlocProvider.of<CategoriesCubit>(context).chooseCategory(
+                    lable: lables[index]["lable"].toString().toLowerCase(),
+                  );
                 });
               },
             ),

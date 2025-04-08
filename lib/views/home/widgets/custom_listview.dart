@@ -1,18 +1,19 @@
 import 'package:betna/constants.dart';
+import 'package:betna/models/Item_model.dart';
 import 'package:betna/views/home/product_view.dart';
 import 'package:betna/views/home/widgets/listview_item.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomListView extends StatelessWidget {
-  const CustomListView({super.key});
-
+  const CustomListView({super.key, required this.categoryItemList});
+  final List<ItemModel> categoryItemList;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 23.h,
       child: ListView.builder(
-        itemCount: itemList.length,
+        itemCount: categoryItemList.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
@@ -22,11 +23,11 @@ class CustomListView extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProductView(item: itemList[index]),
+                    builder: (context) => ProductView(item: categoryItemList[index]),
                   ),
                 );
               },
-              child: ListViewItem(item: itemList[index]),
+              child: ListViewItem(item: categoryItemList[index]),
             ),
           );
         },

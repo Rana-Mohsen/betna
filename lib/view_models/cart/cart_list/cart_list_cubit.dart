@@ -9,8 +9,8 @@ part 'cart_list_state.dart';
 class CartListCubit extends Cubit<CartListState> {
   CartListCubit() : super(CartListInitial());
   double totalPrice = 0;
-  removeItem(ItemModel item) {
-    for (ItemModel itm in itemList) {
+  removeItem(String ctg, ItemModel item) {
+    for (ItemModel itm in itemList[ctg]!) {
       if (itm.name == item.name) {
         item.count = 0;
         break;

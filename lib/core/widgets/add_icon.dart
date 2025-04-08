@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/functions/add_items_to_cart.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/models/Item_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
@@ -12,7 +13,7 @@ class AddIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => checkCart(context),
+      onTap: () => AddItemsToCart.singleItem(context,item),
       child: Container(
         padding: EdgeInsets.all(2),
         decoration: BoxDecoration(shape: BoxShape.circle, color: kPrimaryColor),
@@ -21,12 +22,5 @@ class AddIcon extends StatelessWidget {
     );
   }
 
-  void checkCart(BuildContext context) {
-    if (cartList.contains(item)) {
-      snackBarMessage(context, 'Item already in cart');
-    } else {
-      BlocProvider.of<CartListCubit>(context).addItem(item);
-      snackBarMessage(context, 'Item added to cart');
-    }
-  }
+  
 }

@@ -1,9 +1,11 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/profile_image.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
 import 'package:betna/views/home/widgets/custom_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeBodyTop extends StatelessWidget {
@@ -29,11 +31,11 @@ class HomeBodyTop extends StatelessWidget {
         ),
         Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.notifications_none, color: kPrimaryColor),
+            IconButton(
+              onPressed: () => context.push(AppRoutes.kNotificationView),
+              icon: Icon(Icons.notifications_none, color: kPrimaryColor),
             ),
-            Flexible(child: SearchTextfield(nav: true,)),
+            Flexible(child: SearchTextfield(nav: true)),
           ],
         ),
         CustomSlider(),

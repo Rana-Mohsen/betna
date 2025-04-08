@@ -64,7 +64,7 @@ class _ItemCountState extends State<ItemCount> {
                 setState(() {
                   widget.item.count--;
                   if (widget.item.count == 0) {
-                    bloc.removeItem(widget.item);
+                    bloc.removeItem(widget.item.name, widget.item);
                   }
                   bloc.cartTotalPrice();
                 });

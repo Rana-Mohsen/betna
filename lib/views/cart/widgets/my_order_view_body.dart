@@ -22,8 +22,8 @@ class _MyOrderViewBodyState extends State<MyOrderViewBody> {
           SizedBox(
             height: 43.h,
             child: ListView.builder(
-              itemCount: itemList.length,
-              itemBuilder: (context, index) => CustomItemCard(item: itemList[index],),
+              itemCount: cartList.length,
+              itemBuilder: (context, index) => CustomItemCard(item: cartList[index],),
             ),
           ),
           CustomButton(onTap: () {}, text: "You have 3 item in cart "),

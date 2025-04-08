@@ -1,5 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/core/utils/functions/add_items_to_cart.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/item_rating.dart';
@@ -72,21 +73,12 @@ class ItemDetails extends StatelessWidget {
             CustomButton(
               text: "Add to cart",
               onTap: () {
-                checkCart(context);
+                AddItemsToCart.singleItem(context, item);
               },
             ),
           ],
         ),
       ),
     );
-  }
-
-  void checkCart(BuildContext context) {
-    if (cartList.contains(item)) {
-      snackBarMessage(context, 'Item already in cart');
-    } else {
-      BlocProvider.of<CartListCubit>(context).addItem(item);
-      snackBarMessage(context, 'Item added to cart');
-    }
   }
 }

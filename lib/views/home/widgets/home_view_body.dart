@@ -33,7 +33,9 @@ class HomeViewBody extends StatelessWidget {
                       spacing: 15,
                       children: [
                         CustomLable(lable: state.lable, onTap: () {}),
-                        CustomListView(),
+                        CustomListView(
+                          categoryItemList: itemList[state.lable]!.toList(),
+                        ),
                         SizedBox(height: 5),
                       ],
                     );
@@ -44,13 +46,19 @@ class HomeViewBody extends StatelessWidget {
                         padding: EdgeInsets.all(0),
                         itemExtent: 260,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: 4,
+                        itemCount: categoriesList.length,
                         itemBuilder:
                             (context, index) => Column(
                               spacing: 15,
                               children: [
-                                CustomLable(lable: "Chair", onTap: () {}),
-                                CustomListView(),
+                                CustomLable(
+                                  lable: categoriesList[index],
+                                  onTap: () {},
+                                ),
+                                CustomListView(
+                                  categoryItemList:
+                                      itemList[categoriesList[index]]!.toList(),
+                                ),
                               ],
                             ),
                       ),
