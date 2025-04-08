@@ -1,7 +1,8 @@
 import 'package:betna/core/services/auth_api.dart';
 import 'package:betna/core/utils/service_locator.dart';
-import 'package:betna/core/widgets/bottom_navigation_bar.dart';
+import 'package:betna/core/widgets/bottom_navigation.dart';
 import 'package:betna/models/Item_model.dart';
+import 'package:betna/navigation_logger.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
 import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:betna/views/auth/login_view.dart';
@@ -19,7 +20,7 @@ import 'package:go_router/go_router.dart';
 abstract class AppRoutes {
   static const kLoginView = '/loginView';
   static const kSignupView = '/signupView';
-  static const kBottomNavigationView = '/bottomVavigationView';
+  static const kBottomNavigationView = '/bottomNavigationView';
   static const kHomeView = '/homeView';
   static const kProductView = '/productView';
   static const kFavoriteView = '/favoriteView';
@@ -29,9 +30,10 @@ abstract class AppRoutes {
   static const kSearchView = '/searchView';
 
   static final routes = GoRouter(
+    observers: [NavigationLogger()],
     routes: [
       GoRoute(
-        path: kLoginView,
+        path: '/',//kLoginView,
         builder:
             (context, state) => BlocProvider(
               create: (context) => AuthBloc(getIt.get<AuthApi>()),
@@ -43,16 +45,13 @@ abstract class AppRoutes {
         builder: (context, state) => const SignupView(),
       ),
       GoRoute(
-        path: '/',//kBottomNavigationView,
+        path:kBottomNavigationView,
         builder:
-            (context, state) => MultiBlocProvider(
-              providers: [BlocProvider(create: (context) => CategoriesCubit())],
-              child: BottomNavigation(),
-            ),
+            (context, state) => const BottomNavigation(),
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const HomeView()
       ),
       GoRoute(
         path: kProductView,

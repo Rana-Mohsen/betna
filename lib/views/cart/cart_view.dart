@@ -20,7 +20,7 @@ class _CartViewState extends State<CartView> {
       appBar: customAppBar(
         title: "My Cart",
         onTapBackIcon:
-            () => GoRouter.of(context).push(AppRoutes.kBottomNavigationView),
+            () =>  context.go(AppRoutes.kBottomNavigationView),
       ),
       body: BlocBuilder<CartListCubit, CartListState>(
         builder: (context, state) {

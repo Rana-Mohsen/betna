@@ -1,5 +1,4 @@
 import 'package:betna/constants.dart';
-import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
 import 'package:betna/views/search/widgets/search_view_body.dart';
 import 'package:flutter/material.dart';

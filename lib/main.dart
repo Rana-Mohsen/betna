@@ -3,6 +3,7 @@ import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/simple_bloc_observer.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/view_models/favorite/favorite_cubit.dart';
+import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => CartListCubit()),
             BlocProvider(create: (context) => FavoriteCubit()),
+            BlocProvider(create: (context) => CategoriesCubit()),
           ],
           child: MaterialApp.router(
             routerConfig: AppRoutes.routes,
@@ -36,7 +38,10 @@ class MyApp extends StatelessWidget {
                 centerTitle: true,
                 scrolledUnderElevation: 0,
                 backgroundColor: Colors.transparent,
-                systemOverlayStyle: SystemUiOverlayStyle.dark,
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarColor: Colors.transparent,
+                  statusBarIconBrightness: Brightness.dark,
+                ),
               ),
             ),
           ),
