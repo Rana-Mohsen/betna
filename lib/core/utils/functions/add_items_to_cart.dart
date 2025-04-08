@@ -16,11 +16,11 @@ abstract class AddItemsToCart{
   }
 
    static void multiItems(BuildContext context, ItemModel item) {
-     favList.forEach((favItem) {
+     for (var favItem in favList) {
               if (!cartList.contains(favItem)) {
                 BlocProvider.of<CartListCubit>(context).addItem(favItem);
               }
-            });
+            }
             snackBarMessage(context, "All items added to cart");
   }
 }

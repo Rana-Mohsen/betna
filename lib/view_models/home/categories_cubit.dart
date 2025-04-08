@@ -8,4 +8,8 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   chooseCategory({required String lable}) {
     emit(CategoriesChoosed(lable));
   }
+  allCategory() {
+    emit(CategoriesAll());
+  }
+  
 }

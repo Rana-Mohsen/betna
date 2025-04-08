@@ -10,3 +10,5 @@ class CategoriesChoosed extends CategoriesState {
 
   CategoriesChoosed(this.lable);
 }
+
+class CategoriesAll extends CategoriesState {}

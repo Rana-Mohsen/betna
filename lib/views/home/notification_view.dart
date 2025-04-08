@@ -1,12 +1,8 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_appbar.dart';
-import 'package:betna/core/widgets/profile_image.dart';
-import 'package:betna/view_models/favorite/favorite_cubit.dart';
-import 'package:betna/views/favorite/favorite_view_body.dart';
 import 'package:betna/views/home/widgets/notification_view_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class NotificationView extends StatelessWidget {

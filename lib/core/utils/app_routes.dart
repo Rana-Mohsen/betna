@@ -4,7 +4,6 @@ import 'package:betna/core/widgets/bottom_navigation.dart';
 import 'package:betna/models/Item_model.dart';
 import 'package:betna/navigation_logger.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
-import 'package:betna/view_models/home/categories_cubit.dart';
 import 'package:betna/views/auth/login_view.dart';
 import 'package:betna/views/auth/signup_view.dart';
 import 'package:betna/views/cart/cart_view.dart';
@@ -37,7 +36,7 @@ abstract class AppRoutes {
     observers: [NavigationLogger()],
     routes: [
       GoRoute(
-        path: '/', //kLoginView,
+        path: kLoginView,
         builder:
             (context, state) => BlocProvider(
               create: (context) => AuthBloc(getIt.get<AuthApi>()),
@@ -49,13 +48,13 @@ abstract class AppRoutes {
         builder: (context, state) => const SignupView(),
       ),
       GoRoute(
-        path: kBottomNavigationView,
+        path:'/', //kBottomNavigationView,
         builder: (context, state) => const BottomNavigation(),
       ),
-      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
+      GoRoute(path: kHomeView, builder: (context, state) => const HomeView(),),
       GoRoute(
         path: kSeeAllview,
-        builder: (context, state) =>  SeeAllView(ctg: state.extra as String,),
+        builder: (context, state) => SeeAllView(ctg: state.extra as String),
       ),
 
       GoRoute(

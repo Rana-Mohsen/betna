@@ -37,53 +37,55 @@ class HomeViewBody extends StatelessWidget {
               BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
                   if (state is CategoriesChoosed && state.lable != "All") {
+                    // print(state.lable);
                     return Column(
                       spacing: 15,
                       children: [
                         CustomLable(
                           lable: state.lable,
                           onTap: () {
-                            print("=============>>>>>>>>>");
                             context.push(
                               AppRoutes.kSeeAllview,
-                              extra: state.lable,
+                              extra: state.lable.toLowerCase(),
                             );
                           },
                         ),
                         CustomListView(
-                          categoryItemList: itemList[state.lable]!.toList(),
+                          categoryItemList: itemList[state.lable.toLowerCase()]!.toList(),
                         ),
                         SizedBox(height: 5),
                       ],
                     );
                   } else {
+                    print("here");
                     return ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.all(0),
                       itemExtent: 260,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: categoriesList.length,
-                      itemBuilder:
-                          (context, index) => Column(
-                            spacing: 15,
-                            children: [
-                              CustomLable(
-                                lable: categoriesList[index],
-                                onTap: () {
-                                  context.push(
-                                    AppRoutes.kSeeAllview,
-                                    extra: categoriesList[index],
-                                  );
-                                },
-                              ),
-                              CustomListView(
-                                categoryItemList:
-                                    itemList[categoriesList[index]
-                                            .toLowerCase()]!
-                                        .toList(),
-                              ),
-                            ],
-                          ),
+                      itemBuilder: (context, index) {
+                        print(categoriesList[index] + index.toString());
+                        return Column(
+                          spacing: 15,
+                          children: [
+                            CustomLable(
+                              lable: categoriesList[index],
+                              onTap: () {
+                                context.push(
+                                  AppRoutes.kSeeAllview,
+                                  extra: categoriesList[index],
+                                );
+                              },
+                            ),
+                            CustomListView(
+                              categoryItemList:
+                                  itemList[categoriesList[index].toLowerCase()]!
+                                      .toList(),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   }
                 },
