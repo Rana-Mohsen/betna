@@ -11,7 +11,7 @@ const kGrayTextColor = Color(0xff323232);
 
 const kMainPadding = EdgeInsets.all(16.0);
 
-final List<String> categoriesList = ["chair","sofa","antique"];
+final List<String> categoriesList = ["Chair", "Sofa", "Antique"];
 
 final Map<String, List<ItemModel>> itemList = {
   "chair": [
@@ -48,7 +48,7 @@ final Map<String, List<ItemModel>> itemList = {
       image: 'assets/images/items/sofa1.png',
     ),
   ],
-  "antique":[
+  "antique": [
     ItemModel(
       name: "antique",
       price: "80",
@@ -64,7 +64,7 @@ final Map<String, List<ItemModel>> itemList = {
       price: "80",
       image: 'assets/images/items/antique.png',
     ),
-    ]
+  ],
 };
 
 List<ItemModel> cartList = [];

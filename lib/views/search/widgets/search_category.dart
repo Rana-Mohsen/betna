@@ -1,6 +1,8 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchCategory extends StatefulWidget {
@@ -17,14 +19,21 @@ class _SearchCategoryState extends State<SearchCategory> {
     return Column(
       spacing: 5,
       children: [
-        Container(
-          height: 10.h,
-          width: 18.w,
-          decoration: BoxDecoration(
-            color: kBackgroundColor,
-            shape: BoxShape.circle,
+        GestureDetector(
+          onTap:
+              () => context.push(
+                AppRoutes.kSeeAllview,
+                extra: widget.name,
+              ),
+          child: Container(
+            height: 10.h,
+            width: 18.w,
+            decoration: BoxDecoration(
+              color: kBackgroundColor,
+              shape: BoxShape.circle,
+            ),
+            child: Image.asset(widget.image),
           ),
-          child: Image.asset(widget.image),
         ),
         Text(
           widget.name,

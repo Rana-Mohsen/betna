@@ -15,12 +15,10 @@ class _SearchViewBodyState extends State<SearchViewBody> {
   List<Map<String, dynamic>> categories = [
     {"image": "assets/images/categories/sofa.png", "name": "Sofa"},
     {"image": "assets/images/categories/chair.png", "name": "Chair"},
-    {"image": "assets/images/categories/bed.png", "name": "Bed"},
-    {"image": "assets/images/categories/antiques.png", "name": "Antiques"},
-    {"image": "assets/images/categories/cupboard.png", "name": "Cupboard"},
-    {"image": "assets/images/categories/carpet.png", "name": "Carpet"},
-    {"image": "assets/images/categories/lamp.png", "name": "Lamp"},
+    {"image": "assets/images/categories/antiques.png", "name": "Antique"},
+    {"image": "assets/images/categories/sofa.png", "name": "Sofa"},
     {"image": "assets/images/categories/chair.png", "name": "Chair"},
+    {"image": "assets/images/categories/antiques.png", "name": "Antiques"},
   ];
   @override
   Widget build(BuildContext context) {
@@ -41,8 +39,8 @@ class _SearchViewBodyState extends State<SearchViewBody> {
             childAspectRatio: 100.w / (100.h / 1.3),
             crossAxisSpacing: 14,
             mainAxisSpacing: 10,
-            children: List.generate(8, (index) {
-              if (index == 7) {
+            children: List.generate(categories.length, (index) {
+              if (index == categories.length - 1) {
                 return SearchCategory(
                   image: "assets/icons/more.png",
                   name: "More",

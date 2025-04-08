@@ -13,6 +13,7 @@ import 'package:betna/views/favorite/favorite_view.dart';
 import 'package:betna/views/home/home_view.dart';
 import 'package:betna/views/home/notification_view.dart';
 import 'package:betna/views/home/product_view.dart';
+import 'package:betna/views/home/see_all_view.dart';
 import 'package:betna/views/profile/profile_view.dart';
 import 'package:betna/views/search/search_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,7 @@ abstract class AppRoutes {
   static const kSignupView = '/signupView';
   static const kBottomNavigationView = '/bottomNavigationView';
   static const kHomeView = '/homeView';
+  static const kSeeAllview = '/seeAllView';
   static const kNotificationView = '/notificationView';
   static const kProductView = '/productView';
   static const kFavoriteView = '/favoriteView';
@@ -51,6 +53,11 @@ abstract class AppRoutes {
         builder: (context, state) => const BottomNavigation(),
       ),
       GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
+      GoRoute(
+        path: kSeeAllview,
+        builder: (context, state) =>  SeeAllView(ctg: state.extra as String,),
+      ),
+
       GoRoute(
         path: kNotificationView,
         builder: (context, state) => const NotificationView(),
