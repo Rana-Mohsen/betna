@@ -27,7 +27,14 @@ class ListViewItem extends StatelessWidget {
               alignment: Alignment.topRight,
               child: FavoriteIcon(item: item),
             ),
-            Positioned(top: 4.h, child: Image.asset(item.image, width: 22.w)),
+            Positioned(
+              top: 2.5.h,
+              child: SizedBox(
+                width: 29.w,
+                height: 10.h,
+                child: Image.asset(item.image),
+              ),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
@@ -40,7 +47,16 @@ class ListViewItem extends StatelessWidget {
                     Row(
                       spacing: 5,
                       children: [
-                        Text(item.name, style: FontStyles.textStyle16),
+                        Flexible(
+                          child: Text(
+                            item.name,
+                            style: FontStyles.textStyle16.copyWith(
+                              overflow: TextOverflow.fade,
+                            ),
+                            maxLines: 1,
+                            softWrap: false,
+                          ),
+                        ),
                         ItemRating(),
                       ],
                     ),
