@@ -70,7 +70,7 @@ class ListViewItem extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        AddIcon(),
+                        AddIcon(item: item,),
                       ],
                     ),
                   ],

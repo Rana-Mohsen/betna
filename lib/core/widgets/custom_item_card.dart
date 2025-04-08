@@ -70,7 +70,7 @@ class CustomItemCard extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            const AddIcon(size: 25),
+                             AddIcon(size: 25,item: item,),
                           ],
                         ),
                       ],
