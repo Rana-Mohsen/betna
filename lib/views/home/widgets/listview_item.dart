@@ -4,6 +4,7 @@ import 'package:betna/core/widgets/add_icon.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/models/Item_model.dart';
+import 'package:betna/views/home/product_view.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,55 +26,80 @@ class ListViewItem extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: FavoriteIcon(item: item),
+              child: IgnorePointer(
+                ignoring: false,
+                child: FavoriteIcon(item: item),
+              ),
             ),
             Positioned(
-              top: 2.5.h,
-              child: SizedBox(
-                width: 29.w,
-                height: 10.h,
-                child: Image.asset(item.image),
+              top: 3.1.h,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductView(item: item),
+                    ),
+                  );
+                },
+                child: SizedBox(
+                  width: 29.w,
+                  height: 10.h,
+                  child: Image.asset(item.image),
+                ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
-                padding: EdgeInsets.all(8),
-                height: 9.h,
-                color: kSecondaryColor,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      spacing: 5,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            item.name,
-                            style: FontStyles.textStyle16.copyWith(
-                              overflow: TextOverflow.fade,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductView(item: item),
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  height: 9.h,
+                  color: kSecondaryColor,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        spacing: 5,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              item.name,
+                              style: FontStyles.textStyle16.copyWith(
+                                overflow: TextOverflow.fade,
+                              ),
+                              maxLines: 1,
+                              softWrap: false,
                             ),
-                            maxLines: 1,
-                            softWrap: false,
                           ),
-                        ),
-                        ItemRating(),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "\$${item.price}",
-                          style: FontStyles.textStyle16.copyWith(
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.w600,
+                          ItemRating(),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "\$${item.price}",
+                            style: FontStyles.textStyle16.copyWith(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        AddIcon(item: item,),
-                      ],
-                    ),
-                  ],
+                          AddIcon(item: item),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -38,7 +38,7 @@ final Map<String, List<ItemModel>> itemList = {
       image: 'assets/images/items/sofa1.png',
     ),
     ItemModel(
-      name: "bed",
+      name: "sofa",
       price: "200",
       image: 'assets/images/items/sofa2.png',
     ),

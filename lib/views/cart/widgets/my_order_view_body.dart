@@ -26,7 +26,7 @@ class _MyOrderViewBodyState extends State<MyOrderViewBody> {
               itemBuilder: (context, index) => CustomItemCard(item: cartList[index],),
             ),
           ),
-          CustomButton(onTap: () {}, text: "You have 3 item in cart "),
+          CustomButton(onTap: () {}, text: "You have ${cartList.length} item in cart "),
         ],
       ),
     );

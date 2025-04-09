@@ -12,6 +12,7 @@ import 'package:sizer/sizer.dart';
 class CartListItem extends StatefulWidget {
   const CartListItem({super.key, required this.item});
   final ItemModel item;
+
   @override
   State<CartListItem> createState() => _CartListItemState();
 }
@@ -74,7 +75,7 @@ class _CartListItemState extends State<CartListItem> {
                           ],
                         ),
                         Row(
-                          spacing: 30,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               "\$${widget.item.price}",
@@ -82,24 +83,27 @@ class _CartListItemState extends State<CartListItem> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 24.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
 
-                                color: const Color(0xff73888A),
-                              ),
-                              child: ItemCount(
-                                item: widget.item,
-                                countPadding: EdgeInsets.symmetric(
-                                  horizontal: 3,
+                                  color: const Color(0xff73888A),
                                 ),
+                                child: ItemCount(
+                                  item: widget.item,
+                                  countPadding: EdgeInsets.symmetric(
+                                    horizontal: 3,
+                                  ),
 
-                                iconPadding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 3,
+                                  iconPadding: EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 3,
+                                  ),
+                                  iconSize: 12,
+                                  fontSize: 14,
                                 ),
-                                iconSize: 10,
-                                fontSize: 14,
                               ),
                             ),
                           ],
@@ -112,7 +116,7 @@ class _CartListItemState extends State<CartListItem> {
                   onTap: () {
                     BlocProvider.of<CartListCubit>(
                       context,
-                    ).removeItem(widget.item.name,widget.item);
+                    ).removeItem(widget.item.name, widget.item);
 
                     ScaffoldMessenger.of(
                       context,

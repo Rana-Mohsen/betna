@@ -17,17 +17,7 @@ class CustomListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductView(item: categoryItemList[index]),
-                  ),
-                );
-              },
-              child: ListViewItem(item: categoryItemList[index]),
-            ),
+            child: ListViewItem(item: categoryItemList[index]),
           );
         },
       ),

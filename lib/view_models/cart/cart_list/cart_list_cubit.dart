@@ -43,11 +43,5 @@ class CartListCubit extends Cubit<CartListState> {
     }
     emit(CartListItemChanged());
   }
-  // incrementPrice(ItemModel item) {
-  //   totalPrice += int.parse(item.price);
-  // }
-
-  // decrmentPrice(ItemModel item) {
-  //   totalPrice -= int.parse(item.price);
-  // }
+ 
 }

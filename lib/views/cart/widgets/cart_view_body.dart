@@ -28,7 +28,7 @@ class _CartViewBodyState extends State<CartViewBody> {
               return ListView.builder(
                 itemCount: cartList.length,
                 itemBuilder:
-                    (context, index) => CartListItem(item: cartList[index]),
+                    (context, index) => CartListItem(item: cartList[index],),
               );
             },
           ),
