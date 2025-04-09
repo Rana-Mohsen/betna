@@ -29,18 +29,24 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => FavoriteCubit()),
             BlocProvider(create: (context) => CategoriesCubit()),
           ],
-          child: MaterialApp.router(
-            routerConfig: AppRoutes.routes,
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              fontFamily: "Roboto",
-              appBarTheme: AppBarTheme(
-                centerTitle: true,
-                scrolledUnderElevation: 0,
-                backgroundColor: Colors.transparent,
-                systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                  statusBarIconBrightness: Brightness.dark,
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+               statusBarIconBrightness: Brightness.dark,
+            ),
+
+            child: MaterialApp.router(
+              routerConfig: AppRoutes.routes,
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                fontFamily: "Roboto",
+                appBarTheme: AppBarTheme(
+                  centerTitle: true,
+                  scrolledUnderElevation: 0,
+                  backgroundColor: Colors.transparent,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarIconBrightness: Brightness.dark,
+                  ),
                 ),
               ),
             ),
