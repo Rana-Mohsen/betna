@@ -20,17 +20,14 @@ class _CartViewState extends State<CartView> {
       appBar: customAppBar(
         title: "My Cart",
         onTapBackIcon:
-            () =>  context.go(AppRoutes.kBottomNavigationView),
+            () => context.go(AppRoutes.kBottomNavigation,extra: 0),
       ),
       body: BlocBuilder<CartListCubit, CartListState>(
         builder: (context, state) {
           if (state is CartListEmpty || cartList.isEmpty) {
             return Center(child: Text("Empty cart! \n Add items"));
           }
-          return Padding(
-            padding: kMainPadding,
-            child: CartViewBody(),
-          );
+          return Padding(padding: kMainPadding, child: CartViewBody());
         },
       ),
     );

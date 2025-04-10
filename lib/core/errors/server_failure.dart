@@ -43,7 +43,7 @@ class ServerFailure extends Failures {
     else if (statusCode == 409) {
       return ServerFailure(response['errors']['email']);
     } else if (statusCode == 500) {
-      return ServerFailure('Internal Server error, Please try later');
+      return ServerFailure('user name already exists');
     } else {
       return ServerFailure('Opps There was an Error, Please try again');
     }

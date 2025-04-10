@@ -19,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         },
         (login) {
           if (login.containsKey("errors") && login["status"] == "error") {
-            print(login);
+           // print(login);
             emit(AuthLoginFailure("name or email already exists"));
           }
           emit(AuthLoginSuccess("logged in successfully"));
@@ -33,14 +33,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       result.fold(
         (failure) {
-          emit(AuthLoginFailure(failure.errMessage));
+          emit(AuthRegisterFailure(failure.errMessage));
         },
         (signup) {
           if (signup.containsKey("errors") && signup["status"] == "error") {
-            print(signup);
-            emit(AuthLoginFailure("name or email already exists"));
+           // print(signup);
+            emit(AuthRegisterFailure("name or email already exists"));
           }
-          emit(AuthLoginSuccess("signed up successfully"));
+          emit(AuthRegisterSuccess("signed up successfully"));
         },
       );
     });

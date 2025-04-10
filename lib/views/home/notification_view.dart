@@ -13,7 +13,7 @@ class NotificationView extends StatelessWidget {
     return Scaffold(
       appBar: customAppBar(
         title: "Notification",
-        onTapBackIcon: () => context.go(AppRoutes.kHomeView),
+        onTapBackIcon: () => context.go(AppRoutes.kBottomNavigation,extra: 0),
       ),
       body: Padding(padding: kMainPadding, child: const NotificationViewBody()),
     );

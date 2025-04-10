@@ -35,7 +35,7 @@ class AuthApi {
   }) async {
     try {
       Map<String, dynamic> data = await _api.post(
-        url: "${baseUrl}login.php",
+        url: "${baseUrl}register.php",
         body: jsonEncode(body),
       );
       return right(data);

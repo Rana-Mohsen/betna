@@ -21,7 +21,7 @@ import 'package:go_router/go_router.dart';
 abstract class AppRoutes {
   static const kLoginView = '/loginView';
   static const kSignupView = '/signupView';
-  static const kBottomNavigationView = '/bottomNavigationView';
+  static const kBottomNavigation = '/bottomNavigation';
   static const kHomeView = '/homeView';
   static const kSeeAllview = '/seeAllView';
   static const kNotificationView = '/notificationView';
@@ -34,6 +34,8 @@ abstract class AppRoutes {
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
+    initialLocation: kBottomNavigation,
+
     routes: [
       GoRoute(
         path: kLoginView,
@@ -45,13 +47,19 @@ abstract class AppRoutes {
       ),
       GoRoute(
         path: kSignupView,
-        builder: (context, state) => const SignupView(),
+        builder: (context, state) => BlocProvider(
+              create: (context) => AuthBloc(getIt.get<AuthApi>()),
+              child: const SignupView(),
+        )
       ),
       GoRoute(
-        path:'/', //kBottomNavigationView,
-        builder: (context, state) => const BottomNavigation(),
+        path: kBottomNavigation,
+        builder: (context, state) {
+          final index = state.extra as int? ?? 0;
+          return BottomNavigation(initialIndex: index);
+        },
       ),
-      GoRoute(path: kHomeView, builder: (context, state) => const HomeView(),),
+      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
         path: kSeeAllview,
         builder: (context, state) => SeeAllView(ctg: state.extra as String),

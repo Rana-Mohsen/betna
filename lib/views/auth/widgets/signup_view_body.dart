@@ -34,9 +34,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthRegisterFailure) {
+
           snackBarMessage(context, state.msg);
         } else if (state is AuthRegisterSuccess) {
-          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigationView);
+          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigation);
         }
       },
       builder: (context, state) {
@@ -102,8 +103,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                               "name": name,
                               "password": password,
                               "email": emailOrPhone,
-                              "phone": emailOrPhone,
-                              "address": "",
+                              "phone": "+1234567890",
+                              "address": "2Street, mahala, gharbia",
                             }),
                           );
                         }

@@ -23,10 +23,12 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
         const SearchTextfield(cameraIcon: false),
         const SizedBox(height: 20),
         Expanded(
-          child: ListView.builder(
+          child: ListView.separated(
             shrinkWrap: true,
             //physics: const NeverScrollableScrollPhysics(),
             itemCount: favList.length,
+            separatorBuilder: (context, index) => SizedBox(),
+
             itemBuilder:
                 (context, index) => CustomItemCard(item: favList[index]),
           ),

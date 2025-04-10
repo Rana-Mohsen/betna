@@ -6,21 +6,29 @@ import 'package:betna/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({super.key});
+  final int initialIndex;
+  const BottomNavigation({super.key, this.initialIndex = 0}); // default is Home
 
   @override
   State<BottomNavigation> createState() => _BottomNavigationState();
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int currentIndex = 0;
-  List<Widget> pages = [
+  late int currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.initialIndex;
+  }
+
+  final List<Widget> pages = [
     const HomeView(),
-    const FavoritView(),
     const FavoritView(),
     const CartView(),
     const ProfileView(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,10 +49,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
           const BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline_sharp),
             label: 'Favorite',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.local_shipping_outlined),
-            label: 'Order tracking',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart_outlined),

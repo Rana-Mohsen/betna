@@ -36,7 +36,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         if (state is AuthLoginFailure) {
           snackBarMessage(context, state.msg);
         } else if (state is AuthLoginSuccess) {
-          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigationView);
+          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigation);
         }
       },
       builder: (context, state) {

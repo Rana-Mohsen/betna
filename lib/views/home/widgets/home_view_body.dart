@@ -51,13 +51,13 @@ class HomeViewBody extends StatelessWidget {
                           },
                         ),
                         CustomListView(
-                          categoryItemList: itemList[state.lable.toLowerCase()]!.toList(),
+                          categoryItemList:
+                              itemList[state.lable.toLowerCase()]!.toList(),
                         ),
                         SizedBox(height: 5),
                       ],
                     );
                   } else {
-                    print("here");
                     return ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.all(0),
@@ -65,7 +65,6 @@ class HomeViewBody extends StatelessWidget {
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: categoriesList.length,
                       itemBuilder: (context, index) {
-                        print(categoriesList[index] + index.toString());
                         return Column(
                           spacing: 15,
                           children: [
