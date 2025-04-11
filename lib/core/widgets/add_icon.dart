@@ -1,6 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/functions/add_items_to_cart.dart';
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:flutter/material.dart';
 
 class AddIcon extends StatelessWidget {

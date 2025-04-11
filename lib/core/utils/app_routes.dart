@@ -1,7 +1,7 @@
 import 'package:betna/core/services/auth_api.dart';
 import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/core/widgets/bottom_navigation.dart';
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:betna/navigation_logger.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
 import 'package:betna/views/auth/login_view.dart';
@@ -34,7 +34,7 @@ abstract class AppRoutes {
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
-    initialLocation: kBottomNavigation,
+    initialLocation: kLoginView,
 
     routes: [
       GoRoute(

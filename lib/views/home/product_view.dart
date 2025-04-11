@@ -1,4 +1,4 @@
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:betna/views/home/widgets/product_view_body.dart';
 import 'package:flutter/material.dart';
 

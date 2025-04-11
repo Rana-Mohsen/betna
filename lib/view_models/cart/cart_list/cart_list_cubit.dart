@@ -1,6 +1,6 @@
 
 import 'package:betna/constants.dart';
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 

@@ -1,4 +1,4 @@
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,6 +10,8 @@ const kBackgroundColor = Color(0xffF1F4F4);
 const kGrayTextColor = Color(0xff323232);
 
 const kMainPadding = EdgeInsets.all(16.0);
+
+const kCacheUserInfo = "CacheUserInfo";
 
 final List<String> categoriesList = ["Chair", "Sofa", "Antique"];
 

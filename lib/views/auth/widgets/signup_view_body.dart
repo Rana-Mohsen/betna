@@ -1,9 +1,11 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/utils/validators.dart';
 import 'package:betna/core/widgets/custom_button.dart';
+import 'package:betna/models/user_model.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
 import 'package:betna/views/auth/widgets/auth_textfield.dart';
 import 'package:betna/views/auth/widgets/image_with_text.dart';
@@ -34,7 +36,6 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthRegisterFailure) {
-
           snackBarMessage(context, state.msg);
         } else if (state is AuthRegisterSuccess) {
           GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigation);
@@ -107,6 +108,11 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                               "address": "2Street, mahala, gharbia",
                             }),
                           );
+                          UserModel user = UserModel(
+                            name: name!,
+                            email: emailOrPhone!,
+                          );
+                         await UserInfo.saveUserInfoSharedPreference(user);
                         }
                       },
                       text: "Sign up",

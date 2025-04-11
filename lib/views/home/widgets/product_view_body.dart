@@ -1,5 +1,5 @@
 import 'package:betna/constants.dart';
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:betna/views/home/widgets/home_app_bar.dart';
 import 'package:betna/core/widgets/item_count.dart';
 import 'package:betna/views/home/widgets/image_view.dart';

@@ -1,13 +1,21 @@
+import 'package:betna/core/Local_Storage/user_Info.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/profile_image.dart';
+import 'package:betna/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:sizer/sizer.dart';
 
-class ProfileViewBody extends StatelessWidget {
+class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
+
+  @override
+  State<ProfileViewBody> createState() => _ProfileViewBodyState();
+}
+
+class _ProfileViewBodyState extends State<ProfileViewBody> {
   final List<Map<String, dynamic>> listTileData = const [
     {"icon": "assets/icons/profile/battery.png", "title": "History of order"},
     {"icon": "assets/icons/profile/pay_method.png", "title": "Payment method"},
@@ -21,9 +29,27 @@ class ProfileViewBody extends StatelessWidget {
     {"icon": "assets/icons/profile/privacy.png", "title": "Privacy & policy"},
     {"icon": "assets/icons/profile/lang.png", "title": "Language"},
     {"icon": "assets/icons/profile/help.png", "title": "Help"},
-    {"icon": "assets/icons/profile/lang.png", "title": "Language"},
-    {"icon": "assets/icons/profile/help.png", "title": "Help"},
+    {"icon": "assets/icons/profile/share.png", "title": "Share app"},
+    {"icon": "assets/icons/profile/log-out.png", "title": "Log out"},
   ];
+  bool isLoading = true;
+  late UserModel user;
+  @override
+  void initState() {
+    super.initState();
+    // if (UserInfo.userName == null && UserInfo.userEmail == null) {
+    //   getUserInfo();
+    // }
+    getUserInfo();
+  }
+
+  Future<void> getUserInfo() async {
+    user = await UserInfo.getUserInfoSharedPreference();
+
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +57,8 @@ class ProfileViewBody extends StatelessWidget {
       children: [
         ListTile(
           leading: ProfileImage(),
-          title: Text("Omar ali"),
-          subtitle: Text("OmarAli2000@gmail.com"),
+          title: isLoading ? Text("") : Text(user.name),
+          subtitle: isLoading ? Text("") : Text((user.email)),
           trailing: Icon(FontAwesome.pen_to_square),
         ),
         Divider(indent: 16, endIndent: 16),

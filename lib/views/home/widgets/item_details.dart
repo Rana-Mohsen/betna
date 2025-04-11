@@ -3,7 +3,7 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/functions/add_items_to_cart.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/item_rating.dart';
-import 'package:betna/models/Item_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
