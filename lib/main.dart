@@ -1,3 +1,5 @@
+import 'package:betna/core/services/auth_api.dart';
+import 'package:betna/core/services/category.api.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/simple_bloc_observer.dart';
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => CartListCubit()),
             BlocProvider(create: (context) => FavoriteCubit()),
-            BlocProvider(create: (context) => CategoriesCubit()),
+            BlocProvider(create: (context) => CategoriesCubit(getIt.get<CategoryApi>())),
           ],
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle(

@@ -20,70 +20,97 @@ class _CustomButtonState extends State<CustomChoiceChip> {
   List<Map<String, dynamic>> lables = [
     {"lable": "All", "icon": null},
     {"lable": "Chair", "icon": Icons.chair_alt_outlined},
-    {"lable": "Sofa", "icon": Icons.chair},
+    {"lable": "Sofa", "icon": Icons.chair_outlined},
     {"lable": "Antique", "icon": Icons.desk_outlined},
     {"lable": "Chair", "icon": Icons.chair_alt_outlined},
   ];
+  Map<String, dynamic> icons = {
+    "انتريه": Icons.chair_alt_outlined,
+    "ركنه": Icons.chair_outlined,
+    "سفره": Icons.table_restaurant_outlined,
+    "غرف نوم اطفال": Icons.bed_outlined,
+  };
+  @override
+  void initState() {
+    BlocProvider.of<CategoriesCubit>(context).getCategories();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       //  width: 100.w,
       height: 5.h,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: List.generate(5, (index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: ChoiceChip(
-              side:
-                  isSel[index]
-                      ? BorderSide.none
-                      : BorderSide(color: Color(0xff9AADAF), width: 1.2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22),
-              ),
-              showCheckmark: false,
-              //padding: const EdgeInsets.all(8),
-              label:
-                  index == 0
-                      ? Text(lables[index]["lable"])
-                      : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            lables[index]["icon"],
-                            color: isSel[index] ? Colors.white : kPrimaryColor,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: Text(lables[index]["lable"]),
-                          ),
-                        ],
-                      ),
-              labelStyle: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: isSel[index] ? Colors.white : kPrimaryColor,
-              ),
-              selectedColor: kPrimaryColor,
-              backgroundColor: kBackgroundColor,
-              selected: isSel[index],
-              onSelected: (bool selected) {
-                setState(() {
-                  isSel.fillRange(0, 6, false);
-                  isSel[index] = selected;
-                  if (index == 0) {
-                    BlocProvider.of<CategoriesCubit>(context).allCategory();
-                  } else {
-                    BlocProvider.of<CategoriesCubit>(context).chooseCategory(
-                      lable: lables[index]["lable"],
-                    );
-                  }
-                });
-              },
-            ),
-          );
-        }),
+      child: BlocBuilder<CategoriesCubit, CategoriesState>(
+        builder: (context, state) {
+          if (state is CategoriesSuccess) {
+            return ListView(
+              scrollDirection: Axis.horizontal,
+              children: List.generate(5, (index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: ChoiceChip(
+                    side:
+                        isSel[index]
+                            ? BorderSide.none
+                            : BorderSide(color: Color(0xff9AADAF), width: 1.2),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    showCheckmark: false,
+                    //padding: const EdgeInsets.all(8),
+                    label:
+                        index == 0
+                            ? Text(state.ctg[index].name)
+                            : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(
+                                  icons[state.ctg[index].name],
+                                  color:
+                                      isSel[index]
+                                          ? Colors.white
+                                          : kPrimaryColor,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Text(state.ctg[index].name),
+                                ),
+                              ],
+                            ),
+                    labelStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: isSel[index] ? Colors.white : kPrimaryColor,
+                    ),
+                    selectedColor: kPrimaryColor,
+                    backgroundColor: kBackgroundColor,
+                    selected: isSel[index],
+                    onSelected: (bool selected) {
+                      setState(() {
+                        isSel.fillRange(0, 6, false);
+                        isSel[index] = selected;
+                        if (index == 0) {
+                          BlocProvider.of<CategoriesCubit>(
+                            context,
+                          ).allCategory();
+                        } else {
+                          BlocProvider.of<CategoriesCubit>(
+                            context,
+                          ).chooseCategory(lable: state.ctg[index].name);
+                        }
+                      });
+                    },
+                  ),
+                );
+              }),
+            );
+          } else if (state is CategoriesError) {
+            return Text(state.errMessage);
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
       ),
     );
   }

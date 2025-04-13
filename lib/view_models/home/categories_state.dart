@@ -12,3 +12,15 @@ class CategoriesChoosed extends CategoriesState {
 }
 
 class CategoriesAll extends CategoriesState {}
+
+class CategoriesSuccess extends CategoriesState {
+  final List<CategoryModel> ctg;
+
+  CategoriesSuccess(this.ctg);
+}
+
+class CategoriesError extends CategoriesState {
+  final String errMessage;
+
+  CategoriesError(this.errMessage);
+}
