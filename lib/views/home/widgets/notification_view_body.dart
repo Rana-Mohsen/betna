@@ -1,7 +1,5 @@
-import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_lable.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
-import 'package:betna/views/home/widgets/custom_listview.dart';
 import 'package:flutter/material.dart';
 
 class NotificationViewBody extends StatefulWidget {
@@ -32,7 +30,7 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
                   spacing: 15,
                   children: [
                     CustomLable(lable: lables[index], onTap: () {}),
-                    CustomListView(categoryItemList: itemList['chair']!),
+                    //CustomListView(categoryItemList: itemList['chair']!),
                   ],
                 ),
           ),

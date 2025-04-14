@@ -1,7 +1,9 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_lable.dart';
-import 'package:betna/view_models/home/categories_cubit.dart';
+import 'package:betna/models/product_model.dart';
+import 'package:betna/view_models/home/category_cubit/categories_cubit.dart';
+import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:betna/views/home/widgets/custom_choice_chip.dart';
 import 'package:betna/views/home/widgets/custom_listview.dart';
 import 'package:betna/views/home/widgets/home_body_top.dart';
@@ -10,8 +12,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<CategoriesCubit>(context).getCategories();
+
+    context.read<ProductsCubit>().getProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,54 +52,72 @@ class HomeViewBody extends StatelessWidget {
               CustomChoiceChip(),
               BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
-                  if (state is CategoriesChoosed && state.lable != "All") {
-                    // print(state.lable);
-                    return Column(
-                      spacing: 15,
-                      children: [
-                        CustomLable(
-                          lable: state.lable,
-                          onTap: () {
-                            context.push(
-                              AppRoutes.kSeeAllview,
-                              extra: state.lable.toLowerCase(),
-                            );
-                          },
-                        ),
-                        CustomListView(
-                          categoryItemList:
-                              itemList[state.lable.toLowerCase()]!.toList(),
-                        ),
-                        SizedBox(height: 5),
-                      ],
+                  if (state is CategoriesChoosed) {
+                    return BlocBuilder<ProductsCubit, ProductsState>(
+                      builder: (context, productState) {
+                        if (productState is ProductsSuccess) {
+                          var pl = productState.products;
+                          return Column(
+                            spacing: 15,
+                            children: [
+                              CustomLable(
+                                lable: state.lable,
+                                onTap: () {
+                                  // context.push(
+                                  //   AppRoutes.kSeeAllview,
+                                  //   extra: pl[index].name,
+                                  // );
+                                },
+                              ),
+
+                              CustomListView(categoryItemList: pl),
+                            ],
+                          );
+                        } else if (productState is ProductsError) {
+                          return Text(productState.errMessage);
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      },
                     );
                   } else {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.all(0),
-                      itemExtent: 260,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: categoriesList.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          spacing: 15,
-                          children: [
-                            CustomLable(
-                              lable: categoriesList[index],
-                              onTap: () {
-                                context.push(
-                                  AppRoutes.kSeeAllview,
-                                  extra: categoriesList[index],
-                                );
-                              },
-                            ),
-                            CustomListView(
-                              categoryItemList:
-                                  itemList[categoriesList[index].toLowerCase()]!
-                                      .toList(),
-                            ),
-                          ],
-                        );
+                    return BlocBuilder<ProductsCubit, ProductsState>(
+                      builder: (context, productState) {
+                        if (productState is ProductsSuccess) {
+                          List<ProductModel> pl = productState.products;
+                          var ctg =
+                              BlocProvider.of<CategoriesCubit>(context).ctgList;
+                          print("ctg:$ctg\npl:${pl.length}");
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.all(0),
+                            itemExtent: 260,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: 1,//ctg.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                spacing: 15,
+                                children: [
+                                  CustomLable(
+                                    lable: ctg[index].name,
+                                    onTap: () {
+                                      // context.push(
+                                      //   AppRoutes.kSeeAllview,
+                                      //   extra: pl[index].name,
+                                      // );
+                                    },
+                                  ),
+
+                                  CustomListView(categoryItemList: pl),
+                                ],
+                              );
+                            },
+                          );
+                        } else if (productState is ProductsError) {
+                          return Text(productState.errMessage);
+                        } else {
+                          return CircularProgressIndicator();
+                        }
                       },
                     );
                   }

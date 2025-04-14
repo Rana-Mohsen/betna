@@ -11,7 +11,7 @@ class CategoriesChoosed extends CategoriesState {
   CategoriesChoosed(this.lable);
 }
 
-class CategoriesAll extends CategoriesState {}
+//class CategoriesAll extends CategoriesState {}
 
 class CategoriesSuccess extends CategoriesState {
   final List<CategoryModel> ctg;

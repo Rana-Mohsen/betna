@@ -1,5 +1,6 @@
 import 'package:betna/constants.dart';
-import 'package:betna/view_models/home/categories_cubit.dart';
+import 'package:betna/view_models/home/category_cubit/categories_cubit.dart';
+import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,24 +18,19 @@ class _CustomButtonState extends State<CustomChoiceChip> {
     return index == 0 ? true : false;
   });
 
-  List<Map<String, dynamic>> lables = [
-    {"lable": "All", "icon": null},
-    {"lable": "Chair", "icon": Icons.chair_alt_outlined},
-    {"lable": "Sofa", "icon": Icons.chair_outlined},
-    {"lable": "Antique", "icon": Icons.desk_outlined},
-    {"lable": "Chair", "icon": Icons.chair_alt_outlined},
-  ];
+  // List<Map<String, dynamic>> lables = [
+  //   {"lable": "All", "icon": null},
+  //   {"lable": "Chair", "icon": Icons.chair_alt_outlined},
+  //   {"lable": "Sofa", "icon": Icons.chair_outlined},
+  //   {"lable": "Antique", "icon": Icons.desk_outlined},
+  //   {"lable": "Chair", "icon": Icons.chair_alt_outlined},
+  // ];
   Map<String, dynamic> icons = {
     "انتريه": Icons.chair_alt_outlined,
     "ركنه": Icons.chair_outlined,
     "سفره": Icons.table_restaurant_outlined,
     "غرف نوم اطفال": Icons.bed_outlined,
   };
-  @override
-  void initState() {
-    BlocProvider.of<CategoriesCubit>(context).getCategories();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +39,8 @@ class _CustomButtonState extends State<CustomChoiceChip> {
       height: 5.h,
       child: BlocBuilder<CategoriesCubit, CategoriesState>(
         builder: (context, state) {
-          if (state is CategoriesSuccess) {
+          if (state is CategoriesSuccess || state is CategoriesChoosed) {
+                  final categories = state is CategoriesSuccess ? state.ctg : BlocProvider.of<CategoriesCubit>(context).ctgList;
             return ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(5, (index) {
@@ -61,12 +58,12 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                     //padding: const EdgeInsets.all(8),
                     label:
                         index == 0
-                            ? Text(state.ctg[index].name)
+                            ? Text(categories[index].name)
                             : Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(
-                                  icons[state.ctg[index].name],
+                                  icons[categories[index].name],
                                   color:
                                       isSel[index]
                                           ? Colors.white
@@ -74,7 +71,7 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8),
-                                  child: Text(state.ctg[index].name),
+                                  child: Text(categories[index].name),
                                 ),
                               ],
                             ),
@@ -90,15 +87,16 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                       setState(() {
                         isSel.fillRange(0, 6, false);
                         isSel[index] = selected;
-                        if (index == 0) {
+                       if(index !=0){
+                        BlocProvider.of<ProductsCubit>(
+                            context,
+                          ).getProducts(categories[index].name);
+                        
+                       }
                           BlocProvider.of<CategoriesCubit>(
                             context,
-                          ).allCategory();
-                        } else {
-                          BlocProvider.of<CategoriesCubit>(
-                            context,
-                          ).chooseCategory(lable: state.ctg[index].name);
-                        }
+                          ).chooseCategory(lable: categories[index].name);
+                        
                       });
                     },
                   ),

@@ -1,11 +1,11 @@
-import 'package:betna/models/item_model.dart';
+import 'package:betna/models/product_model.dart';
 import 'package:betna/views/home/widgets/listview_item.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomListView extends StatelessWidget {
   const CustomListView({super.key, required this.categoryItemList});
-  final List<ItemModel> categoryItemList;
+  final List<ProductModel> categoryItemList;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

@@ -1,11 +1,12 @@
-import 'package:betna/core/services/auth_api.dart';
 import 'package:betna/core/services/category.api.dart';
+import 'package:betna/core/services/products_api.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/simple_bloc_observer.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/view_models/favorite/favorite_cubit.dart';
-import 'package:betna/view_models/home/categories_cubit.dart';
+import 'package:betna/view_models/home/category_cubit/categories_cubit.dart';
+import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => CartListCubit()),
             BlocProvider(create: (context) => FavoriteCubit()),
             BlocProvider(create: (context) => CategoriesCubit(getIt.get<CategoryApi>())),
+                        BlocProvider(create: (context) => ProductsCubit(getIt.get<ProductsApi>())),
+
           ],
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle(

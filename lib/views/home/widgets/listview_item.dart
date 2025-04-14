@@ -1,16 +1,13 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/core/widgets/add_icon.dart';
-import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
-import 'package:betna/models/item_model.dart';
-import 'package:betna/views/home/product_view.dart';
+import 'package:betna/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ListViewItem extends StatelessWidget {
   const ListViewItem({super.key, required this.item});
-  final ItemModel item;
+  final ProductModel item;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,29 +21,29 @@ class ListViewItem extends StatelessWidget {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: IgnorePointer(
-                ignoring: false,
-                child: FavoriteIcon(item: item),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.topRight,
+            //   child: IgnorePointer(
+            //     ignoring: false,
+            //     child: FavoriteIcon(item: item),
+            //   ),
+            // ),
             Positioned(
               top: 3.1.h,
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductView(item: item),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => ProductView(item: item),
+                  //   ),
+                  // );
                 },
                 child: SizedBox(
                   width: 29.w,
                   height: 10.h,
-                  child: Image.asset(item.image),
+                  child: Image.asset("assets/images/chair.png"),
                 ),
               ),
             ),
@@ -55,12 +52,12 @@ class ListViewItem extends StatelessWidget {
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductView(item: item),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => ProductView(item: item),
+                  //   ),
+                  // );
                 },
                 child: Container(
                   padding: EdgeInsets.all(8),
@@ -95,7 +92,7 @@ class ListViewItem extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          AddIcon(item: item),
+                          //AddIcon(item: item),
                         ],
                       ),
                     ],
