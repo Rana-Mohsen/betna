@@ -36,7 +36,14 @@ class CustomItemCard extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: FavoriteIcon(item: item),
                         ),
-                        Flexible(child: Image.asset(item.images.isEmpty? "assets/images/chair.png":item.images[0], width: 30.w)),
+                        Flexible(
+                          child: Image.asset(
+                            item.images.isEmpty
+                                ? "assets/images/chair.png"
+                                : item.images[0],
+                            width: 30.w,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -57,7 +64,7 @@ class CustomItemCard extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          spacing: 60,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               "\$${item.price}",
@@ -65,7 +72,10 @@ class CustomItemCard extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            AddIcon(size: 25, item: item),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16.0),
+                              child: AddIcon(size: 25, item: item),
+                            ),
                           ],
                         ),
                       ],

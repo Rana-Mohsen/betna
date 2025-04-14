@@ -2,7 +2,6 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_lable.dart';
 import 'package:betna/models/item_model.dart';
-import 'package:betna/models/product_model.dart';
 import 'package:betna/view_models/home/category_cubit/categories_cubit.dart';
 import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:betna/views/home/widgets/custom_choice_chip.dart';
@@ -26,7 +25,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     super.initState();
     BlocProvider.of<CategoriesCubit>(context).getCategories();
 
-    context.read<ProductsCubit>().getProducts();
+    if(context.read<ProductsCubit>().productList.isEmpty){
+      context.read<ProductsCubit>().getProducts();
+    }
   }
 
   @override
@@ -88,7 +89,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                           List<ItemModel> pl = productState.products;
                           var ctg =
                               BlocProvider.of<CategoriesCubit>(context).ctgList;
-                          print("ctg:$ctg\npl:${pl.length}");
+                          //print("ctg:$ctg\npl:${pl.length}");
                           return ListView.builder(
                             shrinkWrap: true,
                             padding: EdgeInsets.all(0),

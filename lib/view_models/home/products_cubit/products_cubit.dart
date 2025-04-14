@@ -1,6 +1,6 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/services/products_api.dart';
 import 'package:betna/models/item_model.dart';
-import 'package:betna/models/product_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -20,8 +20,16 @@ class ProductsCubit extends Cubit<ProductsState> {
       },
       (right) {
         productList = right;
+        for (var item in productList) {
+          if (favList.contains(item)) {
+            item.isFav = true;
+          }
+        }
         if (category != null && category != 'All') {
-          final filtered = productList.where((product)=>product.categoryName==category).toList();
+          final filtered =
+              productList
+                  .where((product) => product.categoryName == category)
+                  .toList();
           emit(ProductsSuccess(filtered));
         } else {
           emit(ProductsSuccess(right));

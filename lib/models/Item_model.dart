@@ -6,9 +6,7 @@ class ItemModel {
   final String description;
   final String price;
   final String categoryName;
-
   final List<String> images;
-
   bool isFav = false;
   int count = 0;
 
