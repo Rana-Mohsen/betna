@@ -1,4 +1,5 @@
 import 'package:betna/core/services/products_api.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:betna/models/product_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -7,7 +8,7 @@ part 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
   final ProductsApi _api;
-  List<ProductModel> productList = [];
+  List<ItemModel> productList = [];
 
   ProductsCubit(this._api) : super(ProductsInitial());
   Future<void> getProducts([String? category]) async {

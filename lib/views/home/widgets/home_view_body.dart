@@ -1,6 +1,7 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_lable.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:betna/models/product_model.dart';
 import 'package:betna/view_models/home/category_cubit/categories_cubit.dart';
 import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
@@ -84,7 +85,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     return BlocBuilder<ProductsCubit, ProductsState>(
                       builder: (context, productState) {
                         if (productState is ProductsSuccess) {
-                          List<ProductModel> pl = productState.products;
+                          List<ItemModel> pl = productState.products;
                           var ctg =
                               BlocProvider.of<CategoriesCubit>(context).ctgList;
                           print("ctg:$ctg\npl:${pl.length}");
@@ -93,7 +94,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                             padding: EdgeInsets.all(0),
                             itemExtent: 260,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 1,//ctg.length,
+                            itemCount: ctg.length,
                             itemBuilder: (context, index) {
                               return Column(
                                 spacing: 15,
@@ -101,10 +102,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                                   CustomLable(
                                     lable: ctg[index].name,
                                     onTap: () {
-                                      // context.push(
-                                      //   AppRoutes.kSeeAllview,
-                                      //   extra: pl[index].name,
-                                      // );
+                                      context.push(
+                                        AppRoutes.kSeeAllview,
+                                        extra: pl[index].name,
+                                      );
                                     },
                                   ),
 

@@ -21,15 +21,15 @@ class _SeeAllViewBodyState extends State<SeeAllViewBody> {
       children: [
         const SearchTextfield(cameraIcon: false),
         const SizedBox(height: 20),
-        Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            //physics: const NeverScrollableScrollPhysics(),
-            itemCount: itemList[widget.ctg]!.length,
-            itemBuilder:
-                (context, index) => CustomItemCard(item:  itemList[widget.ctg]![index]),
-          ),
-        ),
+        // Expanded(
+        //   child: ListView.builder(
+        //     shrinkWrap: true,
+        //     //physics: const NeverScrollableScrollPhysics(),
+        //     itemCount: itemList[widget.ctg]!.length,
+        //     itemBuilder:
+        //         (context, index) => CustomItemCard(item:  itemList[widget.ctg]![index]),
+        //   ),
+        // ),
         
       ],
     );

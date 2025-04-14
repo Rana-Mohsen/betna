@@ -36,7 +36,7 @@ class CustomItemCard extends StatelessWidget {
                           alignment: Alignment.topLeft,
                           child: FavoriteIcon(item: item),
                         ),
-                        Flexible(child: Image.asset(item.image, width: 30.w)),
+                        Flexible(child: Image.asset(item.images.isEmpty? "assets/images/chair.png":item.images[0], width: 30.w)),
                       ],
                     ),
                   ),

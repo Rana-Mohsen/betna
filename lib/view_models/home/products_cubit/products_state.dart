@@ -5,7 +5,7 @@ sealed class ProductsState {}
 
 final class ProductsInitial extends ProductsState {}
 class ProductsSuccess extends ProductsState {
-  final List<ProductModel> products;
+  final List<ItemModel> products;
 
   ProductsSuccess(this.products);
 }

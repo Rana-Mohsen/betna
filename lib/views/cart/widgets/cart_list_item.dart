@@ -51,7 +51,7 @@ class _CartListItemState extends State<CartListItem> {
                           child: FavoriteIcon(item: widget.item),
                         ),
                         Flexible(
-                          child: Image.asset(widget.item.image, width: 30.w),
+                          child: Image.asset(widget.item.images.isEmpty?"assets/images/chair.png":widget.item.images[0], width: 30.w),
                         ),
                       ],
                     ),
@@ -114,9 +114,9 @@ class _CartListItemState extends State<CartListItem> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    BlocProvider.of<CartListCubit>(
-                      context,
-                    ).removeItem(widget.item.name, widget.item);
+                    // BlocProvider.of<CartListCubit>(
+                    //   context,
+                    // ).removeItem(widget.item.name, widget.item);
 
                     ScaffoldMessenger.of(
                       context,
