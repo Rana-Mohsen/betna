@@ -10,9 +10,9 @@ class CartListItemChanged extends CartListState {}
 class CartListEmpty extends CartListState {}
 
 class CartSuccess extends CartListState {
-  final List<CartModel> cartItems;
+  final List<CartModel> cartList;
 
-  CartSuccess(this.cartItems);
+  CartSuccess(this.cartList);
 }
 
 class CartError extends CartListState {

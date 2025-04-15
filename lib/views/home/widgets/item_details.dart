@@ -4,7 +4,9 @@ import 'package:betna/core/utils/functions/add_items_to_cart.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/models/item_model.dart';
+import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemDetails extends StatelessWidget {
@@ -70,7 +72,11 @@ class ItemDetails extends StatelessWidget {
             CustomButton(
               text: "Add to cart",
               onTap: () {
-                AddItemsToCart.singleItem(context, item);
+                BlocProvider.of<CartListCubit>(context).addItem({
+                  "user_id": kUserId,
+                  "product_id": item.id,
+                  "quantity": item.count,
+                });
               },
             ),
           ],

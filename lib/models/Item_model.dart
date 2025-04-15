@@ -4,7 +4,7 @@ class ItemModel {
   final int id;
   final String name;
   final String description;
-  final String price;
+   String price;
   final String categoryName;
   final List<String> images;
   bool isFav = false;

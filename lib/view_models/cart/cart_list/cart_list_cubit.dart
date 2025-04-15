@@ -3,6 +3,7 @@ import 'package:betna/core/services/cart_api.dart';
 import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'cart_list_state.dart';
@@ -10,9 +11,10 @@ part 'cart_list_state.dart';
 class CartListCubit extends Cubit<CartListState> {
   CartListCubit(this._api) : super(CartListInitial());
   double totalPrice = 0;
+  List<CartModel> cartList = [];
 
   final CartApi _api;
-  Future<void> getProducts(String userID) async {
+  Future<void> getCartList(String userID, List<ItemModel> products) async {
     var cartItems = await _api.getItemCart(userID);
     //print(products);
     cartItems.fold(
@@ -20,7 +22,20 @@ class CartListCubit extends Cubit<CartListState> {
         emit(CartError(left.errMessage));
       },
       (right) {
-          emit(CartSuccess(right));
+        // for (var item in right) {
+        //   ItemModel match = products.where((p) => p.id == item.id).first;
+        //   if (match != null) {
+        //     match.count = item.quantity;
+        //     match.price = item.price;
+        //     cartList.add(match);
+        //   }
+        // }
+        cartList = right;
+        if (right.isEmpty) {
+          emit(CartListEmpty());
+        } else {
+          emit(CartSuccess(cartList));
+        }
       },
     );
   }
@@ -39,22 +54,32 @@ class CartListCubit extends Cubit<CartListState> {
   //   }
   // }
 
-  addItem(ItemModel item) {
-    if (item.count == 0) {
-      item.count++;
-      cartList.add(item);
-    } else {
-      cartList.add(item);
-    }
-    cartTotalPrice();
+  addItem(Map<String, dynamic> body) async {
+    var data = await _api.addToCart(body);
+    //print(products);
+    data.fold(
+      (left) {
+        emit(CartError(left.errMessage));
+      },
+      (right) {
+        emit(CartListItemChanged());
+      },
+    );
+    // if (item.count == 0) {
+    //   item.count++;
+    //   cartList.add(item);
+    // } else {
+    //   cartList.add(item);
+    // }
+    // cartTotalPrice();
 
-    emit(CartListItemChanged());
+    // emit(CartListItemChanged());
   }
 
   cartTotalPrice() {
     totalPrice = 0;
     for (var item in cartList) {
-      totalPrice += item.totalPrice();
+      totalPrice += int.parse(item.price);
     }
     emit(CartListItemChanged());
   }

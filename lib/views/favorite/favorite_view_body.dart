@@ -35,12 +35,12 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
         ),
         CustomButton(
           onTap: () {
-            for (var favItem in favList) {
-              if (!cartList.contains(favItem)) {
-                BlocProvider.of<CartListCubit>(context).addItem(favItem);
-              }
-            }
-            snackBarMessage(context, "All items added to cart");
+            // for (var favItem in favList) {
+            //   if (!cartList.contains(favItem)) {
+            //     BlocProvider.of<CartListCubit>(context).addItem(favItem);
+            //   }
+            // }
+            //snackBarMessage(context, "All items added to cart");
           },
           text: "Add all items to cart",
         ),

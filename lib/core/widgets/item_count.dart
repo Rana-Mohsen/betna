@@ -1,12 +1,13 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemCount extends StatefulWidget {
-  final ItemModel item;
+  final CartModel item;
   final double iconSize;
   final double fontSize;
   final EdgeInsetsGeometry iconPadding;
@@ -40,7 +41,12 @@ class _ItemCountState extends State<ItemCount> {
             iconSize: widget.iconSize,
             onTap: () {
               setState(() {
-                widget.item.count++;
+                // widget.item.count++;
+                bloc.addItem({
+                  "user_id": 6,
+                  "product_id": widget.item.id,
+                  "quantity": 1,
+                });
                 bloc.cartTotalPrice();
               });
             },
@@ -48,7 +54,7 @@ class _ItemCountState extends State<ItemCount> {
           Padding(
             padding: widget.countPadding,
             child: Text(
-              widget.item.count.toString(),
+              widget.item.quantity.toString(),
               style: FontStyles.textStyle24.copyWith(
                 fontSize: widget.fontSize,
                 fontWeight: FontWeight.w700,
@@ -60,11 +66,11 @@ class _ItemCountState extends State<ItemCount> {
             icon: Icons.remove,
             iconSize: widget.iconSize,
             onTap: () {
-              if (widget.item.count > 0) {
+              if (widget.item.quantity > 0) {
                 setState(() {
-                  widget.item.count--;
-                  if (widget.item.count == 0) {
-                   // bloc.removeItem(widget.item.name, widget.item);
+                  // widget.item.quantity--;
+                  if (widget.item.quantity == 0) {
+                    // bloc.removeItem(widget.item.name, widget.item);
                   }
                   bloc.cartTotalPrice();
                 });

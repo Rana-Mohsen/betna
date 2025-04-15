@@ -3,13 +3,14 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/core/widgets/item_count.dart';
+import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CartListItem extends StatefulWidget {
   const CartListItem({super.key, required this.item});
-  final ItemModel item;
+  final CartModel item;
 
   @override
   State<CartListItem> createState() => _CartListItemState();
@@ -44,15 +45,14 @@ class _CartListItemState extends State<CartListItem> {
                     color: kBackgroundColor,
                     child: Row(
                       children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: FavoriteIcon(item: widget.item),
-                        ),
+                        // Align(
+                        //   alignment: Alignment.topLeft,
+                        //   child: FavoriteIcon(item: widget.item),
+                        // ),
                         Flexible(
                           child: Image.asset(
-                            widget.item.images.isEmpty
-                                ? "assets/images/chair.png"
-                                : widget.item.images[0],
+                             "assets/images/chair.png",
+                               
                             width: 30.w,
                           ),
                         ),

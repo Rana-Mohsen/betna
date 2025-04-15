@@ -2,6 +2,7 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_appbar.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
+import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:betna/views/cart/widgets/cart_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,19 +16,32 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   @override
+  void initState() {
+    super.initState();
+    var products = BlocProvider.of<ProductsCubit>(context).productList;
+    BlocProvider.of<CartListCubit>(context).getCartList(kUserId,products);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(
         title: "My Cart",
-        onTapBackIcon:
-            () => context.go(AppRoutes.kBottomNavigation,extra: 0),
+        onTapBackIcon: () => context.go(AppRoutes.kBottomNavigation, extra: 0),
       ),
       body: BlocBuilder<CartListCubit, CartListState>(
         builder: (context, state) {
-          if (state is CartListEmpty || cartList.isEmpty) {
+          if (state is CartListEmpty) {
             return Center(child: Text("Empty cart! \n Add items"));
+          } else if (state is CartError) {
+            return Center(child: Text("Cart Error! \n ${state.errMessage}"));
+          } else if (state is CartSuccess) {
+            return Padding(
+              padding: kMainPadding,
+              child: CartViewBody(cartList: state.cartList),
+            );
           }
-          return Padding(padding: kMainPadding, child: CartViewBody());
+          return CircularProgressIndicator();
         },
       ),
     );

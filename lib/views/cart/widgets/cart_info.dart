@@ -1,12 +1,15 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/models/cart_model.dart';
+import 'package:betna/models/item_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CartInfo extends StatefulWidget {
-  const CartInfo({super.key});
+  const CartInfo({super.key, required this.cartList});
+  final List<CartModel> cartList;
 
   @override
   State<CartInfo> createState() => _CartInfoState();
@@ -51,7 +54,7 @@ class _CartInfoState extends State<CartInfo> {
           ),
 
           Text(
-            "${cartList.length} Items",
+            "${widget.cartList.length} Items",
             style: FontStyles.textStyle18.copyWith(color: kGrayColor),
           ),
         ],

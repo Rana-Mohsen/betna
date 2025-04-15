@@ -1,3 +1,6 @@
+import 'package:betna/models/item_model.dart';
+import 'package:betna/models/product_model.dart';
+
 class CartModel {
     final int id;
     final int quantity;
@@ -17,7 +20,12 @@ class CartModel {
         name: json["name"],
         price: json["price"],
     );
-
+ factory CartModel.fromProductModel(ItemModel product,int count) => CartModel(
+        id: product.id,
+        quantity: count,
+        name: product.name,
+        price: product.price,
+    );
     Map<String, dynamic> toJson() => {
         "id": id,
         "quantity": quantity,

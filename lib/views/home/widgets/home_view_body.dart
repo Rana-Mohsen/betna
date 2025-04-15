@@ -25,9 +25,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     super.initState();
     BlocProvider.of<CategoriesCubit>(context).getCategories();
 
-    if(context.read<ProductsCubit>().productList.isEmpty){
-      context.read<ProductsCubit>().getProducts();
-    }
+   if (context.read<ProductsCubit>().productList.isEmpty) {
+        context.read<ProductsCubit>().getProducts();
+
+   }
   }
 
   @override
@@ -54,7 +55,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               CustomChoiceChip(),
               BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
-                  if (state is CategoriesChoosed) {
+                  if (state is CategoriesChoosed && state.lable!="All") {
                     return BlocBuilder<ProductsCubit, ProductsState>(
                       builder: (context, productState) {
                         if (productState is ProductsSuccess) {

@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/services/auth_api.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -22,6 +23,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             // print(login);
             emit(AuthLoginFailure("name or email already exists"));
           }
+          kUserId = login["user"]['id'].toString();
+           print(login);
+
           emit(AuthLoginSuccess("logged in successfully"));
         },
       );
@@ -40,7 +44,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             // print(signup);
             emit(AuthRegisterFailure("name or email already exists"));
           }
-          
+
           emit(AuthRegisterSuccess("signed up successfully"));
         },
       );

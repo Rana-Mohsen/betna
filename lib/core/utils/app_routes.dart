@@ -34,7 +34,7 @@ abstract class AppRoutes {
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
-    initialLocation: kBottomNavigation,
+    initialLocation: kLoginView,
 
     routes: [
       GoRoute(
@@ -81,7 +81,7 @@ abstract class AppRoutes {
       GoRoute(path: kCartView, builder: (context, state) => const CartView()),
       GoRoute(
         path: kMyOrderView,
-        builder: (context, state) => const MyOrderView(),
+        builder: (context, state) => MyOrderView(cartList: state.extra as List<ItemModel>,),
       ),
 
       GoRoute(

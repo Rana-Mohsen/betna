@@ -11,10 +11,10 @@ const kGrayTextColor = Color(0xff323232);
 
 const kMainPadding = EdgeInsets.all(16.0);
 
+String kUserId = "";
 const kCacheUserInfo = "CacheUserInfo";
 
 final List<String> categoriesList = ["Chair", "Sofa", "Antique"];
-List<ItemModel> cartList = [];
 List<ItemModel> favList = [];
 // final Map<String, List<ItemModel>> itemList = {
 //   "chair": [
@@ -69,5 +69,3 @@ List<ItemModel> favList = [];
 //     ),
 //   ],
 // };
-
-
