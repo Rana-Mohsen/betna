@@ -1,5 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/core/widgets/add_icon.dart';
 import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/models/item_model.dart';
@@ -87,14 +88,19 @@ class ListViewItem extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "\$${item.price}",
-                            style: FontStyles.textStyle16.copyWith(
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w600,
+                          Flexible(
+                            child: Text(
+                              "\$${item.price}",
+                              style: FontStyles.textStyle16.copyWith(
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.w600,
+                                overflow: TextOverflow.fade,
+                              ),
+                              maxLines: 1,
+                              softWrap: false,
                             ),
                           ),
-                          //AddIcon(item: item),
+                          AddIcon(item: item),
                         ],
                       ),
                     ],

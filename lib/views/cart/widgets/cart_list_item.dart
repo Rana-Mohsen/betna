@@ -49,7 +49,12 @@ class _CartListItemState extends State<CartListItem> {
                           child: FavoriteIcon(item: widget.item),
                         ),
                         Flexible(
-                          child: Image.asset(widget.item.images.isEmpty?"assets/images/chair.png":widget.item.images[0], width: 30.w),
+                          child: Image.asset(
+                            widget.item.images.isEmpty
+                                ? "assets/images/chair.png"
+                                : widget.item.images[0],
+                            width: 30.w,
+                          ),
                         ),
                       ],
                     ),
@@ -75,14 +80,18 @@ class _CartListItemState extends State<CartListItem> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "\$${widget.item.price}",
-                              style: FontStyles.textStyle18.copyWith(
-                                fontWeight: FontWeight.w600,
+                            SizedBox(
+                              width: 20.w,
+                              child: Text(
+                                "\$${widget.item.price}",
+                                style: FontStyles.textStyle18.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  overflow: TextOverflow.fade,
+                                ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 24.0),
+                              padding: const EdgeInsets.only(right: 16.0),
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),

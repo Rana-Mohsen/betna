@@ -1,3 +1,4 @@
+import 'package:betna/core/services/cart_api.dart';
 import 'package:betna/core/services/category.api.dart';
 import 'package:betna/core/services/products_api.dart';
 import 'package:betna/core/utils/app_routes.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => CartListCubit()),
+            BlocProvider(create: (context) => CartListCubit(getIt.get<CartApi>())),
             BlocProvider(create: (context) => FavoriteCubit()),
             BlocProvider(create: (context) => CategoriesCubit(getIt.get<CategoryApi>())),
                         BlocProvider(create: (context) => ProductsCubit(getIt.get<ProductsApi>())),

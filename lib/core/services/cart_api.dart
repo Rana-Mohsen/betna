@@ -28,7 +28,7 @@ class CartApi {
     }
   }
 
-  Future<Either<Failures, dynamic>> getItemCart(String userId) async {
+  Future<Either<Failures, List<CartModel >>> getItemCart(String userId) async {
     try {
       var data = await _api.get(url: "${baseUrl}cart.php?user_id=$userId");
       List<CartModel> cartList = [];

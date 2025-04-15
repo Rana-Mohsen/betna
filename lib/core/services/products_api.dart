@@ -12,7 +12,7 @@ class ProductsApi {
 
   ProductsApi(this._api);
 
-  Future<Either<Failures, dynamic>> getProducts() async {
+  Future<Either<Failures, List<ItemModel>>> getProducts() async {
     try {
       var data = await _api.get(url: "${baseUrl}get_products.php");
 
