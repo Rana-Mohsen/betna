@@ -1,11 +1,12 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/core/widgets/favorite_icon.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/core/widgets/item_count.dart';
 import 'package:betna/models/cart_model.dart';
-import 'package:betna/models/item_model.dart';
+import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
+import 'package:betna/views/cart/widgets/cart_item_count.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CartListItem extends StatefulWidget {
@@ -18,6 +19,8 @@ class CartListItem extends StatefulWidget {
 
 class _CartListItemState extends State<CartListItem> {
   bool showOption = false;
+
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,8 +54,8 @@ class _CartListItemState extends State<CartListItem> {
                         // ),
                         Flexible(
                           child: Image.asset(
-                             "assets/images/chair.png",
-                               
+                            "assets/images/chair.png",
+
                             width: 30.w,
                           ),
                         ),
@@ -98,14 +101,14 @@ class _CartListItemState extends State<CartListItem> {
 
                                   color: const Color(0xff73888A),
                                 ),
-                                child: ItemCount(
+                                child: CartItemCount(
                                   item: widget.item,
                                   countPadding: EdgeInsets.symmetric(
-                                    horizontal: 3,
+                                    horizontal: 0,
                                   ),
 
                                   iconPadding: EdgeInsets.symmetric(
-                                    horizontal: 8,
+                                    horizontal: 6,
                                     vertical: 3,
                                   ),
                                   iconSize: 12,
@@ -121,9 +124,9 @@ class _CartListItemState extends State<CartListItem> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // BlocProvider.of<CartListCubit>(
-                    //   context,
-                    // ).removeItem(widget.item.name, widget.item);
+                    BlocProvider.of<CartListCubit>(
+                      context,
+                    ).removeItemList(kUserId,widget.item.id.toString());
 
                     ScaffoldMessenger.of(
                       context,

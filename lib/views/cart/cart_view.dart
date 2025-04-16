@@ -19,8 +19,9 @@ class _CartViewState extends State<CartView> {
   void initState() {
     super.initState();
     var products = BlocProvider.of<ProductsCubit>(context).productList;
-    BlocProvider.of<CartListCubit>(context).getCartList(kUserId,products);
+    BlocProvider.of<CartListCubit>(context).getCartList(kUserId);
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +36,12 @@ class _CartViewState extends State<CartView> {
             return Center(child: Text("Empty cart! \n Add items"));
           } else if (state is CartError) {
             return Center(child: Text("Cart Error! \n ${state.errMessage}"));
-          } else if (state is CartSuccess) {
-            return Padding(
-              padding: kMainPadding,
-              child: CartViewBody(cartList: state.cartList),
-            );
+          } else if (state is CartSuccess || state is CartListItemChanged) {
+            return Padding(padding: kMainPadding, child: CartViewBody());
+          } else {
+            return Center(child: CircularProgressIndicator());
           }
-          return CircularProgressIndicator();
+          // return CircularProgressIndicator();
         },
       ),
     );

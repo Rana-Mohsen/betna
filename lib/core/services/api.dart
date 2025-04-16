@@ -38,4 +38,14 @@ class Api {
       return response.data;
    
   }
+  Future<dynamic> delete({required String url, dynamic body, String? token}) async {
+    Options options = Options(
+      headers: {
+        "Content-Type": "application/json",
+        if (token != null) "Authorization": "Bearer $token",
+      },
+    );
+    Response response = await _dio.delete(url, data: body, options: options);
+    return response.data;
+  }
 }

@@ -6,14 +6,14 @@ import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ItemCount extends StatefulWidget {
-  final ItemModel item;
+class CartItemCount extends StatefulWidget {
+  final CartModel item;
   final double iconSize;
   final double fontSize;
   final EdgeInsetsGeometry iconPadding;
   final EdgeInsetsGeometry countPadding;
 
-  const ItemCount({
+  const CartItemCount({
     super.key,
     this.iconSize = 24.0,
     this.fontSize = 16.0,
@@ -23,10 +23,10 @@ class ItemCount extends StatefulWidget {
   });
 
   @override
-  State<ItemCount> createState() => _ItemCountState();
+  State<CartItemCount> createState() => _CartItemCountState();
 }
 
-class _ItemCountState extends State<ItemCount> {
+class _CartItemCountState extends State<CartItemCount> {
   @override
   Widget build(BuildContext context) {
     var bloc = BlocProvider.of<CartListCubit>(context);
@@ -41,16 +41,20 @@ class _ItemCountState extends State<ItemCount> {
             iconSize: widget.iconSize,
             onTap: () {
               setState(() {
-                 widget.item.count++;
-               
-                bloc.cartTotalPrice();
+                //widget.item.count++;
+                //bloc.cartList.add(widget.item);
+                bloc.addItem({
+                  "user_id": kUserId,
+                  "product_id": widget.item.id,
+                  "quantity": 1,
+                });
               });
             },
           ),
           Padding(
             padding: widget.countPadding,
             child: Text(
-              widget.item.count.toString(),
+              widget.item.quantity.toString(),
               style: FontStyles.textStyle24.copyWith(
                 fontSize: widget.fontSize,
                 fontWeight: FontWeight.w700,
@@ -62,12 +66,12 @@ class _ItemCountState extends State<ItemCount> {
             icon: Icons.remove,
             iconSize: widget.iconSize,
             onTap: () {
-              if (widget.item.count > 0) {
+              if (widget.item.quantity > 0) {
                 setState(() {
-                   widget.item.count--;
-                  if (widget.item.count == 0) {
-                    // bloc.removeItem(widget.item.name, widget.item);
-                  }
+                  //  widget.item.count--;
+                  // if (widget.item.count == 0) {
+                  //   // bloc.removeItem(widget.item.name, widget.item);
+                  // }
                   bloc.cartTotalPrice();
                 });
               }
@@ -92,11 +96,7 @@ class _ItemCountState extends State<ItemCount> {
         ),
         child: Padding(
           padding: EdgeInsets.all(iconSize * 0.2),
-          child: Icon(
-            icon,
-            color: kPrimaryColor,
-            size: iconSize, 
-          ),
+          child: Icon(icon, color: kPrimaryColor, size: iconSize),
         ),
       ),
     );

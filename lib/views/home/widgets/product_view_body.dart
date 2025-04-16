@@ -87,7 +87,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
                 border: Border.all(color: Colors.white, width: 6),
               ),
               child: ItemCount(
-                item: CartModel.fromProductModel(widget.item,1),
+                item: widget.item,
                 iconPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 countPadding: EdgeInsets.symmetric(horizontal: 16),
               ),

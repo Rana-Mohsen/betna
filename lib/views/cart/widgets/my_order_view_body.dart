@@ -1,4 +1,3 @@
-import 'package:betna/constants.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/custom_item_card.dart';
 import 'package:betna/core/widgets/search_textfield.dart';

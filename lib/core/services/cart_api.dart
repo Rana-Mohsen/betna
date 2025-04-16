@@ -14,6 +14,9 @@ class CartApi {
   Future<Either<Failures, dynamic>> addToCart(Map<String, dynamic> body) async {
     try {
       var data = await _api.post(url: "${baseUrl}cart.php", body: body);
+          print(body);
+
+    print(data);
 
       if (data["status"] == "success") {
         return right(data);
@@ -41,6 +44,19 @@ class CartApi {
       } else {
         return left(ServerFailure(data["message"]));
       }
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  Future<Either<Failures, dynamic>> deleteCartItem(String userId,Map<String, dynamic> body) async {
+    try {
+      var data = await _api.delete(url: "${baseUrl}cart.php?user_id=$userId",body: body);
+
+      return right(data);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

@@ -13,6 +13,7 @@ import 'package:betna/views/home/home_view.dart';
 import 'package:betna/views/home/notification_view.dart';
 import 'package:betna/views/home/product_view.dart';
 import 'package:betna/views/home/see_all_view.dart';
+import 'package:betna/views/onboarding/onboarding_view.dart';
 import 'package:betna/views/profile/profile_view.dart';
 import 'package:betna/views/search/search_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +22,7 @@ import 'package:go_router/go_router.dart';
 abstract class AppRoutes {
   static const kLoginView = '/loginView';
   static const kSignupView = '/signupView';
+  static const kOnboardingView = '/onboardingView';
   static const kBottomNavigation = '/bottomNavigation';
   static const kHomeView = '/homeView';
   static const kSeeAllview = '/seeAllView';
@@ -34,7 +36,7 @@ abstract class AppRoutes {
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
-    initialLocation: kLoginView,
+    initialLocation: kOnboardingView,
 
     routes: [
       GoRoute(
@@ -47,11 +49,17 @@ abstract class AppRoutes {
       ),
       GoRoute(
         path: kSignupView,
-        builder: (context, state) => BlocProvider(
+        builder:
+            (context, state) => BlocProvider(
               create: (context) => AuthBloc(getIt.get<AuthApi>()),
               child: const SignupView(),
-        )
+            ),
       ),
+      GoRoute(
+        path: kOnboardingView,
+        builder: (context, state) => const Onboarding(),
+      ),
+
       GoRoute(
         path: kBottomNavigation,
         builder: (context, state) {
@@ -81,7 +89,9 @@ abstract class AppRoutes {
       GoRoute(path: kCartView, builder: (context, state) => const CartView()),
       GoRoute(
         path: kMyOrderView,
-        builder: (context, state) => MyOrderView(cartList: state.extra as List<ItemModel>,),
+        builder:
+            (context, state) =>
+                MyOrderView(cartList: state.extra as List<ItemModel>),
       ),
 
       GoRoute(

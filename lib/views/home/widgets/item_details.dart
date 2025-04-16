@@ -1,6 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/core/utils/functions/add_items_to_cart.dart';
+import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/core/widgets/item_rating.dart';
 import 'package:betna/models/item_model.dart';
@@ -15,6 +15,7 @@ class ItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cartBloc = BlocProvider.of<CartListCubit>(context);
     return Container(
       height: 45.h,
       decoration: const BoxDecoration(color: Colors.white),
@@ -72,11 +73,14 @@ class ItemDetails extends StatelessWidget {
             CustomButton(
               text: "Add to cart",
               onTap: () {
-                BlocProvider.of<CartListCubit>(context).addItem({
+                cartBloc.addItem({
                   "user_id": kUserId,
                   "product_id": item.id,
                   "quantity": item.count,
                 });
+                
+                snackBarMessage(context, "Item added to cart");
+                cartBloc.cartTotalPrice();
               },
             ),
           ],

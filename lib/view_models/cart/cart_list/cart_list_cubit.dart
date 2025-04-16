@@ -1,5 +1,5 @@
-import 'package:betna/constants.dart';
 import 'package:betna/core/services/cart_api.dart';
+import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:bloc/bloc.dart';
@@ -14,7 +14,7 @@ class CartListCubit extends Cubit<CartListState> {
   List<CartModel> cartList = [];
 
   final CartApi _api;
-  Future<void> getCartList(String userID, List<ItemModel> products) async {
+  Future<void> getCartList(String userID) async {
     var cartItems = await _api.getItemCart(userID);
     //print(products);
     cartItems.fold(
@@ -35,6 +35,25 @@ class CartListCubit extends Cubit<CartListState> {
           emit(CartListEmpty());
         } else {
           emit(CartSuccess(cartList));
+          cartTotalPrice();
+        }
+      },
+    );
+  }
+
+  Future<void> removeItemList(String userID, String itemId) async {
+    var data = await _api.deleteCartItem(userID, {"cart_id": itemId});
+    //print(products);
+    data.fold(
+      (left) {
+        emit(CartError(left.errMessage));
+      },
+      (right) {
+        cartList.removeWhere((i) => i.id.toString() == itemId);
+        if (cartList.isEmpty) {
+          emit(CartListEmpty());
+        } else {
+          cartTotalPrice();
         }
       },
     );
@@ -56,13 +75,17 @@ class CartListCubit extends Cubit<CartListState> {
 
   addItem(Map<String, dynamic> body) async {
     var data = await _api.addToCart(body);
-    //print(products);
+    //print(data);
     data.fold(
       (left) {
         emit(CartError(left.errMessage));
       },
       (right) {
-        emit(CartListItemChanged());
+        cartTotalPrice();
+
+        print("=========?>>>");
+
+        print(totalPrice);
       },
     );
     // if (item.count == 0) {
@@ -79,7 +102,7 @@ class CartListCubit extends Cubit<CartListState> {
   cartTotalPrice() {
     totalPrice = 0;
     for (var item in cartList) {
-      totalPrice += int.parse(item.price);
+      totalPrice += double.parse(item.price);
     }
     emit(CartListItemChanged());
   }
