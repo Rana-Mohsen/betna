@@ -7,6 +7,8 @@ import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:betna/views/home/widgets/custom_choice_chip.dart';
 import 'package:betna/views/home/widgets/custom_listview.dart';
 import 'package:betna/views/home/widgets/home_body_top.dart';
+import 'package:betna/views/home/widgets/shimmer_choice_chip.dart';
+import 'package:betna/views/home/widgets/shimmer_home_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -25,10 +27,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     super.initState();
     BlocProvider.of<CategoriesCubit>(context).getCategories();
 
-   if (context.read<ProductsCubit>().productList.isEmpty) {
-        context.read<ProductsCubit>().getProducts();
-
-   }
+    if (context.read<ProductsCubit>().productList.isEmpty) {
+      context.read<ProductsCubit>().getProducts();
+    }
   }
 
   @override
@@ -55,7 +56,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               CustomChoiceChip(),
               BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
-                  if (state is CategoriesChoosed && state.lable!="All") {
+                  if (state is CategoriesChoosed && state.lable != "All") {
                     return BlocBuilder<ProductsCubit, ProductsState>(
                       builder: (context, productState) {
                         if (productState is ProductsSuccess) {
@@ -79,7 +80,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         } else if (productState is ProductsError) {
                           return Text(productState.errMessage);
                         } else {
-                          return CircularProgressIndicator();
+                          return ShimmerHomeList();
                         }
                       },
                     );
@@ -119,7 +120,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         } else if (productState is ProductsError) {
                           return Text(productState.errMessage);
                         } else {
-                          return CircularProgressIndicator();
+                          return ShimmerHomeList();
                         }
                       },
                     );

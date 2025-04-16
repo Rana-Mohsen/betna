@@ -34,8 +34,10 @@ class CartApi {
   Future<Either<Failures, List<CartModel>>> getItemCart(String userId) async {
     try {
       var data = await _api.get(url: "${baseUrl}cart.php?user_id=$userId");
-      print("Cart retyrned DATA: $data");
+      print("Cart returned DATA: $data");
+
       List<CartModel> cartList = [];
+      
       for (var item in data['cart']) {
         cartList.add(CartModel.fromJson(item));
       }

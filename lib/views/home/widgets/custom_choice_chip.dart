@@ -1,6 +1,7 @@
 import 'package:betna/constants.dart';
 import 'package:betna/view_models/home/category_cubit/categories_cubit.dart';
 import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
+import 'package:betna/views/home/widgets/shimmer_choice_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,7 +30,8 @@ class _CustomButtonState extends State<CustomChoiceChip> {
     "انتريه": Icons.chair_alt_outlined,
     "ركنه": Icons.chair_outlined,
     "سفره": Icons.table_restaurant_outlined,
-    "غرف نوم اطفال": Icons.bed_outlined,
+    "غرف نوم اطفال": Icons.single_bed_outlined,
+    "غرف نوم كلاسيك": Icons.bed_outlined,
   };
 
   @override
@@ -40,7 +42,10 @@ class _CustomButtonState extends State<CustomChoiceChip> {
       child: BlocBuilder<CategoriesCubit, CategoriesState>(
         builder: (context, state) {
           if (state is CategoriesSuccess || state is CategoriesChoosed) {
-                  final categories = state is CategoriesSuccess ? state.ctg : BlocProvider.of<CategoriesCubit>(context).ctgList;
+            final categories =
+                state is CategoriesSuccess
+                    ? state.ctg
+                    : BlocProvider.of<CategoriesCubit>(context).ctgList;
             return ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(5, (index) {
@@ -57,7 +62,7 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                     showCheckmark: false,
                     //padding: const EdgeInsets.all(8),
                     label:
-                        index == 0
+                        categories[index].name == "All"
                             ? Text(categories[index].name)
                             : Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,22 +92,16 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                       setState(() {
                         isSel.fillRange(0, 6, false);
                         isSel[index] = selected;
-                       if(index ==0){
-
-                        BlocProvider.of<ProductsCubit>(
-                            context,
-                          ).getProducts();
-                        
-                       }
-                       else{
-                         BlocProvider.of<ProductsCubit>(
+                        if (index == 0) {
+                          BlocProvider.of<ProductsCubit>(context).getProducts();
+                        } else {
+                          BlocProvider.of<ProductsCubit>(
                             context,
                           ).getProducts(categories[index].name);
-                       }
-                          BlocProvider.of<CategoriesCubit>(
-                            context,
-                          ).chooseCategory(lable: categories[index].name);
-                        
+                        }
+                        BlocProvider.of<CategoriesCubit>(
+                          context,
+                        ).chooseCategory(lable: categories[index].name);
                       });
                     },
                   ),
@@ -112,7 +111,7 @@ class _CustomButtonState extends State<CustomChoiceChip> {
           } else if (state is CategoriesError) {
             return Text(state.errMessage);
           } else {
-            return CircularProgressIndicator();
+            return ShimmerChoiceChip();
           }
         },
       ),

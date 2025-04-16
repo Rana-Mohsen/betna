@@ -25,6 +25,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       },
       (right) {
         ctgList = right;
+       // if(ctgList.contains(element))
         emit(CategoriesSuccess(right));
       },
     );

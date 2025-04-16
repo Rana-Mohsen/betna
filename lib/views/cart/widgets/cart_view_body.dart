@@ -18,27 +18,20 @@ class CartViewBody extends StatefulWidget {
 class _CartViewBodyState extends State<CartViewBody> {
   late List<CartModel> cartList;
 
-  @override
-  void initState() {
-    cartList = BlocProvider.of<CartListCubit>(context).cartList;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+        cartList = BlocProvider.of<CartListCubit>(context).cartList;
+
     return Column(
       spacing: 20,
       children: [
         SizedBox(
           height: 45.h,
-          child: BlocBuilder<CartListCubit, CartListState>(
-            builder: (context, state) {
-              return ListView.builder(
-                itemCount: cartList.length,
-                itemBuilder:
-                    (context, index) => CartListItem(item: cartList[index]),
-              );
-            },
+          child: ListView.builder(
+            itemCount: cartList.length,
+            itemBuilder:
+                (context, index) => CartListItem(item: cartList[index]),
           ),
         ),
         CartInfo(cartListLength: cartList.length),
