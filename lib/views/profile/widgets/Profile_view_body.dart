@@ -1,4 +1,4 @@
-import 'package:betna/core/Local_Storage/user_Info.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/profile_image.dart';
@@ -33,23 +33,20 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     {"icon": "assets/icons/profile/log-out.png", "title": "Log out"},
   ];
   bool isLoading = true;
-  late UserModel user;
+  // late UserModel user;
   @override
-  void initState() {
-    super.initState();
-    // if (UserInfo.userName == null && UserInfo.userEmail == null) {
-    //   getUserInfo();
-    // }
-    getUserInfo();
-  }
+  // void initState() {
+  //   super.initState();
 
-  Future<void> getUserInfo() async {
-    user = await UserInfo.getUserInfoSharedPreference();
+  //   getUserInfo();
+  // }
 
-    setState(() {
-      isLoading = false;
-    });
-  }
+  // Future<void> getUserInfo() async {
+
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +54,8 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
       children: [
         ListTile(
           leading: ProfileImage(),
-          title: isLoading ? Text("") : Text(user.name),
-          subtitle: isLoading ? Text("") : Text((user.email)),
+          title:Text(UserInfo.userName??""),
+          subtitle: Text((UserInfo.userEmail??"")),
           trailing: Icon(FontAwesome.pen_to_square),
         ),
         Divider(indent: 16, endIndent: 16),

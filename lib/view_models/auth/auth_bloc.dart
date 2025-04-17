@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/services/auth_api.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -14,17 +15,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoginLoading());
       var result = await _auth.loginUser(body: event.body);
 
-      result.fold(
-        (failure) {
+     await result.fold(
+        (failure) async{
           emit(AuthLoginFailure(failure.errMessage));
         },
-        (login) {
+        (login) async {
           if (login.containsKey("errors") && login["status"] == "error") {
             // print(login);
             emit(AuthLoginFailure("name or email already exists"));
           }
-          kUserId = login["user"]['id'].toString();
-           print(login);
+          //print(login);
+          await UserInfo.saveUserInfo(
+            login["user"]['name']!,
+            login["user"]['id']!.toString(),
+          );
+          await UserInfo.getUserInfo(login["user"]['name']!);
 
           emit(AuthLoginSuccess("logged in successfully"));
         },

@@ -18,7 +18,7 @@ class ItemModel {
     required this.categoryName,
     required this.images,
     this.isFav = false,
-    this.count = 0,
+    this.count = 1,
   });
 
   double totalPrice() {

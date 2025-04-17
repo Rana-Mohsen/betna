@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,9 @@ class AddIcon extends StatelessWidget {
       onTap: () {
         BlocProvider.of<CartListCubit>(
           context,
-        ).addItem({"user_id": kUserId, "product_id": item.id, "quantity": 1});
+        ).addItem({"user_id": UserInfo.userId??"", "product_id": item.id, "quantity": 1});
         
-        BlocProvider.of<CartListCubit>(context).getCartList(kUserId);
+        BlocProvider.of<CartListCubit>(context).getCartList(UserInfo.userId??"");
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text('Item added to cart')));

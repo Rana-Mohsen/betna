@@ -5,19 +5,27 @@ import 'package:betna/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserInfo {
- 
-  static Future<void> saveUserInfoSharedPreference(UserModel user) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(kCacheUserInfo, jsonEncode(user.toJson()));
+  static String? userName = "";
+  static String? userId = "";
+  static String? userEmail = "";
 
+  static Future<void> saveUserInfo(String name, String id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("name_$name", name);
+    await prefs.setString("id_$name", id);
   }
 
-  static Future<UserModel> getUserInfoSharedPreference() async {
+  static Future<void> saveUserEmail(String name, String email) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? value = prefs.getString(kCacheUserInfo);
-    if(value == null){
-      return UserModel(email: "User@email",name: "User");
-    }
-    return UserModel.fromJson(jsonDecode(value));
+    await prefs.setString("email_$name", email);
+  }
+
+  static Future<void> getUserInfo(String name) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userId = prefs.getString("id_$name");
+    userName = prefs.getString("name_$name");
+    userEmail = prefs.getString("email_$name");
+
+    // return UserModel.fromJson(jsonDecode(value));
   }
 }

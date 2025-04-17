@@ -109,11 +109,11 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                               "address": "2Street, mahala, gharbia",
                             }),
                           );
-                          UserModel user = UserModel(
-                            name: name!,
-                            email: emailOrPhone!,
-                          );
-                         await UserInfo.saveUserInfoSharedPreference(user);
+                          // UserModel user = UserModel(
+                          //   name: name!,
+                          //   email: emailOrPhone!,
+                          // );
+                         await UserInfo.saveUserEmail(name!,emailOrPhone!);
                         }
                       },
                       text: "Sign up",

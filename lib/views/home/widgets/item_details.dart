@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/widgets/custom_button.dart';
@@ -73,12 +74,19 @@ class ItemDetails extends StatelessWidget {
             CustomButton(
               text: "Add to cart",
               onTap: () {
+                print(
+                  {
+                    "user_id": UserInfo.userId,
+                    "product_id": item.id,
+                    "quantity": item.count,
+                  }.toString(),
+                );
                 cartBloc.addItem({
-                  "user_id": kUserId,
+                  "user_id": UserInfo.userId ?? "",
                   "product_id": item.id,
                   "quantity": item.count,
                 });
-                
+
                 snackBarMessage(context, "Item added to cart");
                 cartBloc.cartTotalPrice();
               },

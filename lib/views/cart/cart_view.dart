@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_appbar.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
@@ -19,7 +20,7 @@ class _CartViewState extends State<CartView> {
   void initState() {
     super.initState();
     var products = BlocProvider.of<ProductsCubit>(context).productList;
-    BlocProvider.of<CartListCubit>(context).getCartList(kUserId);
+    BlocProvider.of<CartListCubit>(context).getCartList(UserInfo.userId??"");
   }
 
   @override

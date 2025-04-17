@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
@@ -44,7 +45,7 @@ class _CartItemCountState extends State<CartItemCount> {
                 //widget.item.count++;
                 //bloc.cartList.add(widget.item);
                 bloc.addItem({
-                  "user_id": kUserId,
+                  "user_id": UserInfo.userId??"",
                   "product_id": widget.item.id,
                   "quantity": 1,
                 });

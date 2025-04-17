@@ -37,7 +37,7 @@ abstract class AppRoutes {
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
-    initialLocation: kBottomNavigation,
+    initialLocation: kLoginView,
 
     routes: [
       GoRoute(
