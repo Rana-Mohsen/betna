@@ -21,7 +21,6 @@ class _CartViewState extends State<CartView> {
     var products = BlocProvider.of<ProductsCubit>(context).productList;
     BlocProvider.of<CartListCubit>(context).getCartList(kUserId);
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +38,8 @@ class _CartViewState extends State<CartView> {
           } else if (state is CartSuccess || state is CartListItemChanged) {
             return Padding(padding: kMainPadding, child: CartViewBody());
           } else {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: kCircleProggress);
           }
-          // return CircularProgressIndicator();
         },
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:betna/constants.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/view_models/favorite/favorite_cubit.dart';
+import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,16 +25,22 @@ class _FavoriteIconState extends State<FavoriteIcon> {
   @override
   Widget build(BuildContext context) {
     bool isFav = widget.item.isFav;
-    var bloc = BlocProvider.of<FavoriteCubit>(context);
+        final favoriteCubit = context.read<FavoriteCubit>();
+    final productsCubit = context.read<ProductsCubit>();
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
         setState(() {
-          isFav = !isFav;
-          isFav
-              ? bloc.addFavorit(widget.item)
-              : bloc.removeFavorit(widget.item);
-          BlocProvider.of<FavoriteCubit>(context).favoritBody();
+          // isFav = !isFav;
+         if (widget.item.isFav) {
+            favoriteCubit.addFavorit(widget.item);
+          } else {
+            favoriteCubit.removeFavorit(widget.item);
+          }
+
+          productsCubit.toggleFavorite(widget.item);
+
+          favoriteCubit.favoritBody(); 
         });
       },
       child: Padding(
@@ -45,7 +52,7 @@ class _FavoriteIconState extends State<FavoriteIcon> {
             color: Colors.white,
           ),
           child: Icon(
-            isFav ? Icons.favorite : Icons.favorite_border_outlined,
+            widget.item.isFav ? Icons.favorite : Icons.favorite_border_outlined,
             size: widget.size,
             color: kPrimaryColor,
           ),

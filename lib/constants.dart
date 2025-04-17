@@ -10,7 +10,7 @@ const kBackgroundColor = Color(0xffF1F4F4);
 const kGrayTextColor = Color(0xff323232);
 
 const kMainPadding = EdgeInsets.all(16.0);
-
+const kCircleProggress = CircularProgressIndicator(color: kPrimaryColor);
 String kUserId = "";
 const kCacheUserInfo = "CacheUserInfo";
 

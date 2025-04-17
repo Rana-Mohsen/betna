@@ -1,7 +1,11 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/widgets/custom_item_card.dart';
 import 'package:betna/core/widgets/search_textfield.dart';
-import 'package:betna/views/search/widgets/search_view_body.dart';
+import 'package:betna/models/item_model.dart';
+import 'package:betna/view_models/search/cubit/search_cubit.dart';
+import 'package:betna/views/search/widgets/search_view_body_category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchView extends StatefulWidget {
@@ -24,7 +28,28 @@ class _SearchViewState extends State<SearchView> {
       ),
       body: Padding(
         padding: kMainPadding,
-        child: SafeArea(child: SearchViewBody()),
+        child: SafeArea(
+          child: BlocBuilder<SearchCubit, SearchState>(
+            builder: (context, state) {
+              if (state is SearchChanged) {
+                List<ItemModel> result = state.searchedProducts;
+                return Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    //physics: const NeverScrollableScrollPhysics(),
+                    itemCount: result.length,
+
+                    //item: (context, index) => SizedBox(),
+                    itemBuilder:
+                        (context, index) => CustomItemCard(item: result[index]),
+                  ),
+                );
+              } else {
+                return SingleChildScrollView(child: SearchViewBodyCategory());
+              }
+            },
+          ),
+        ),
       ),
     );
   }

@@ -26,7 +26,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     super.initState();
     BlocProvider.of<CategoriesCubit>(context).getCategories();
-
+    //context.read<ProductsCubit>().getProducts();
+if (BlocProvider.of<CategoriesCubit>(context).ctgList.isEmpty) {
+      context.read<ProductsCubit>().getProducts();
+    }
     if (context.read<ProductsCubit>().productList.isEmpty) {
       context.read<ProductsCubit>().getProducts();
     }

@@ -4,6 +4,7 @@ import 'package:betna/core/widgets/bottom_navigation.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/navigation_logger.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
+import 'package:betna/view_models/search/cubit/search_cubit.dart';
 import 'package:betna/views/auth/login_view.dart';
 import 'package:betna/views/auth/signup_view.dart';
 import 'package:betna/views/cart/cart_view.dart';
@@ -36,7 +37,7 @@ abstract class AppRoutes {
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
-    initialLocation: kOnboardingView,
+    initialLocation: kBottomNavigation,
 
     routes: [
       GoRoute(
@@ -100,7 +101,11 @@ abstract class AppRoutes {
       ),
       GoRoute(
         path: kSearchView,
-        builder: (context, state) => const SearchView(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => SearchCubit(),
+              child: const SearchView(),
+            ),
       ),
     ],
   );

@@ -35,7 +35,7 @@ class HomeBodyTop extends StatelessWidget {
               onPressed: () => context.push(AppRoutes.kNotificationView),
               icon: Icon(Icons.notifications_none, color: kPrimaryColor),
             ),
-            Flexible(child: SearchTextfield(nav: true)),
+            Flexible(child: SearchTextfield(nav: true,keyboardOn: false,)),
           ],
         ),
         CustomSlider(),

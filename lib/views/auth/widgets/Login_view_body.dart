@@ -9,6 +9,7 @@ import 'package:betna/views/auth/widgets/auth_textfield.dart';
 import 'package:betna/views/auth/widgets/forgot_password.dart';
 import 'package:betna/views/auth/widgets/image_with_text.dart';
 import 'package:betna/views/auth/widgets/other_login_method.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -41,6 +42,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       },
       builder: (context, state) {
         return ModalProgressHUD(
+          progressIndicator: kCircleProggress,
           inAsyncCall: state is AuthLoginLoading,
           child: SingleChildScrollView(
             padding: kMainPadding,
@@ -52,7 +54,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   spacing: 20,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ImageWithText(
+                   const ImageWithText(
                       imagePath: "assets/images/login.png",
                       text: "Log in your account",
                     ),
@@ -116,27 +118,25 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               "password": password,
                             }),
                           );
-
-                          
                         }
                       },
                       text: "Log in",
                     ),
-                    Row(
+                   const Row(
                       children: [
                         Expanded(child: Divider(color: Colors.black)),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text("Or", style: FontStyles.textStyle16),
                         ),
                         Expanded(child: Divider(color: Colors.black)),
                       ],
                     ),
-                    OtherLoginMethods(),
+                   const OtherLoginMethods(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                       const Text(
                           "Don’t have an account? ",
                           style: FontStyles.textStyle16,
                         ),

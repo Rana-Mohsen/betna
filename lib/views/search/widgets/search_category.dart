@@ -20,11 +20,7 @@ class _SearchCategoryState extends State<SearchCategory> {
       spacing: 5,
       children: [
         GestureDetector(
-          onTap:
-              () => context.push(
-                AppRoutes.kSeeAllview,
-                extra: widget.name,
-              ),
+          onTap: () => context.push(AppRoutes.kSeeAllview, extra: widget.name),
           child: Container(
             height: 10.h,
             width: 18.w,
@@ -37,6 +33,7 @@ class _SearchCategoryState extends State<SearchCategory> {
         ),
         Text(
           widget.name,
+          textAlign: TextAlign.center,
           style: FontStyles.textStyle16.copyWith(color: Color(0xff3F3F3F)),
         ),
       ],

@@ -4,6 +4,8 @@ part of 'products_cubit.dart';
 sealed class ProductsState {}
 
 final class ProductsInitial extends ProductsState {}
+final class ProductsLoading extends ProductsState {}
+
 class ProductsSuccess extends ProductsState {
   final List<ItemModel> products;
 

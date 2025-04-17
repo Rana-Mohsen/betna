@@ -43,6 +43,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
       },
       builder: (context, state) {
         return ModalProgressHUD(
+           progressIndicator: kCircleProggress,
           inAsyncCall: state is AuthRegisterLoading,
           child: SingleChildScrollView(
             padding: kMainPadding,

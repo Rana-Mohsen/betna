@@ -92,13 +92,16 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                       setState(() {
                         isSel.fillRange(0, 6, false);
                         isSel[index] = selected;
-                        if (index == 0) {
-                          BlocProvider.of<ProductsCubit>(context).getProducts();
-                        } else {
-                          BlocProvider.of<ProductsCubit>(
+                        // if (index == 0) {
+                        //   BlocProvider.of<ProductsCubit>(context).getProducts();
+                        // } else {
+                        //   BlocProvider.of<ProductsCubit>(
+                        //     context,
+                        //   ).getProducts(categories[index].name);
+                        // }
+                        BlocProvider.of<ProductsCubit>(
                             context,
                           ).getProducts(categories[index].name);
-                        }
                         BlocProvider.of<CategoriesCubit>(
                           context,
                         ).chooseCategory(lable: categories[index].name);

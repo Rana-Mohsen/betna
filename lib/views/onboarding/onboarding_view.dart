@@ -4,6 +4,7 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/models/onboarding_content_model.dart';
 import 'package:betna/views/auth/widgets/image_with_text.dart';
 import 'package:betna/views/onboarding/widgets/dot_indicator.dart';
+import 'package:betna/views/onboarding/widgets/onboarding_page.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,7 +19,7 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
-  final PageController _pageController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,42 +31,20 @@ class _OnboardingState extends State<Onboarding> {
             //const SizedBox(height: 40),
             OnBoardSkipButton(
               name: "Skip",
-              onPressed:
-                  () => GoRouter.of(
-                    context,
-                  ).pushReplacement(AppRoutes.kLoginView),
+              onPressed: () => GoRouter.of(context).go(AppRoutes.kLoginView),
             ),
             SizedBox(
               height: 50.h,
-              child: PageView.builder(
-                controller: _pageController,
-                onPageChanged: (value) {
-                  setState(() {
-                    currentIndex = value;
-                  });
-                },
-                itemCount: 3,
-                itemBuilder: (_, i) {
-                  return Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: SizedBox(
-                      child: Column(
-                        spacing: 25,
-                        children: [
-                          Image.asset(content[i].image),
-                          Text(
-                            content[i].discription,
-                            textAlign: TextAlign.center,
-                            style: FontStyles.textStyle20.copyWith(
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+              child: AnimatedSwitcher(
+            duration: Duration(milliseconds: 500),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+            child: OnboardingPage(
+              
+              content: content[currentIndex],
+            ),
+          ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,10 +52,13 @@ class _OnboardingState extends State<Onboarding> {
                 CustomDotIndecator(currentIndex: currentIndex),
                 TextButton(
                   onPressed: () {
-                    _pageController.nextPage(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.ease,
-                    );
+                     if (currentIndex < content.length - 1) {
+                    setState(() {
+                      currentIndex++;
+                    });
+                  } else {
+                    GoRouter.of(context).go(AppRoutes.kLoginView);
+                  }
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: kPrimaryColor,
@@ -88,7 +70,7 @@ class _OnboardingState extends State<Onboarding> {
                     alignment: Alignment.center,
                   ),
                   child: Text(
-                    'Next',
+                    currentIndex == content.length - 1 ? 'Done' : 'Next',
                     style: FontStyles.textStyle18.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -118,11 +100,13 @@ class OnBoardSkipButton extends StatelessWidget {
       alignment: Alignment.topRight,
       child: InkWell(
         onTap: onPressed,
-        child: Text(
-          name,
-          style: FontStyles.textStyle18.copyWith(
-            fontWeight: FontWeight.w500,
-            color: kPrimaryColor,
+        child: SizedBox(
+          child: Text(
+            name,
+            style: FontStyles.textStyle18.copyWith(
+              fontWeight: FontWeight.w500,
+              color: kPrimaryColor,
+            ),
           ),
         ),
       ),
