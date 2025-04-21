@@ -21,7 +21,6 @@ class CartListItem extends StatefulWidget {
 class _CartListItemState extends State<CartListItem> {
   bool showOption = false;
 
-  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,9 +67,15 @@ class _CartListItemState extends State<CartListItem> {
                   color: Color(0xffD4DDDD),
                   width: 45.w,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: const EdgeInsets.only(
+                      left: 8,
+                      right: 16,
+                      top: 16,
+                      bottom: 16,
+                    ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      //mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Row(
                           children: [
@@ -81,53 +86,51 @@ class _CartListItemState extends State<CartListItem> {
                             ItemRating(),
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 20.w,
-                              child: Text(
-                                "\$${widget.item.price}",
-                                style: FontStyles.textStyle18.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  overflow: TextOverflow.fade,
-                                ),
-                              ),
+                        const Spacer(flex: 10),
+                        SizedBox(
+                          // width: 20.w,
+                          child: Text(
+                            "\$${widget.item.price}",
+                            style: FontStyles.textStyle18.copyWith(
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.fade,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 16.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-
-                                  color: const Color(0xff73888A),
-                                ),
-                                child: CartItemCount(
-                                  item: widget.item,
-                                  countPadding: EdgeInsets.symmetric(
-                                    horizontal: 0,
-                                  ),
-
-                                  iconPadding: EdgeInsets.symmetric(
-                                    horizontal: 6,
-                                    vertical: 3,
-                                  ),
-                                  iconSize: 12,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
+                        const Spacer(flex: 1),
+
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+
+                              color: const Color(0xff73888A),
+                            ),
+                            child: CartItemCount(
+                              item: widget.item,
+                              countPadding: EdgeInsets.symmetric(horizontal: 4),
+
+                              iconPadding: EdgeInsets.symmetric(
+                                horizontal: 13,
+                                vertical: 3,
+                              ),
+                              iconSize: 15,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        // const Spacer(flex: 2),
                       ],
                     ),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    BlocProvider.of<CartListCubit>(
-                      context,
-                    ).removeItemList(UserInfo.userId!,widget.item.id.toString());
+                    BlocProvider.of<CartListCubit>(context).removeItemList(
+                      UserInfo.userId!,
+                      widget.item.id.toString(),
+                    );
 
                     ScaffoldMessenger.of(
                       context,

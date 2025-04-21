@@ -35,6 +35,7 @@ class _CartItemCountState extends State<CartItemCount> {
     return Padding(
       padding: widget.iconPadding,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         spacing: 4,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -42,15 +43,10 @@ class _CartItemCountState extends State<CartItemCount> {
             icon: Icons.add,
             iconSize: widget.iconSize,
             onTap: () async {
-              print("widget.item.id");
-
-              print(widget.item.id);
               int? productId = await LocalCart().findProductId(
                 UserInfo.userId!,
                 widget.item.id,
               );
-              print(productId);
-
               setState(() {
                 //widget.item.count++;
                 //bloc.cartList.add(widget.item);
