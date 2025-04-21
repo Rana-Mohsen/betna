@@ -1,8 +1,11 @@
+import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/local_cart.dart';
 import 'package:betna/core/services/cart_api.dart';
 import 'package:betna/core/services/category.api.dart';
 import 'package:betna/core/services/products_api.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/service_locator.dart';
+import 'package:betna/models/local_cart_model.dart';
 import 'package:betna/simple_bloc_observer.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/view_models/favorite/favorite_cubit.dart';
@@ -11,9 +14,15 @@ import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+void main() async{
+    await Hive.initFlutter();
+  Hive.registerAdapter(LocalCartModelAdapter());
+   // await Hive.deleteBoxFromDisk(kCartBox);
+
+    await Hive.openBox<List<LocalCartModel>>(kCartBox);
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
 
@@ -29,7 +38,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => CartListCubit(getIt.get<CartApi>())),
+            BlocProvider(create: (context) => CartListCubit(getIt.get<CartApi>(),LocalCart())),
             BlocProvider(create: (context) => FavoriteCubit()),
             BlocProvider(create: (context) => CategoriesCubit(getIt.get<CategoryApi>())),
                         BlocProvider(create: (context) => ProductsCubit(getIt.get<ProductsApi>())),

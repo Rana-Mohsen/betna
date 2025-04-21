@@ -16,6 +16,7 @@ import 'package:betna/views/home/product_view.dart';
 import 'package:betna/views/home/see_all_view.dart';
 import 'package:betna/views/onboarding/onboarding_view.dart';
 import 'package:betna/views/profile/profile_view.dart';
+import 'package:betna/views/profile/widgets/edit_profile_info.dart';
 import 'package:betna/views/search/search_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -33,6 +34,8 @@ abstract class AppRoutes {
   static const kCartView = '/cartView';
   static const kMyOrderView = '/myOrderView';
   static const kProfileView = '/profileView';
+  static const kEditProfileInfo = '/editProfileInfo';
+
   static const kSearchView = '/searchView';
 
   static final routes = GoRouter(
@@ -98,6 +101,10 @@ abstract class AppRoutes {
       GoRoute(
         path: kProfileView,
         builder: (context, state) => const ProfileView(),
+      ),
+      GoRoute(
+        path: kEditProfileInfo,
+        builder: (context, state) => const EditProfileInfo(),
       ),
       GoRoute(
         path: kSearchView,

@@ -127,7 +127,7 @@ class _CartListItemState extends State<CartListItem> {
                   onTap: () {
                     BlocProvider.of<CartListCubit>(
                       context,
-                    ).removeItemList(UserInfo.userId??"",widget.item.id.toString());
+                    ).removeItemList(UserInfo.userId!,widget.item.id.toString());
 
                     ScaffoldMessenger.of(
                       context,

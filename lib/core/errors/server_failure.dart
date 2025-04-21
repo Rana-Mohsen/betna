@@ -25,6 +25,7 @@ class ServerFailure extends Failures {
         return ServerFailure('Request to ApiServer was canceld');
 
       case DioExceptionType.connectionError:
+        print(DioExceptionType.connectionError);
         return ServerFailure('No Internet Connection');
       case DioExceptionType.unknown:
         return ServerFailure('Unexpected Error, Please try again!');
@@ -39,8 +40,7 @@ class ServerFailure extends Failures {
       return ServerFailure(response['message']);
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later!');
-    } 
-    else if (statusCode == 409) {
+    } else if (statusCode == 409) {
       return ServerFailure(response['errors']['email']);
     } else if (statusCode == 500) {
       return ServerFailure('user name already exists');

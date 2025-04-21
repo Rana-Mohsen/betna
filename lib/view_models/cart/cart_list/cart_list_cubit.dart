@@ -1,7 +1,7 @@
+import 'package:betna/core/Local_Storage/local_cart.dart';
+import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/services/cart_api.dart';
-import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/models/cart_model.dart';
-import 'package:betna/models/item_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -9,11 +9,12 @@ import 'package:meta/meta.dart';
 part 'cart_list_state.dart';
 
 class CartListCubit extends Cubit<CartListState> {
-  CartListCubit(this._api) : super(CartListInitial());
+  CartListCubit(this._api, this.localCart) : super(CartListInitial());
   double totalPrice = 0;
   List<CartModel> cartList = [];
-
+  final LocalCart localCart;
   final CartApi _api;
+
   Future<void> getCartList(String userID) async {
     var cartItems = await _api.getItemCart(userID);
     //print(products);
@@ -31,6 +32,8 @@ class CartListCubit extends Cubit<CartListState> {
         //   }
         // }
         cartList = right;
+        localCart.updateCart(UserInfo.userId!, cartList);
+
         if (right.isEmpty) {
           emit(CartListEmpty());
         } else {
@@ -49,6 +52,8 @@ class CartListCubit extends Cubit<CartListState> {
         emit(CartError(left.errMessage));
       },
       (right) {
+        localCart.removeItemFromCart(UserInfo.userId!, int.parse(itemId));
+
         cartList.removeWhere((i) => i.id.toString() == itemId);
         if (cartList.isEmpty) {
           emit(CartListEmpty());
@@ -81,11 +86,9 @@ class CartListCubit extends Cubit<CartListState> {
         emit(CartError(left.errMessage));
       },
       (right) {
-        cartTotalPrice();
-
-        print("=========?>>>");
-
-        print(totalPrice);
+        localCart.addItemToCart(UserInfo.userId!, body["product_id"]);
+        getCartList(UserInfo.userId!);
+        // cartTotalPrice();
       },
     );
     // if (item.count == 0) {

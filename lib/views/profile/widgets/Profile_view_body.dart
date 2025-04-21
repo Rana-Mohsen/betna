@@ -37,26 +37,26 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
   @override
   // void initState() {
   //   super.initState();
-
   //   getUserInfo();
   // }
-
   // Future<void> getUserInfo() async {
-
   //   setState(() {
   //     isLoading = false;
   //   });
   // }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
           leading: ProfileImage(),
-          title:Text(UserInfo.userName??""),
-          subtitle: Text((UserInfo.userEmail??"")),
-          trailing: Icon(FontAwesome.pen_to_square),
+          title: Text(UserInfo.userName ?? ""),
+          subtitle: Text((UserInfo.userEmail ?? "")),
+          trailing: IconButton(
+            icon: Icon(FontAwesome.pen_to_square),
+            onPressed:
+                () => GoRouter.of(context).push(AppRoutes.kEditProfileInfo),
+          ),
         ),
         Divider(indent: 16, endIndent: 16),
         Expanded(

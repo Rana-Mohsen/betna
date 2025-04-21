@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -6,16 +7,19 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 7.h,
-      decoration: const BoxDecoration(
-        //  color: Colors.white,
-        shape: BoxShape.circle,
-      ),
-      child: Image.asset(
-        "assets/images/profile_image.png",
-        fit: BoxFit.contain,
-        // width: 23.w,
+    return ClipOval(
+      child: Container(
+        height: 7.h,
+        width: 7.h,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: kSecondaryColor,
+        ),
+        child: Image.asset(
+          "assets/images/profile_placeholder.png",
+          fit: BoxFit.contain,
+          // width: 23.w,
+        ),
       ),
     );
   }

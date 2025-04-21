@@ -1,4 +1,5 @@
 import 'package:betna/constants.dart';
+import 'package:betna/core/Local_Storage/local_cart.dart';
 import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/models/cart_model.dart';
@@ -40,13 +41,22 @@ class _CartItemCountState extends State<CartItemCount> {
           customCountIcon(
             icon: Icons.add,
             iconSize: widget.iconSize,
-            onTap: () {
+            onTap: () async {
+              print("widget.item.id");
+
+              print(widget.item.id);
+              int? productId = await LocalCart().findProductId(
+                UserInfo.userId!,
+                widget.item.id,
+              );
+              print(productId);
+
               setState(() {
                 //widget.item.count++;
                 //bloc.cartList.add(widget.item);
                 bloc.addItem({
-                  "user_id": UserInfo.userId??"",
-                  "product_id": widget.item.id,
+                  "user_id": UserInfo.userId ?? "",
+                  "product_id": productId,
                   "quantity": 1,
                 });
               });
