@@ -1,6 +1,7 @@
 import 'package:betna/core/services/auth_api.dart';
 import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/core/widgets/bottom_navigation.dart';
+import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/navigation_logger.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
@@ -95,7 +96,7 @@ abstract class AppRoutes {
         path: kMyOrderView,
         builder:
             (context, state) =>
-                MyOrderView(cartList: state.extra as List<ItemModel>),
+                MyOrderView(cartList: state.extra as List<CartModel>),
       ),
 
       GoRoute(

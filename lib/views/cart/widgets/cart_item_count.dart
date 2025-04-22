@@ -42,18 +42,15 @@ class _CartItemCountState extends State<CartItemCount> {
             icon: Icons.add,
             iconSize: widget.iconSize,
             onTap: () async {
-              int? productId = await LocalCart().findProductId(
-                UserInfo.userId!,
-                widget.item.id,
-              );
               setState(() {
                 //widget.item.count++;
                 //bloc.cartList.add(widget.item);
-                bloc.addItem({
-                  "user_id": UserInfo.userId ?? "",
-                  "product_id": productId,
-                  "quantity": 1,
-                });
+                bloc.editItem(widget.item.id, widget.item.quantity + 1);
+                // bloc.addItem({
+                //   "user_id": UserInfo.userId ?? "",
+                //   "product_id": productId,
+                //   "quantity": 1,
+                // });
               });
             },
           ),
@@ -74,11 +71,14 @@ class _CartItemCountState extends State<CartItemCount> {
             onTap: () {
               if (widget.item.quantity > 0) {
                 setState(() {
-                  //  widget.item.count--;
-                  // if (widget.item.count == 0) {
-                  //   // bloc.removeItem(widget.item.name, widget.item);
-                  // }
-                  bloc.cartTotalPrice();
+                  if (widget.item.quantity - 1 > 0) {
+                    bloc.editItem(widget.item.id, widget.item.quantity - 1);
+                  } else {
+                    bloc.removeItemList(
+                      UserInfo.userId!,
+                      widget.item.id.toString(),
+                    );
+                  }
                 });
               }
             },

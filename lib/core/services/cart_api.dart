@@ -14,13 +14,14 @@ class CartApi {
   Future<Either<Failures, dynamic>> addToCart(Map<String, dynamic> body) async {
     try {
       var data = await _api.post(url: "${baseUrl}cart.php", body: body);
-          print(body);
+      print(body);
 
-    print(data);
+      print(data);
 
       if (data["status"] == "success") {
         return right(data);
       } else {
+        print("0000");
         return left(ServerFailure(data["message"]));
       }
     } catch (e) {
@@ -31,13 +32,33 @@ class CartApi {
     }
   }
 
+  Future<Either<Failures, dynamic>> editCart(
+    String userId,
+    Map<String, dynamic> body,
+  ) async {
+    try {
+      var data = await _api.put(
+        url: "${baseUrl}cart.php?user_id=$userId",
+        body: body,
+      );
+      return right(data);
+    } catch (e) {
+
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
   Future<Either<Failures, List<CartModel>>> getItemCart(String userId) async {
     try {
       var data = await _api.get(url: "${baseUrl}cart.php?user_id=$userId");
       print("Cart returned DATA: $data");
 
       List<CartModel> cartList = [];
-      
+
       for (var item in data['cart']) {
         cartList.add(CartModel.fromJson(item));
       }
@@ -54,9 +75,15 @@ class CartApi {
     }
   }
 
-  Future<Either<Failures, dynamic>> deleteCartItem(String userId,Map<String, dynamic> body) async {
+  Future<Either<Failures, dynamic>> deleteCartItem(
+    String userId,
+    Map<String, dynamic> body,
+  ) async {
     try {
-      var data = await _api.delete(url: "${baseUrl}cart.php?user_id=$userId",body: body);
+      var data = await _api.delete(
+        url: "${baseUrl}cart.php?user_id=$userId",
+        body: body,
+      );
 
       return right(data);
     } catch (e) {

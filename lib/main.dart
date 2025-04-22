@@ -20,7 +20,7 @@ import 'package:sizer/sizer.dart';
 void main() async{
     await Hive.initFlutter();
   Hive.registerAdapter(LocalCartModelAdapter());
-   // await Hive.deleteBoxFromDisk(kCartBox);
+   await Hive.deleteBoxFromDisk(kCartBox);
 
     await Hive.openBox<List<LocalCartModel>>(kCartBox);
   setupServiceLocator();

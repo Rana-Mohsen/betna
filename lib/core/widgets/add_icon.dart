@@ -15,7 +15,7 @@ class AddIcon extends StatelessWidget {
       onTap: () {
         BlocProvider.of<CartListCubit>(
           context,
-        ).addItem({"user_id": UserInfo.userId??"", "product_id": item.id, "quantity": 1});
+        ).addItem({"user_id": UserInfo.userId, "product_id": item.id, "quantity": 1});
         
         BlocProvider.of<CartListCubit>(context).getCartList(UserInfo.userId??"");
         ScaffoldMessenger.of(

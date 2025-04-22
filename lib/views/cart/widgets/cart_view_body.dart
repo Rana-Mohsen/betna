@@ -18,10 +18,9 @@ class CartViewBody extends StatefulWidget {
 class _CartViewBodyState extends State<CartViewBody> {
   late List<CartModel> cartList;
 
-
   @override
   Widget build(BuildContext context) {
-        cartList = BlocProvider.of<CartListCubit>(context).cartList;
+    cartList = BlocProvider.of<CartListCubit>(context).cartList;
 
     return Column(
       spacing: 20,
@@ -37,7 +36,7 @@ class _CartViewBodyState extends State<CartViewBody> {
         CartInfo(cartListLength: cartList.length),
         CustomButton(
           onTap: () {
-            GoRouter.of(context).push(AppRoutes.kMyOrderView);
+            GoRouter.of(context).push(AppRoutes.kMyOrderView, extra: cartList);
           },
           text: "Check out",
         ),
