@@ -24,7 +24,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios_new),
+          child: const Icon(Icons.arrow_back_ios_new),
         ),
       ),
       body: SingleChildScrollView(
@@ -35,7 +35,7 @@ class _ResetPasswordState extends State<ResetPassword> {
             spacing: 20,
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ImageWithText(
+              const ImageWithText(
                 imagePath: "assets/images/reset_password.png",
                 text: "Forgot Password",
               ),
@@ -54,7 +54,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => OtpCode()),
+                    MaterialPageRoute(builder: (context) => const OtpCode()),
                   );
                 },
                 text: "continue",

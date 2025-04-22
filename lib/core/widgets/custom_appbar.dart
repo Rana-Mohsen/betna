@@ -6,11 +6,11 @@ AppBar customAppBar({required String title, Function()? onTapBackIcon}) {
   return AppBar(
     leading: GestureDetector(
       onTap: onTapBackIcon,
-      child: Icon(Icons.arrow_back_ios_new),
+      child: const Icon(Icons.arrow_back_ios_new),
     ),
-    actions: [
+    actions: const [
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
         child: ProfileImage(),
       ),
     ],

@@ -56,7 +56,7 @@ class ItemDetails extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 3,
                 scrollDirection: Axis.horizontal,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder:
                     (context, index) => GestureDetector(
                       onTap: () {},

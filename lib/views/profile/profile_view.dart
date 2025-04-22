@@ -1,5 +1,5 @@
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/views/profile/widgets/Profile_view_body.dart';
+import 'package:betna/views/profile/widgets/profile_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
           style: FontStyles.textStyle24.copyWith(fontWeight: FontWeight.w500),
         ),
       ),
-      body: ProfileViewBody(),
+      body: const ProfileViewBody(),
     );
   }
 }

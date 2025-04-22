@@ -21,24 +21,24 @@ class HomeBodyTop extends StatelessWidget {
           children: [
             SizedBox(
               width: 50.w,
-              child: Text(
+              child: const Text(
                 "Let's furnish your home",
                 style: FontStyles.textStyle24,
               ),
             ),
-            ProfileImage(),
+            const ProfileImage(),
           ],
         ),
         Row(
           children: [
             IconButton(
               onPressed: () => context.push(AppRoutes.kNotificationView),
-              icon: Icon(Icons.notifications_none, color: kPrimaryColor),
+              icon: const Icon(Icons.notifications_none, color: kPrimaryColor),
             ),
-            Flexible(child: SearchTextfield(nav: true,keyboardOn: false,)),
+            const Flexible(child: SearchTextfield(nav: true,keyboardOn: false,)),
           ],
         ),
-        CustomSlider(),
+        const CustomSlider(),
       ],
     );
   }

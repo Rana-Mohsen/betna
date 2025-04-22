@@ -20,11 +20,11 @@ class AddIcon extends StatelessWidget {
         BlocProvider.of<CartListCubit>(context).getCartList(UserInfo.userId??"");
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Item added to cart')));
+        ).showSnackBar(const SnackBar(content: Text('Item added to cart')));
       },
       child: Container(
-        padding: EdgeInsets.all(2),
-        decoration: BoxDecoration(shape: BoxShape.circle, color: kPrimaryColor),
+        padding: const EdgeInsets.all(2),
+        decoration: const BoxDecoration(shape: BoxShape.circle, color: kPrimaryColor),
         child: Icon(Icons.add, size: size, color: Colors.white),
       ),
     );

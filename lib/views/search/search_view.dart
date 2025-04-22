@@ -22,9 +22,9 @@ class _SearchViewState extends State<SearchView> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => GoRouter.of(context).pop(),
-          icon: Icon(Icons.arrow_back_ios_new_outlined),
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
-        title: SearchTextfield(cameraIcon: false),
+        title: const SearchTextfield(cameraIcon: false),
       ),
       body: Padding(
         padding: kMainPadding,
@@ -45,7 +45,7 @@ class _SearchViewState extends State<SearchView> {
                   ),
                 );
               } else {
-                return SingleChildScrollView(child: SearchViewBodyCategory());
+                return const SingleChildScrollView(child: SearchViewBodyCategory());
               }
             },
           ),

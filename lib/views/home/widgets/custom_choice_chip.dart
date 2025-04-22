@@ -55,7 +55,7 @@ class _CustomButtonState extends State<CustomChoiceChip> {
                     side:
                         isSel[index]
                             ? BorderSide.none
-                            : BorderSide(color: Color(0xff9AADAF), width: 1.2),
+                            : const BorderSide(color: Color(0xff9AADAF), width: 1.2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(22),
                     ),
@@ -114,7 +114,7 @@ class _CustomButtonState extends State<CustomChoiceChip> {
           } else if (state is CategoriesError) {
             return Text(state.errMessage);
           } else {
-            return ShimmerChoiceChip();
+            return const ShimmerChoiceChip();
           }
         },
       ),

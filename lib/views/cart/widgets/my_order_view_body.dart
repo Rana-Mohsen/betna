@@ -19,7 +19,7 @@ class _MyOrderViewBodyState extends State<MyOrderViewBody> {
       body: Column(
         spacing: 25,
         children: [
-          SearchTextfield(cameraIcon: false),
+          const SearchTextfield(cameraIcon: false),
           SizedBox(
             height: 43.h,
             child: ListView.builder(

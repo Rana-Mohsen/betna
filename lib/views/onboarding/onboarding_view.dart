@@ -2,10 +2,8 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/models/onboarding_content_model.dart';
-import 'package:betna/views/auth/widgets/image_with_text.dart';
 import 'package:betna/views/onboarding/widgets/dot_indicator.dart';
 import 'package:betna/views/onboarding/widgets/onboarding_page.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
@@ -36,7 +34,7 @@ class _OnboardingState extends State<Onboarding> {
             SizedBox(
               height: 50.h,
               child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             transitionBuilder: (child, animation) {
               return FadeTransition(opacity: animation, child: child);
             },
@@ -62,9 +60,9 @@ class _OnboardingState extends State<Onboarding> {
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: kPrimaryColor,
-                    foregroundColor: Color(0xffffffff),
-                    minimumSize: Size(85, 44),
-                    shape: RoundedRectangleBorder(
+                    foregroundColor: const Color(0xffffffff),
+                    minimumSize: const Size(85, 44),
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     alignment: Alignment.center,

@@ -59,7 +59,7 @@ class LocalCart {
     await _initializeBox();
     final raw = box.get(userId);
     final cartList = (raw ?? []).cast<LocalCartModel>();
-    print("cartlist length:${cartList.length}");
+    //print("cartlist length:${cartList.length}");
     List<LocalCartModel> updatedItems = [];
     for (int i = 0; i < cartList.length; i++) {
       updatedItems.add(

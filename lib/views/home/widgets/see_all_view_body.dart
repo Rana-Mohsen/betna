@@ -14,11 +14,11 @@ class _SeeAllViewBodyState extends State<SeeAllViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       // spacing: 5,
       children: [
-        const SearchTextfield(cameraIcon: false),
-        const SizedBox(height: 20),
+        SearchTextfield(cameraIcon: false),
+        SizedBox(height: 20),
         // Expanded(
         //   child: ListView.builder(
         //     shrinkWrap: true,

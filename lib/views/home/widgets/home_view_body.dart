@@ -7,7 +7,6 @@ import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
 import 'package:betna/views/home/widgets/custom_choice_chip.dart';
 import 'package:betna/views/home/widgets/custom_listview.dart';
 import 'package:betna/views/home/widgets/home_body_top.dart';
-import 'package:betna/views/home/widgets/shimmer_choice_chip.dart';
 import 'package:betna/views/home/widgets/shimmer_home_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +41,7 @@ if (BlocProvider.of<CategoriesCubit>(context).ctgList.isEmpty) {
       children: [
         Padding(
           padding: kMainPadding,
-          child: SizedBox(height: 50.h, child: HomeBodyTop()),
+          child: SizedBox(height: 50.h, child: const HomeBodyTop()),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -56,7 +55,7 @@ if (BlocProvider.of<CategoriesCubit>(context).ctgList.isEmpty) {
                   context.push(AppRoutes.kSearchView);
                 },
               ),
-              CustomChoiceChip(),
+              const CustomChoiceChip(),
               BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
                   if (state is CategoriesChoosed && state.lable != "All") {
@@ -83,7 +82,7 @@ if (BlocProvider.of<CategoriesCubit>(context).ctgList.isEmpty) {
                         } else if (productState is ProductsError) {
                           return Text(productState.errMessage);
                         } else {
-                          return ShimmerHomeList();
+                          return const ShimmerHomeList();
                         }
                       },
                     );
@@ -97,9 +96,9 @@ if (BlocProvider.of<CategoriesCubit>(context).ctgList.isEmpty) {
                           //print("ctg:$ctg\npl:${pl.length}");
                           return ListView.builder(
                             shrinkWrap: true,
-                            padding: EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             itemExtent: 260,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: ctg.length,
                             itemBuilder: (context, index) {
                               return Column(
@@ -123,7 +122,7 @@ if (BlocProvider.of<CategoriesCubit>(context).ctgList.isEmpty) {
                         } else if (productState is ProductsError) {
                           return Text(productState.errMessage);
                         } else {
-                          return ShimmerHomeList();
+                          return const ShimmerHomeList();
                         }
                       },
                     );

@@ -25,7 +25,7 @@ class _OtpCodeState extends State<OtpCode> {
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios_new),
+          child: const Icon(Icons.arrow_back_ios_new),
         ),
       ),
       body: SingleChildScrollView(
@@ -35,7 +35,7 @@ class _OtpCodeState extends State<OtpCode> {
           child: Column(
             spacing: 20,
             children: [
-              ImageWithText(
+              const ImageWithText(
                 imagePath: "assets/images/forgot_password.png",
                 text: "Forgot Password",
               ),
@@ -76,7 +76,7 @@ class _OtpCodeState extends State<OtpCode> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ResetPassword()),
+                    MaterialPageRoute(builder: (context) => const ResetPassword()),
                   );
                 },
                 text: "continue",
@@ -95,11 +95,11 @@ class _OtpCodeState extends State<OtpCode> {
       textStyle: const TextStyle(fontSize: 25),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(8),
           topRight: Radius.circular(8),
         ),
-        border: Border(
+        border: const Border(
           bottom: BorderSide(
             color: kPrimaryColor, // Border color
             width: 2.0, // Border width

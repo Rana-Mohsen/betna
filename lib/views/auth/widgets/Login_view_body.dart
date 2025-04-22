@@ -9,7 +9,6 @@ import 'package:betna/views/auth/widgets/auth_textfield.dart';
 import 'package:betna/views/auth/widgets/forgot_password.dart';
 import 'package:betna/views/auth/widgets/image_with_text.dart';
 import 'package:betna/views/auth/widgets/other_login_method.dart';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -97,7 +96,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ForgotPassword(),
+                                builder: (context) => const ForgotPassword(),
                               ),
                             ),
                         child: Text(

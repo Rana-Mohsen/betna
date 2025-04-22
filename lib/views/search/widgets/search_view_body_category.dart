@@ -37,7 +37,7 @@ class _SearchViewBodyCategoryState extends State<SearchViewBodyCategory> {
         SizedBox(
           height: 35.h,
           child: GridView.count(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.only(right: 24.0),
             crossAxisCount: 4,
             childAspectRatio: 100.w / (100.h / 1.1),
@@ -45,7 +45,7 @@ class _SearchViewBodyCategoryState extends State<SearchViewBodyCategory> {
             mainAxisSpacing: 10,
             children: List.generate(ctg.length + 1, (index) {
               if (index == ctg.length) {
-                return SearchCategory(
+                return const SearchCategory(
                   image: "assets/icons/more.png",
                   name: "More",
                 );

@@ -1,7 +1,4 @@
-import 'dart:convert';
 
-import 'package:betna/constants.dart';
-import 'package:betna/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserInfo {

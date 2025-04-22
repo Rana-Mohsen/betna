@@ -47,7 +47,7 @@ class _FavoriteIconState extends State<FavoriteIcon> {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           padding: EdgeInsets.all(widget.padding),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
           ),

@@ -11,10 +11,10 @@ class FavoritView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favorite"),
-        actions: [
+        title: const Text("Favorite"),
+        actions: const [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
             child: ProfileImage(),
           ),
         ],
@@ -22,10 +22,10 @@ class FavoritView extends StatelessWidget {
       body: BlocBuilder<FavoriteCubit, FavoriteState>(
         builder: (context, state) {
           if (state is FavoriteChanged) {
-            return  FavoriteViewBody();
+            return  const FavoriteViewBody();
           }
       
-          return Center(child: Text("You have no favorite items"));
+          return const Center(child: Text("You have no favorite items"));
         },
       ),
     );

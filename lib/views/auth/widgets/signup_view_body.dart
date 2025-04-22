@@ -5,7 +5,6 @@ import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/utils/functions/snack_bar.dart';
 import 'package:betna/core/utils/validators.dart';
 import 'package:betna/core/widgets/custom_button.dart';
-import 'package:betna/models/user_model.dart';
 import 'package:betna/view_models/auth/auth_bloc.dart';
 import 'package:betna/views/auth/widgets/auth_textfield.dart';
 import 'package:betna/views/auth/widgets/image_with_text.dart';
@@ -55,7 +54,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   spacing: 20,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ImageWithText(
+                    const ImageWithText(
                       imagePath: "assets/images/signup.png",
                       text: "Create new account",
                     ),
@@ -118,21 +117,21 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                       },
                       text: "Sign up",
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Expanded(child: Divider(color: Colors.black)),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text("Or", style: FontStyles.textStyle16),
                         ),
                         Expanded(child: Divider(color: Colors.black)),
                       ],
                     ),
-                    OtherLoginMethods(),
+                    const OtherLoginMethods(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Already have an account? ",
                           style: FontStyles.textStyle16,
                         ),

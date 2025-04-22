@@ -27,27 +27,27 @@ class SearchTextfield extends StatelessWidget {
         BlocProvider.of<SearchCubit>(context).filterSearch(value, products);
       },
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        contentPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         filled: true,
         fillColor: kBackgroundColor,
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(35),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
+          borderSide: const BorderSide(color: Colors.white),
           borderRadius: BorderRadius.circular(35),
         ),
         prefixIconColor: kGrayColor,
-        prefixIcon: Icon(Icons.search),
+        prefixIcon: const Icon(Icons.search),
         suffixIconColor: kGrayColor,
         suffixIcon: Row(
           mainAxisAlignment:
               MainAxisAlignment.end, // icons at the end of the input
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.mic_none_outlined),
-            if (cameraIcon) Icon(Icons.photo_camera),
+            const Icon(Icons.mic_none_outlined),
+            if (cameraIcon) const Icon(Icons.photo_camera),
             SizedBox(width: 5.w),
           ],
         ),

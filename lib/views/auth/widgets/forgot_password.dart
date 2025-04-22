@@ -25,7 +25,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back_ios_new),
+          child: const Icon(Icons.arrow_back_ios_new),
         ),
       ),
       body: SingleChildScrollView(
@@ -36,7 +36,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             spacing: 20,
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ImageWithText(
+              const ImageWithText(
                 imagePath: "assets/images/forgot_password.png",
                 text: "Forgot Password",
               ),
@@ -50,7 +50,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => OtpCode()),
+                    MaterialPageRoute(builder: (context) => const OtpCode()),
                   );
                 },
                 text: "continue",

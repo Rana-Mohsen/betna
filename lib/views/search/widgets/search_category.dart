@@ -24,7 +24,7 @@ class _SearchCategoryState extends State<SearchCategory> {
           child: Container(
             height: 10.h,
             width: 18.w,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: kBackgroundColor,
               shape: BoxShape.circle,
             ),
@@ -34,7 +34,7 @@ class _SearchCategoryState extends State<SearchCategory> {
         Text(
           widget.name,
           textAlign: TextAlign.center,
-          style: FontStyles.textStyle16.copyWith(color: Color(0xff3F3F3F)),
+          style: FontStyles.textStyle16.copyWith(color: const Color(0xff3F3F3F)),
         ),
       ],
     );

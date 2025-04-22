@@ -24,7 +24,7 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
             shrinkWrap: true,
             //physics: const NeverScrollableScrollPhysics(),
             itemCount: favList.length,
-            separatorBuilder: (context, index) => SizedBox(),
+            separatorBuilder: (context, index) => const SizedBox(),
 
             itemBuilder:
                 (context, index) => CustomItemCard(item: favList[index]),

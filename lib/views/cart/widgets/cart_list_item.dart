@@ -2,7 +2,6 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/item_rating.dart';
-import 'package:betna/core/widgets/item_count.dart';
 import 'package:betna/models/cart_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/views/cart/widgets/cart_item_count.dart';
@@ -43,7 +42,7 @@ class _CartListItemState extends State<CartListItem> {
               children: [
                 Flexible(
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 500),
                     //width: showOption ? 34.w : 45.w,
                     color: kBackgroundColor,
                     child: Row(
@@ -64,7 +63,7 @@ class _CartListItemState extends State<CartListItem> {
                   ),
                 ),
                 Container(
-                  color: Color(0xffD4DDDD),
+                  color: const Color(0xffD4DDDD),
                   width: 45.w,
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -83,7 +82,7 @@ class _CartListItemState extends State<CartListItem> {
                               widget.item.name,
                               style: FontStyles.textStyle16,
                             ),
-                            ItemRating(),
+                            const ItemRating(),
                           ],
                         ),
                         const Spacer(flex: 10),
@@ -109,9 +108,9 @@ class _CartListItemState extends State<CartListItem> {
                             ),
                             child: CartItemCount(
                               item: widget.item,
-                              countPadding: EdgeInsets.symmetric(horizontal: 4),
+                              countPadding: const EdgeInsets.symmetric(horizontal: 4),
 
-                              iconPadding: EdgeInsets.symmetric(
+                              iconPadding: const EdgeInsets.symmetric(
                                 horizontal: 13,
                                 vertical: 3,
                               ),
@@ -134,15 +133,15 @@ class _CartListItemState extends State<CartListItem> {
 
                     ScaffoldMessenger.of(
                       context,
-                    ).showSnackBar(SnackBar(content: Text('Item removed')));
+                    ).showSnackBar(const SnackBar(content: Text('Item removed')));
                   },
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 300),
                     width: showOption ? 10.w : 0.0,
                     child: Container(
                       color: kPrimaryColor,
                       alignment: Alignment.center,
-                      child: Icon(Icons.delete_outline, color: Colors.white),
+                      child: const Icon(Icons.delete_outline, color: Colors.white),
                     ),
                   ),
                 ),

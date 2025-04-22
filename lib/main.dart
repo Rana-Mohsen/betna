@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
 
           ],
           child: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle(
+            value: const SystemUiOverlayStyle(
               statusBarColor: Colors.transparent,
                statusBarIconBrightness: Brightness.dark,
             ),
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
                 fontFamily: "Roboto",
-                appBarTheme: AppBarTheme(
+                appBarTheme: const AppBarTheme(
                   centerTitle: true,
                   scrolledUnderElevation: 0,
                   backgroundColor: Colors.transparent,

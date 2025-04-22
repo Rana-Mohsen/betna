@@ -15,7 +15,7 @@ final ItemModel item;
         children: [
           IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: const Icon(Icons.arrow_back_ios_new),
           ),
           FavoriteIcon(size: 30, padding: 4, item: item,),
         ],

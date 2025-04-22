@@ -33,13 +33,13 @@ class _CartViewState extends State<CartView> {
       body: BlocBuilder<CartListCubit, CartListState>(
         builder: (context, state) {
           if (state is CartListEmpty) {
-            return Center(child: Text("Empty cart! \n Add items"));
+            return const Center(child: Text("Empty cart! \n Add items"));
           } else if (state is CartError) {
             return Center(child: Text("Cart Error! \n ${state.errMessage}"));
           } else if (state is CartSuccess || state is CartListItemChanged) {
-            return Padding(padding: kMainPadding, child: CartViewBody());
+            return const Padding(padding: kMainPadding, child: CartViewBody());
           } else {
-            return Center(child: kCircleProggress);
+            return const Center(child: kCircleProggress);
           }
         },
       ),

@@ -1,5 +1,4 @@
 import 'package:betna/constants.dart';
-import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/views/home/widgets/home_app_bar.dart';
 import 'package:betna/core/widgets/item_count.dart';
@@ -67,7 +66,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
                       ),
                     ),
                   ),
-                  Flexible(child: FittedBox(child: ImageView())),
+                  const Flexible(child: FittedBox(child: ImageView())),
                 ],
               ),
             ),
@@ -88,8 +87,8 @@ class _ProductViewBodyState extends State<ProductViewBody> {
               ),
               child: ItemCount(
                 item: widget.item,
-                iconPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                countPadding: EdgeInsets.symmetric(horizontal: 16),
+                iconPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                countPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
           ),

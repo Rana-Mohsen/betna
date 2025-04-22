@@ -1,6 +1,5 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/models/cart_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +23,7 @@ class _CartInfoState extends State<CartInfo> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: kBackgroundColor,
-        border: Border.all(color: Color(0xff9AADAF)),
+        border: Border.all(color: const Color(0xff9AADAF)),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -35,7 +34,7 @@ class _CartInfoState extends State<CartInfo> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Total price", style: TextStyle(fontSize: 20)),
+              const Text("Total price", style: TextStyle(fontSize: 20)),
               BlocBuilder<CartListCubit, CartListState>(
                 builder: (context, state) {
                   

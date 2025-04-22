@@ -2,7 +2,6 @@ import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/font_styles.dart';
 import 'package:betna/core/widgets/profile_image.dart';
-import 'package:betna/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -49,19 +48,19 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     return Column(
       children: [
         ListTile(
-          leading: ProfileImage(),
+          leading: const ProfileImage(),
           title: Text(UserInfo.userName ?? ""),
           subtitle: Text((UserInfo.userEmail ?? "")),
           trailing: IconButton(
-            icon: Icon(FontAwesome.pen_to_square),
+            icon: const Icon(FontAwesome.pen_to_square),
             onPressed:
                 () => GoRouter.of(context).push(AppRoutes.kEditProfileInfo),
           ),
         ),
-        Divider(indent: 16, endIndent: 16),
+        const Divider(indent: 16, endIndent: 16),
         Expanded(
           child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: listTileData.length,
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -78,13 +77,13 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
                   ),
                   title: Text(listTileData[index]["title"]!),
                   titleTextStyle: FontStyles.textStyle18,
-                  textColor: Color(0xff575757),
+                  textColor: const Color(0xff575757),
                   // subtitle: Text("OmarAli2000@gmail.com"),
                   trailing:
                       index < 8
                           ? IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.arrow_forward_ios),
+                            icon: const Icon(Icons.arrow_forward_ios),
                           )
                           : null,
                 ),

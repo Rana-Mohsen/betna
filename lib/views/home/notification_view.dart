@@ -15,7 +15,7 @@ class NotificationView extends StatelessWidget {
         title: "Notification",
         onTapBackIcon: () => context.go(AppRoutes.kBottomNavigation,extra: 0),
       ),
-      body: Padding(padding: kMainPadding, child: const NotificationViewBody()),
+      body: const Padding(padding: kMainPadding, child: NotificationViewBody()),
     );
   }
 }

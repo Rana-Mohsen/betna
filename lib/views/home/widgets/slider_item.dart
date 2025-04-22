@@ -26,7 +26,7 @@ class SliderItem extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.sp,
-                  color: Color(0xff9B5619),
+                  color: const Color(0xff9B5619),
                   fontFamily: "Lobster",
                   // overflow: TextOverflow.visible,
                 ),

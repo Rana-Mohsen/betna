@@ -21,9 +21,9 @@ class _NotificationViewBodyState extends State<NotificationViewBody> {
 
         Expanded(
           child: ListView.builder(
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             itemExtent: 260,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 2,
             itemBuilder:
                 (context, index) => Column(

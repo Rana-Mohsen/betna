@@ -49,7 +49,7 @@ class CustomItemCard extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: Color(0xffD4DDDD),
+                  color: const Color(0xffD4DDDD),
                   width: 48.w,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
@@ -60,7 +60,7 @@ class CustomItemCard extends StatelessWidget {
                           spacing: 5,
                           children: [
                             Text(item.name, style: FontStyles.textStyle16),
-                            ItemRating(),
+                            const ItemRating(),
                           ],
                         ),
                         Row(

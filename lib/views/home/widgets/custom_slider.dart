@@ -19,7 +19,7 @@ class _CustomSliderState extends State<CustomSlider> {
       child: CarouselSlider.builder(
         itemCount: 5,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-          return SliderItem();
+          return const SliderItem();
         },
         options: CarouselOptions(
           autoPlayInterval: const Duration(seconds: 3),

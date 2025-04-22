@@ -1,6 +1,5 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-import 'package:betna/models/cart_model.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:flutter/material.dart';

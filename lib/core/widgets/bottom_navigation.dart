@@ -41,20 +41,20 @@ class _BottomNavigationState extends State<BottomNavigation> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: kPrimaryColor,
         currentIndex: currentIndex,
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: 'home',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline_sharp),
             label: 'Favorite',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart_outlined),
             label: 'Cart',
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.person_outlined),
             label: 'Profile',
           ),

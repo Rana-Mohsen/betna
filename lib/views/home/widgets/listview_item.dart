@@ -63,7 +63,7 @@ class ListViewItem extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   height: 9.h,
                   color: kSecondaryColor,
                   child: Column(
@@ -82,7 +82,7 @@ class ListViewItem extends StatelessWidget {
                               softWrap: false,
                             ),
                           ),
-                          ItemRating(),
+                          const ItemRating(),
                         ],
                       ),
                       Row(
