@@ -1,6 +1,6 @@
 import 'package:betna/core/errors/failures.dart';
 import 'package:betna/core/errors/server_failure.dart';
-import 'package:betna/core/services/api.dart';
+import 'package:betna/core/services/api_service/api.dart';
 import 'package:betna/models/item_model.dart';
 import 'package:betna/models/product_model.dart';
 import 'package:dartz/dartz.dart';

@@ -1,4 +1,4 @@
-import 'package:betna/core/services/category.api.dart';
+import 'package:betna/core/services/api_service/category.api.dart';
 import 'package:betna/models/category_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';

@@ -1,8 +1,8 @@
-import 'package:betna/core/services/api.dart';
-import 'package:betna/core/services/auth_api.dart';
-import 'package:betna/core/services/cart_api.dart';
-import 'package:betna/core/services/category.api.dart';
-import 'package:betna/core/services/products_api.dart';
+import 'package:betna/core/services/api_service/api.dart';
+import 'package:betna/core/services/api_service/auth_api.dart';
+import 'package:betna/core/services/api_service/cart_api.dart';
+import 'package:betna/core/services/api_service/category.api.dart';
+import 'package:betna/core/services/api_service/products_api.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 

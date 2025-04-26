@@ -1,4 +1,4 @@
-import 'package:betna/core/services/auth_api.dart';
+import 'package:betna/core/services/api_service/auth_api.dart';
 import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/core/widgets/bottom_navigation.dart';
 import 'package:betna/models/cart_model.dart';

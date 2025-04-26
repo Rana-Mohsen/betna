@@ -1,8 +1,8 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/Local_Storage/local_cart.dart';
-import 'package:betna/core/services/cart_api.dart';
-import 'package:betna/core/services/category.api.dart';
-import 'package:betna/core/services/products_api.dart';
+import 'package:betna/core/services/api_service/cart_api.dart';
+import 'package:betna/core/services/api_service/category.api.dart';
+import 'package:betna/core/services/api_service/products_api.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/utils/service_locator.dart';
 import 'package:betna/models/local_cart_model.dart';

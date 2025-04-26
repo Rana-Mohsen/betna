@@ -1,8 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
-
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class CustomPhoneIntl extends StatefulWidget {
