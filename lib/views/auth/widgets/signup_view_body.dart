@@ -37,7 +37,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         if (state is AuthRegisterFailure) {
           snackBarMessage(context, state.msg);
         } else if (state is AuthRegisterSuccess) {
-          GoRouter.of(context).pushReplacement(AppRoutes.kBottomNavigation);
+          GoRouter.of(context).pushReplacement(AppRoutes.kLoginView);
         }
       },
       builder: (context, state) {

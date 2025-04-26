@@ -20,7 +20,7 @@ class _CartViewState extends State<CartView> {
   void initState() {
     super.initState();
     var products = BlocProvider.of<ProductsCubit>(context).productList;
-    BlocProvider.of<CartListCubit>(context).getCartList(UserInfo.userId??"");
+    BlocProvider.of<CartListCubit>(context).getCartList(UserInfo.userId ?? "");
   }
 
   @override
@@ -28,7 +28,10 @@ class _CartViewState extends State<CartView> {
     return Scaffold(
       appBar: customAppBar(
         title: "My Cart",
-        onTapBackIcon: () => context.go(AppRoutes.kBottomNavigation, extra: 0),
+        onTapBackIcon: () {
+          print("ooo");
+          context.go(AppRoutes.kBottomNavigation, extra: 1);
+        },
       ),
       body: BlocBuilder<CartListCubit, CartListState>(
         builder: (context, state) {

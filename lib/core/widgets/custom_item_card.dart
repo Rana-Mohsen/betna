@@ -38,9 +38,7 @@ class CustomItemCard extends StatelessWidget {
                         ),
                         Flexible(
                           child: Image.asset(
-                            item.images.isEmpty
-                                ? "assets/images/chair.png"
-                                : item.images[0],
+                            "assets/images/chair.png",
                             width: 30.w,
                           ),
                         ),

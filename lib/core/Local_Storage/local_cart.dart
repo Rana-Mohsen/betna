@@ -16,6 +16,8 @@ class LocalCart {
   }
 
   Future<List<LocalCartModel>> getCartItems(String userId) async {
+    await _initializeBox();
+
     final raw = box.get(userId);
     final cartList = (raw ?? []).cast<LocalCartModel>();
 

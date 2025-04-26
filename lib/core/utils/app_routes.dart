@@ -16,6 +16,7 @@ import 'package:betna/views/home/notification_view.dart';
 import 'package:betna/views/home/product_view.dart';
 import 'package:betna/views/home/see_all_view.dart';
 import 'package:betna/views/onboarding/onboarding_view.dart';
+import 'package:betna/views/order/place_order_view.dart';
 import 'package:betna/views/profile/profile_view.dart';
 import 'package:betna/views/profile/widgets/edit_profile_info.dart';
 import 'package:betna/views/search/search_view.dart';
@@ -36,12 +37,12 @@ abstract class AppRoutes {
   static const kMyOrderView = '/myOrderView';
   static const kProfileView = '/profileView';
   static const kEditProfileInfo = '/editProfileInfo';
-
   static const kSearchView = '/searchView';
+  static const kPlaceOrderView = '/placeOrderView';
 
   static final routes = GoRouter(
     observers: [NavigationLogger()],
-    initialLocation: kLoginView,
+    initialLocation: kOnboardingView,
 
     routes: [
       GoRoute(
@@ -114,6 +115,10 @@ abstract class AppRoutes {
               create: (context) => SearchCubit(),
               child: const SearchView(),
             ),
+      ),
+       GoRoute(
+        path: kPlaceOrderView,
+        builder: (context, state) => const PlaceOrderView(),
       ),
     ],
   );

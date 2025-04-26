@@ -17,12 +17,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:sizer/sizer.dart';
 
-void main() async{
-    await Hive.initFlutter();
+void main() async {
+  await Hive.initFlutter();
   Hive.registerAdapter(LocalCartModelAdapter());
-   await Hive.deleteBoxFromDisk(kCartBox);
+  await Hive.deleteBoxFromDisk(kCartBox);
 
-    await Hive.openBox<List<LocalCartModel>>(kCartBox);
+  await Hive.openBox<List<LocalCartModel>>(kCartBox);
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
 
@@ -38,16 +38,22 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, screenType) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => CartListCubit(getIt.get<CartApi>(),LocalCart())),
+            BlocProvider(
+              create:
+                  (context) => CartListCubit(getIt.get<CartApi>(), LocalCart()),
+            ),
             BlocProvider(create: (context) => FavoriteCubit()),
-            BlocProvider(create: (context) => CategoriesCubit(getIt.get<CategoryApi>())),
-                        BlocProvider(create: (context) => ProductsCubit(getIt.get<ProductsApi>())),
-
+            BlocProvider(
+              create: (context) => CategoriesCubit(getIt.get<CategoryApi>()),
+            ),
+            BlocProvider(
+              create: (context) => ProductsCubit(getIt.get<ProductsApi>()),
+            ),
           ],
           child: AnnotatedRegion<SystemUiOverlayStyle>(
             value: const SystemUiOverlayStyle(
               statusBarColor: Colors.transparent,
-               statusBarIconBrightness: Brightness.dark,
+              statusBarIconBrightness: Brightness.dark,
             ),
 
             child: MaterialApp.router(
@@ -55,6 +61,10 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
                 fontFamily: "Roboto",
+                textSelectionTheme: const TextSelectionThemeData(
+                  selectionHandleColor: kPrimaryColor,
+                  selectionColor: kBackgroundColor,
+                ),
                 appBarTheme: const AppBarTheme(
                   centerTitle: true,
                   scrolledUnderElevation: 0,
