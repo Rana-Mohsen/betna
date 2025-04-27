@@ -1,5 +1,6 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/utils/font_styles.dart';
+import 'package:betna/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -36,6 +37,7 @@ class _CustomPhoneIntlState extends State<CustomPhoneIntl> {
       onInputValidated: (bool value) {
         print(value);
       },
+      validator: Validators.phoneValidator,
       ignoreBlank: false,
       autoValidateMode: AutovalidateMode.disabled,
       initialValue: number,
