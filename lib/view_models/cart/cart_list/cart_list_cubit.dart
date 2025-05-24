@@ -15,8 +15,10 @@ class CartListCubit extends Cubit<CartListState> {
   final LocalCart localCart;
   final CartApi _api;
 
-  Future<void> getCartList(String userID) async {
-    emit(CartListLoading());
+  Future<void> getCartList(String userID, {bool loading = true}) async {
+    if (loading) {
+      emit(CartListLoading());
+    }
     var cartItems = await _api.getItemCart(userID);
     //print(products);
     cartItems.fold(
@@ -68,6 +70,7 @@ class CartListCubit extends Cubit<CartListState> {
   }
 
   addItem(Map<String, dynamic> body) async {
+    //emit(CartCountLoading());
     var data = await _api.addToCart(body);
     //print(data);
     data.fold(
@@ -76,13 +79,15 @@ class CartListCubit extends Cubit<CartListState> {
       },
       (right) {
         localCart.addItemToCart(UserInfo.userId!, body["product_id"]);
-        getCartList(UserInfo.userId!);
+        getCartList(UserInfo.userId!, loading: false);
         // cartTotalPrice();
       },
     );
   }
 
   editItem(int cartId, int quantity) async {
+    emit(CartCountLoading());
+
     var data = await _api.editCart(UserInfo.userId!, {
       "cart_id": cartId,
       "quantity": quantity,
@@ -94,7 +99,7 @@ class CartListCubit extends Cubit<CartListState> {
       },
       (right) {
         //localCart.addItemToCart(UserInfo.userId!, body["product_id"]);
-        getCartList(UserInfo.userId!);
+        getCartList(UserInfo.userId!, loading: false);
         // cartTotalPrice();
       },
     );

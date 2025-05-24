@@ -13,7 +13,7 @@ class PlaceOrderView extends StatelessWidget {
         title: "Place Order",
         onTapBackIcon: () => context.pop(),
       ),
-      body: PlaceOrderViewBody(),
+      body: const PlaceOrderViewBody(),
     );
   }
 }

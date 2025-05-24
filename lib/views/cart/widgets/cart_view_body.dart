@@ -1,3 +1,4 @@
+import 'package:betna/constants.dart';
 import 'package:betna/core/utils/app_routes.dart';
 import 'package:betna/core/widgets/custom_button.dart';
 import 'package:betna/models/cart_model.dart';
@@ -29,8 +30,9 @@ class _CartViewBodyState extends State<CartViewBody> {
           height: 45.h,
           child: ListView.builder(
             itemCount: cartList.length,
-            itemBuilder:
-                (context, index) => CartListItem(item: cartList[index]),
+            itemBuilder: (context, index) {
+              return CartListItem(item: cartList[index]);
+            },
           ),
         ),
         CartInfo(cartListLength: cartList.length),

@@ -108,8 +108,10 @@ class _CartListItemState extends State<CartListItem> {
                             ),
                             child: CartItemCount(
                               item: widget.item,
-                              countPadding: const EdgeInsets.symmetric(horizontal: 4),
-
+                              countPadding: const EdgeInsets.symmetric(
+                                horizontal: 4,
+                              ),
+                            
                               iconPadding: const EdgeInsets.symmetric(
                                 horizontal: 13,
                                 vertical: 3,
@@ -131,9 +133,9 @@ class _CartListItemState extends State<CartListItem> {
                       widget.item.id.toString(),
                     );
 
-                    ScaffoldMessenger.of(
-                      context,
-                    ).showSnackBar(const SnackBar(content: Text('Item removed')));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Item removed')),
+                    );
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
@@ -141,7 +143,10 @@ class _CartListItemState extends State<CartListItem> {
                     child: Container(
                       color: kPrimaryColor,
                       alignment: Alignment.center,
-                      child: const Icon(Icons.delete_outline, color: Colors.white),
+                      child: const Icon(
+                        Icons.delete_outline,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

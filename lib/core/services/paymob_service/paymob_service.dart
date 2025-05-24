@@ -28,7 +28,7 @@ class PaymobService {
       'https://accept.paymob.com/api/acceptance/iframes/916408?payment_token=$paymentKey',
     );
 
-    if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+    if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
   }
@@ -68,8 +68,6 @@ class PaymobService {
           "expiration": 3600,
         },
       );
-      print("===========>");
-      print("API Response: ${data}");
       return data["payment_keys"][0]["key"];
     } catch (e) {
       if (e is DioException) {

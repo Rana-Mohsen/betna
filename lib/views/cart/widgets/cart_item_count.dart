@@ -28,6 +28,8 @@ class CartItemCount extends StatefulWidget {
 }
 
 class _CartItemCountState extends State<CartItemCount> {
+  late List<CartModel> cartList;
+
   @override
   Widget build(BuildContext context) {
     var bloc = BlocProvider.of<CartListCubit>(context);
@@ -56,13 +58,25 @@ class _CartItemCountState extends State<CartItemCount> {
           ),
           Padding(
             padding: widget.countPadding,
-            child: Text(
-              widget.item.quantity.toString(),
-              style: FontStyles.textStyle24.copyWith(
-                fontSize: widget.fontSize,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
+            child: BlocBuilder<CartListCubit, CartListState>(
+              builder: (context, state) {
+                cartList = BlocProvider.of<CartListCubit>(context).cartList;
+                if (state is CartCountLoading) {
+                  return const SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: kCircleProggress,
+                  );
+                }
+                return Text(
+                  widget.item.quantity.toString(),
+                  style: FontStyles.textStyle24.copyWith(
+                    fontSize: widget.fontSize,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                );
+              },
             ),
           ),
           customCountIcon(

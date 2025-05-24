@@ -32,14 +32,14 @@ class ProductsCubit extends Cubit<ProductsState> {
         productList = right;
         for (var item in productList) {
           item.isFav = favList.any((fav) => fav.id == item.id);
-          // LocalCartModel? localCartItem =
-          //     localCartList
-          //         .where((local) => local.productId == item.id)
-          //         .firstOrNull;
+          LocalCartModel? localCartItem =
+              localCartList
+                  .where((local) => local.productId == item.id)
+                  .firstOrNull;
 
-          // if (localCartItem != null) {
-          //   item.count = localCartItem.quantity!;
-          // }
+          if (localCartItem != null) {
+            item.count = localCartItem.quantity!;
+          }
         }
 
         _emitFilteredList();

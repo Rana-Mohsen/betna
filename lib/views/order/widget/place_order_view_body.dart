@@ -2,9 +2,12 @@ import 'package:betna/constants.dart';
 import 'package:betna/core/services/paymob_service/paymob_service.dart';
 import 'package:betna/core/utils/validators.dart';
 import 'package:betna/core/widgets/custom_button.dart';
+import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/views/order/widget/custom_phone_intl.dart';
 import 'package:betna/views/order/widget/place_order_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,9 +22,12 @@ class _PlaceOrderViewBodyState extends State<PlaceOrderViewBody> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   String? firstName, lastName, location, email, address;
+  PhoneNumber number = PhoneNumber();
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
+    var bloc = BlocProvider.of<CartListCubit>(context);
+
     return ModalProgressHUD(
       progressIndicator: kCircleProggress,
       inAsyncCall: isLoading,
@@ -63,9 +69,13 @@ class _PlaceOrderViewBodyState extends State<PlaceOrderViewBody> {
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: CustomPhoneIntl(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: CustomPhoneIntl(
+                    onSaved: (PhoneNumber nmb) {
+                      number = nmb;
+                    },
+                  ),
                 ),
 
                 PlaceOrderTextField(
@@ -88,18 +98,20 @@ class _PlaceOrderViewBodyState extends State<PlaceOrderViewBody> {
                     text: "Continue",
                     onTap: () async {
                       if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!
+                            .save(); //for the phone intel onSave method
                         setState(() {
                           isLoading = true;
                         });
                         PaymobService paymob = PaymobService();
                         await paymob.launchCheckOutUrl(
-                          100.50,
+                          bloc.totalPrice,
                           firstName!,
                           lastName!,
                           email!,
                           address!,
-                          "+201120200408",
-                          "EGP",
+                          number.phoneNumber!,
+                          number.isoCode!,
                         );
                       }
                       setState(() {

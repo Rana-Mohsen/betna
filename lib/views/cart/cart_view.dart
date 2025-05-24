@@ -1,6 +1,7 @@
 import 'package:betna/constants.dart';
 import 'package:betna/core/Local_Storage/user_info.dart';
 import 'package:betna/core/utils/app_routes.dart';
+import 'package:betna/core/utils/snack_bar.dart';
 import 'package:betna/core/widgets/custom_appbar.dart';
 import 'package:betna/view_models/cart/cart_list/cart_list_cubit.dart';
 import 'package:betna/view_models/home/products_cubit/products_cubit.dart';
@@ -29,20 +30,25 @@ class _CartViewState extends State<CartView> {
       appBar: customAppBar(
         title: "My Cart",
         onTapBackIcon: () {
-          print("ooo");
-          context.go(AppRoutes.kBottomNavigation, extra: 1);
+          context.go(AppRoutes.kBottomNavigation, extra: 0);
         },
       ),
-      body: BlocBuilder<CartListCubit, CartListState>(
+      body: BlocConsumer<CartListCubit, CartListState>(
+        listener: (context, state) {
+          if (state is CartError) {
+            return snackBarMessage(
+              context,
+              "Cart Error! \n ${state.errMessage}",
+            );
+          }
+        },
         builder: (context, state) {
           if (state is CartListEmpty) {
             return const Center(child: Text("Empty cart! \n Add items"));
-          } else if (state is CartError) {
-            return Center(child: Text("Cart Error! \n ${state.errMessage}"));
-          } else if (state is CartSuccess || state is CartListItemChanged) {
-            return const Padding(padding: kMainPadding, child: CartViewBody());
-          } else {
+          } else if (state is CartListLoading) {
             return const Center(child: kCircleProggress);
+          } else {
+            return const Padding(padding: kMainPadding, child: CartViewBody());
           }
         },
       ),
